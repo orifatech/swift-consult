@@ -1,0 +1,94 @@
+---
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import Badge from '@/components/ui/Badge.astro';
+import { GLOBAL_REGIONS } from '@/data/companyData';
+---
+
+<section id="global-presence" class="py-20 lg:py-24 bg-blueprint-bg border-b border-slate-200" aria-labelledby="global-footprint-title">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <SectionHeading
+      index="03"
+      eyebrow="International Footprint & Track Record"
+      title="Global Delivery Across 4 Key Continents & Jurisdictions"
+      subtitle="Engineering and procurement operations anchored in North America with active project hubs across the Middle East and West Africa."
+    />
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {GLOBAL_REGIONS.map((region, index) => (
+        <div class="bg-white border border-slate-300 p-6 flex flex-col justify-between hover:border-navy-900 transition-colors duration-150 group">
+          <div>
+            <!-- Region Header -->
+            <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-200">
+              <span class="text-3xl" role="img" aria-label={`${region.region} flag`}>
+                {region.flag}
+              </span>
+              <span class="font-mono text-[10px] text-slate-400 uppercase tracking-widest">
+                ZONE 0{index + 1}
+              </span>
+            </div>
+
+            <!-- Title & HQ -->
+            <h3 class="text-lg font-display font-bold uppercase text-navy-900 group-hover:text-steel-600 transition-colors">
+              {region.region}
+            </h3>
+            
+            <p class="mt-1 text-xs font-mono text-steel-600 font-medium">
+              {region.headquarters}
+            </p>
+
+            <p class="mt-3 text-xs text-slate-600 font-sans leading-relaxed">
+              {region.description}
+            </p>
+          </div>
+
+          <!-- Bottom Key Hubs & Lead Entity -->
+          <div class="mt-6 pt-4 border-t border-slate-200 space-y-3">
+            <div>
+              <div class="text-[10px] font-mono uppercase text-slate-400 tracking-wider mb-1">
+                Active Project Hubs:
+              </div>
+              <div class="flex flex-wrap gap-1 font-mono text-[10px] text-slate-700">
+                {region.keyHubs.map((hub) => (
+                  <span class="px-1.5 py-0.5 bg-slate-100 border border-slate-200">
+                    {hub}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div class="pt-2 flex items-center justify-between text-[11px] font-mono">
+              <span class="text-slate-500 uppercase">Lead Entity:</span>
+              <span class="font-semibold text-navy-900">{region.lead}</span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Technical Operational Callout Strip -->
+    <div class="mt-10 p-6 bg-navy-950 text-white border border-navy-800 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 bg-navy-900 border border-steel-500/40 flex items-center justify-center font-mono text-amber-construction font-bold text-lg select-none">
+          EPC
+        </div>
+        <div>
+          <h4 class="font-display font-bold uppercase text-sm sm:text-base text-white">
+            Cross-Border Logistics &amp; Regulatory Conformance
+          </h4>
+          <p class="text-xs text-slate-300 font-sans mt-0.5 max-w-2xl">
+            From North American municipal building codes to international maritime shipping standards, our team ensures complete jurisdictional compliance and expedited customs clearances.
+          </p>
+        </div>
+      </div>
+
+      <a
+        href="/contact"
+        class="whitespace-nowrap px-4 py-2.5 bg-steel-500 hover:bg-steel-600 text-white font-display text-xs font-semibold uppercase tracking-wider transition-colors"
+      >
+        Discuss Regional RFP →
+      </a>
+    </div>
+
+  </div>
+</section>

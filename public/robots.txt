@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://swiftconsultinc.com/sitemap.xml
+Sitemap: https://swiftglobalinc.com/sitemap.xml

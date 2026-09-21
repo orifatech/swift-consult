@@ -1,0 +1,171 @@
+---
+import Header from '@/components/layout/Header.astro';
+import Footer from '@/components/layout/Footer.astro';
+import { ENTITIES, type EntityKey } from '@/data/companyData';
+import '@/styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  currentEntity?: EntityKey;
+  activePath?: string;
+  ogImage?: string;
+  preloadImage?: string;
+  preloadImageMobile?: string;
+}
+
+const {
+  title,
+  description = 'Swift Consult Inc. & Swift Global Inc. — Integrated structural engineering, civil design, municipal permitting, international equipment procurement, and turnkey EPC project management across Canada, the USA, the Middle East, and West Africa.',
+  currentEntity = 'group',
+  activePath = '/',
+  ogImage = '/images/commercial-tower.webp',
+  preloadImage,
+  preloadImageMobile
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://swiftconsultinc.com').href;
+const activeCompany = ENTITIES[currentEntity];
+
+// Structured Data (JSON-LD) for SEO
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Corporation",
+      "@id": "https://swiftconsultinc.com/#organization-consult",
+      "name": "Swift Consult Inc.",
+      "legalName": "Swift Consult Inc.",
+      "url": "https://swiftconsultinc.com",
+      "logo": "https://swiftconsultinc.com/images/swift-consult-logo.svg",
+      "description": "Professional engineering consultancy specializing in structural design, civil engineering, seismic evaluations, and municipal permitting.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "1000 King Street West",
+        "addressLocality": "Toronto",
+        "addressRegion": "ON",
+        "postalCode": "M6K 3N1",
+        "addressCountry": "CA"
+      },
+      "telephone": "+1-587-566-3166",
+      "email": "info@swiftconsultinc.com",
+      "sameAs": [
+        "https://swiftglobalinc.com"
+      ]
+    },
+    {
+      "@type": "Corporation",
+      "@id": "https://swiftglobalinc.com/#organization-global",
+      "name": "Swift Global Inc.",
+      "legalName": "Swift Global Inc.",
+      "url": "https://swiftglobalinc.com",
+      "logo": "https://swiftconsultinc.com/images/swift-global-logo.svg",
+      "description": "International engineering procurement and EPC construction management provider operating across North America, the Middle East, and West Africa.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "1000 King Street West",
+        "addressLocality": "Toronto",
+        "addressRegion": "ON",
+        "postalCode": "M6K 3N1",
+        "addressCountry": "CA"
+      },
+      "telephone": "+1-587-566-3166",
+      "email": "info@swiftglobalinc.com"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://swiftconsultinc.com/#website",
+      "url": "https://swiftconsultinc.com",
+      "name": "Swift Consult Inc. & Swift Global Inc.",
+      "publisher": {
+        "@id": "https://swiftconsultinc.com/#organization-consult"
+      }
+    }
+  ]
+};
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO Meta Tags -->
+    <title>{title} | {activeCompany.legalName}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Swift Consult Inc. & Swift Global Inc." />
+    <meta name="theme-color" content="#0B1F38" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={`${title} | ${activeCompany.legalName}`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content="Swift Consult & Swift Global" />
+    <meta property="og:locale" content="en_CA" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={`${title} | ${activeCompany.legalName}`} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Performance: Preconnect to Font Origins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Performance: Preload Hero Image for Optimal LCP -->
+    {preloadImage && (
+      <link
+        rel="preload"
+        as="image"
+        href={preloadImage}
+        type="image/webp"
+        media="(min-width: 769px)"
+        fetchpriority="high"
+      />
+    )}
+    {preloadImageMobile && (
+      <link
+        rel="preload"
+        as="image"
+        href={preloadImageMobile}
+        type="image/webp"
+        media="(max-width: 768px)"
+        fetchpriority="high"
+      />
+    )}
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body class="min-h-screen flex flex-col bg-blueprint-bg text-navy-900 selection:bg-steel-500 selection:text-white">
+    
+    <!-- Accessibility: Skip to Main Content Link -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-navy-900 focus:text-white focus:outline-2 focus:outline-steel-500 font-mono text-xs uppercase"
+    >
+      Skip to main content
+    </a>
+
+    <!-- Header Navigation -->
+    <Header currentEntity={currentEntity} activePath={activePath} />
+
+    <!-- Main Landmark -->
+    <main id="main-content" class="flex-grow focus:outline-none" tabindex="-1">
+      <slot />
+    </main>
+
+    <!-- Global Corporate Footer -->
+    <Footer />
+
+  </body>
+</html>

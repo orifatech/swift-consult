@@ -1,0 +1,176 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import Badge from '@/components/ui/Badge.astro';
+import Button from '@/components/ui/Button.astro';
+import ResponsivePicture from '@/components/ui/ResponsivePicture.astro';
+import { PROJECTS } from '@/data/companyData';
+---
+
+<Layout
+  title="Global Experience & Projects Portfolio"
+  description="Explore the track record of Swift Consult Inc. and Swift Global Inc. across Canada, the USA, the Middle East, and West Africa."
+  currentEntity="group"
+  activePath="/projects"
+  preloadImage="/images/commercial-tower.webp"
+>
+  <!-- Page Header Banner -->
+  <section class="bg-navy-950 text-white py-16 sm:py-20 border-b border-navy-800 relative overflow-hidden">
+    <div class="absolute inset-0 bg-blueprint-grid-dark opacity-60 pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div class="max-w-3xl">
+        <div class="font-mono text-xs text-amber-construction uppercase tracking-architect mb-2">
+          04 // Portfolio &amp; Track Record
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-display font-bold uppercase tracking-tight text-white leading-tight">
+          Proven Execution Across Four Continents.
+        </h1>
+        <div class="w-16 h-0.5 mt-4 mb-5 bg-steel-500" aria-hidden="true"></div>
+        <p class="text-base sm:text-lg text-slate-300 font-sans leading-relaxed">
+          From high-density financial towers in Toronto to deepwater petrochemical ports in the Middle East and heavy logistics terminals in West Africa.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filter Controls -->
+  <section class="bg-white border-b border-slate-200 py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        
+        <!-- Entity Filters -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 font-mono text-xs">
+          <span class="text-slate-400 uppercase text-[10px] mr-1">Filter Entity:</span>
+          <button
+            type="button"
+            class="filter-btn active px-3 py-1.5 bg-navy-900 text-white uppercase tracking-wider border border-navy-900"
+            data-filter-entity="all"
+          >
+            All Projects
+          </button>
+          <button
+            type="button"
+            class="filter-btn px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 uppercase tracking-wider border border-slate-300"
+            data-filter-entity="Swift Consult"
+          >
+            Swift Consult
+          </button>
+          <button
+            type="button"
+            class="filter-btn px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 uppercase tracking-wider border border-slate-300"
+            data-filter-entity="Swift Global"
+          >
+            Swift Global
+          </button>
+        </div>
+
+        <!-- Metric Summary -->
+        <div class="font-mono text-xs text-slate-500">
+          Total Track Record: <strong class="text-navy-900 font-bold">{PROJECTS.length} Representative Major Works</strong>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Grid -->
+  <section class="py-16 sm:py-20 bg-blueprint-bg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {PROJECTS.map((project) => (
+          <article
+            class="project-card bg-white border border-slate-300 hover:border-navy-900 transition-colors duration-200 flex flex-col justify-between group"
+            data-entity={project.entity}
+            data-sector={project.sector}
+            data-region={project.region}
+          >
+            <div>
+              <!-- Image Header -->
+              <div class="relative overflow-hidden border-b border-slate-300 bg-navy-950">
+                <div class="aspect-[16/10] w-full overflow-hidden">
+                  <ResponsivePicture
+                    desktopSrc={project.image}
+                    mobileSrc={project.imageMobile}
+                    alt={project.title}
+                    width={1200}
+                    height={750}
+                    loading="lazy"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+
+                <div class="absolute top-3 left-3">
+                  <span class="px-2 py-0.5 bg-navy-950 text-white font-mono text-[10px] uppercase tracking-wider border border-white/20">
+                    {project.sector}
+                  </span>
+                </div>
+
+                <div class="absolute top-3 right-3 font-mono text-[10px] bg-white text-navy-900 px-2 py-0.5 font-bold">
+                  {project.year}
+                </div>
+
+                <div class="absolute bottom-3 left-3">
+                  <Badge variant={project.entity === 'Swift Consult' ? 'steel' : project.entity === 'Swift Global' ? 'navy' : 'gold'}>
+                    {project.entity}
+                  </Badge>
+                </div>
+              </div>
+
+              <!-- Content Area -->
+              <div class="p-6">
+                <div class="flex items-center gap-1.5 font-mono text-[11px] text-steel-600 mb-2">
+                  <span aria-hidden="true">📍</span>
+                  <span>{project.location}</span>
+                </div>
+
+                <h3 class="text-lg font-display font-bold uppercase tracking-tight text-navy-900 group-hover:text-steel-600 transition-colors">
+                  {project.title}
+                </h3>
+
+                <p class="mt-3 text-xs sm:text-sm text-slate-600 font-sans leading-relaxed">
+                  {project.scope}
+                </p>
+              </div>
+            </div>
+
+            <!-- Bottom Metric -->
+            <div class="px-6 py-3.5 bg-slate-50 border-t border-slate-200 flex items-center justify-between font-mono text-xs">
+              <span class="text-slate-500 uppercase text-[10px]">Key Parameter:</span>
+              <strong class="text-navy-900">{project.stats}</strong>
+            </div>
+          </article>
+        ))}
+      </div>
+
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const filterButtons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const projectCards = document.querySelectorAll<HTMLElement>('.project-card');
+
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Toggle button styles
+      filterButtons.forEach(b => {
+        b.classList.remove('bg-navy-900', 'text-white', 'border-navy-900');
+        b.classList.add('bg-slate-100', 'text-slate-700', 'border-slate-300');
+      });
+      btn.classList.add('bg-navy-900', 'text-white', 'border-navy-900');
+      btn.classList.remove('bg-slate-100', 'text-slate-700', 'border-slate-300');
+
+      const filterEntity = btn.getAttribute('data-filter-entity');
+
+      projectCards.forEach(card => {
+        const cardEntity = card.getAttribute('data-entity');
+        if (filterEntity === 'all' || cardEntity === filterEntity || cardEntity === 'Unified Group') {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>

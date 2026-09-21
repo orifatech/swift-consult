@@ -1,0 +1,40 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Hero from '@/components/sections/Hero.astro';
+import SectorsSection from '@/components/sections/SectorsSection.astro';
+import ServicesGrid from '@/components/sections/ServicesGrid.astro';
+import UnifiedEntitiesBanner from '@/components/sections/UnifiedEntitiesBanner.astro';
+import GlobalFootprint from '@/components/sections/GlobalFootprint.astro';
+import ProjectsPortfolio from '@/components/sections/ProjectsPortfolio.astro';
+import ContactSection from '@/components/sections/ContactSection.astro';
+---
+
+<Layout
+  title="Integrated Engineering, Global Procurement & Construction Management"
+  description="Swift Consult Inc. & Swift Global Inc. provide end-to-end engineering design, structural & civil analysis, heavy industrial equipment procurement, and turnkey EPC construction delivery across Canada, the USA, the Middle East, and West Africa."
+  currentEntity="group"
+  activePath="/"
+  preloadImage="/images/commercial-tower.webp"
+  preloadImageMobile="/images/commercial-tower-mobile.webp"
+>
+  <!-- Hero Section -->
+  <Hero entity="group" />
+
+  <!-- Unified Entities Strategic Statement -->
+  <UnifiedEntitiesBanner />
+
+  <!-- 3 Core Industry Sectors -->
+  <SectorsSection />
+
+  <!-- 5 Core Services Engine -->
+  <ServicesGrid />
+
+  <!-- Global Reach & Track Record -->
+  <GlobalFootprint />
+
+  <!-- Selected EPC Projects Portfolio -->
+  <ProjectsPortfolio limit={3} />
+
+  <!-- Contact & RFP Inquiry Hub -->
+  <ContactSection defaultEntity="group" />
+</Layout>

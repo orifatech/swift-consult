@@ -1,0 +1,103 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import ContactSection from '@/components/sections/ContactSection.astro';
+import Badge from '@/components/ui/Badge.astro';
+---
+
+<Layout
+  title="Contact Us | Corporate Headquarters & Engineering RFPs"
+  description="Contact Swift Consult Inc. and Swift Global Inc. at 1000 King Street West, Toronto, ON. Phone: +1 (587) 566-3166. Submit an RFP for structural engineering or global EPC procurement."
+  currentEntity="group"
+  activePath="/contact"
+  preloadImage="/images/commercial-tower.webp"
+>
+  <!-- Page Header Banner -->
+  <section class="bg-navy-950 text-white py-16 sm:py-20 border-b border-navy-800 relative overflow-hidden">
+    <div class="absolute inset-0 bg-blueprint-grid-dark opacity-60 pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div class="max-w-3xl">
+        <div class="font-mono text-xs text-amber-construction uppercase tracking-architect mb-2">
+          05 // Global Headquarters &amp; Communications
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-display font-bold uppercase tracking-tight text-white leading-tight">
+          Connect With Our Engineering &amp; Procurement Leadership.
+        </h1>
+        <div class="w-16 h-0.5 mt-4 mb-5 bg-steel-500" aria-hidden="true"></div>
+        <p class="text-base sm:text-lg text-slate-300 font-sans leading-relaxed">
+          Headquartered in Toronto, Canada, serving clients and partner organizations globally across North America, the Middle East, and West Africa.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Contact Section with Forms -->
+  <ContactSection defaultEntity="group" />
+
+  <!-- Global Regional Office Dispatch Directory -->
+  <section class="py-16 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="mb-8">
+        <h2 class="text-xl font-display font-bold uppercase tracking-tight text-navy-900">
+          Regional Dispatch &amp; Project Operations
+        </h2>
+        <p class="text-xs font-mono text-slate-500 mt-1">
+          COORDINATED OPERATIONAL HUBS FOR CROSS-BORDER LOGISTICS &amp; FIELD ADMINISTRATION
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 font-mono text-xs">
+        
+        <div class="p-5 bg-blueprint-bg border border-slate-300">
+          <div class="flex items-center justify-between mb-2">
+            <span class="font-bold text-navy-900">🇨🇦 Canada (HQ)</span>
+            <Badge variant="steel" size="sm">Primary</Badge>
+          </div>
+          <div class="text-slate-600 font-sans text-xs">
+            1000 King Street West<br />
+            Toronto, ON, M6K 3N1<br />
+            <span class="font-mono text-steel-600">+1 (587) 566-3166</span>
+          </div>
+        </div>
+
+        <div class="p-5 bg-blueprint-bg border border-slate-300">
+          <div class="flex items-center justify-between mb-2">
+            <span class="font-bold text-navy-900">🇺🇸 United States</span>
+            <Badge variant="neutral" size="sm">Regional</Badge>
+          </div>
+          <div class="text-slate-600 font-sans text-xs">
+            Midwest &amp; Gulf Coast Operations<br />
+            Civil &amp; Municipal Land Practice<br />
+            <span class="font-mono text-steel-600">dispatch@swiftconsultinc.com</span>
+          </div>
+        </div>
+
+        <div class="p-5 bg-blueprint-bg border border-slate-300">
+          <div class="flex items-center justify-between mb-2">
+            <span class="font-bold text-navy-900">🇦🇪 Middle East</span>
+            <Badge variant="navy" size="sm">Procurement</Badge>
+          </div>
+          <div class="text-slate-600 font-sans text-xs">
+            Jebel Ali Free Zone Hub<br />
+            Industrial EPC Sourcing<br />
+            <span class="font-mono text-steel-600">uae@swiftglobalinc.com</span>
+          </div>
+        </div>
+
+        <div class="p-5 bg-blueprint-bg border border-slate-300">
+          <div class="flex items-center justify-between mb-2">
+            <span class="font-bold text-navy-900">🇳🇬 West Africa</span>
+            <Badge variant="navy" size="sm">Logistics</Badge>
+          </div>
+          <div class="text-slate-600 font-sans text-xs">
+            Lekki Free Zone Port Facility<br />
+            Heavy Marine Equipment Logistics<br />
+            <span class="font-mono text-steel-600">africa@swiftglobalinc.com</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,168 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import ArchitecturalFrame from '@/components/ui/ArchitecturalFrame.astro';
+import ResponsivePicture from '@/components/ui/ResponsivePicture.astro';
+import Button from '@/components/ui/Button.astro';
+import Badge from '@/components/ui/Badge.astro';
+import GlobalFootprint from '@/components/sections/GlobalFootprint.astro';
+---
+
+<Layout
+  title="About Us | Company Overview & Unified Entities"
+  description="Learn about Swift Consult Inc. and Swift Global Inc., a unified international engineering, procurement, and construction consortium delivering turnkey EPC solutions globally."
+  currentEntity="group"
+  activePath="/about"
+  preloadImage="/images/commercial-tower.webp"
+>
+  <!-- Page Header Banner -->
+  <section class="bg-navy-950 text-white py-16 sm:py-20 border-b border-navy-800 relative overflow-hidden">
+    <div class="absolute inset-0 bg-blueprint-grid-dark opacity-60 pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div class="max-w-3xl">
+        <div class="font-mono text-xs text-amber-construction uppercase tracking-architect mb-2">
+          01 // Corporate Profile &amp; Governance
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-display font-bold uppercase tracking-tight text-white leading-tight">
+          Engineering Precision. Global Reach. Uncompromising Execution.
+        </h1>
+        <div class="w-16 h-0.5 mt-4 mb-5 bg-steel-500" aria-hidden="true"></div>
+        <p class="text-base sm:text-lg text-slate-300 font-sans leading-relaxed">
+          Overview of integrated solutions spanning initial structural concept through final EPC commissioning across North America, the Middle East, and West Africa.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Unified Entities Statement Section -->
+  <section class="py-20 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Text Column -->
+        <div class="lg:col-span-7 space-y-6">
+          <SectionHeading
+            index="01"
+            eyebrow="Corporate Operating Structure"
+            title="Unified Entities Statement"
+            subtitle="Clear governance establishing Swift Consult Inc. and Swift Global Inc. as an integrated commercial entity."
+            class="mb-6"
+          />
+
+          <div class="prose prose-slate font-sans text-sm sm:text-base leading-relaxed text-slate-700 space-y-4">
+            <p>
+              <strong>Swift Consult Inc.</strong> and <strong>Swift Global Inc.</strong> operate in strategic synergy to provide clients with a seamless bridge from licensed professional engineering design to heavy industrial procurement and on-site EPC project delivery.
+            </p>
+            <p>
+              Traditional engineering projects frequently suffer delays and cost overruns due to handoff friction between design consultants, municipal regulatory agencies, and third-party procurement vendors. By operating as a unified consortium, our two entities eliminate these boundaries:
+            </p>
+          </div>
+
+          <!-- Feature Columns -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+            <div class="p-4 bg-blueprint-bg border border-slate-300">
+              <Badge variant="steel" size="sm" class="mb-2">Swift Consult Inc.</Badge>
+              <h3 class="font-display font-bold text-navy-900 text-sm uppercase">Design &amp; Approvals Engine</h3>
+              <p class="text-xs text-slate-600 mt-1">
+                Structural engineering, seismic evaluation, condition assessments, civil site development (Civil 3D / SWMM), and municipal building permit approvals.
+              </p>
+            </div>
+
+            <div class="p-4 bg-blueprint-bg border border-slate-300">
+              <Badge variant="navy" size="sm" class="mb-2">Swift Global Inc.</Badge>
+              <h3 class="font-display font-bold text-navy-900 text-sm uppercase">Procurement &amp; Turnkey EPC</h3>
+              <p class="text-xs text-slate-600 mt-1">
+                International heavy equipment sourcing, factory acceptance testing (FAT), expediting, cross-border freight logistics, and industrial facility execution.
+              </p>
+            </div>
+          </div>
+
+          <div class="pt-4 flex items-center gap-4">
+            <Button href="/contact" variant="primary" size="md">
+              Engage Both Entities
+            </Button>
+            <a href="/projects" class="text-xs font-mono font-bold uppercase tracking-wider text-navy-900 hover:text-steel-600 transition-colors">
+              Explore Combined Track Record →
+            </a>
+          </div>
+        </div>
+
+        <!-- Visual Column -->
+        <div class="lg:col-span-5">
+          <ArchitecturalFrame
+            specCode="GOVERNANCE: UNIFIED EPC STRUCTURE"
+            coordLabel="TORONTO HQ: 1000 KING ST W"
+            chamfer="both"
+            class="border-slate-300"
+          >
+            <div class="aspect-[4/3] w-full">
+              <ResponsivePicture
+                desktopSrc="/images/structural-engineering.webp"
+                alt="Structural engineering precision detailing and blueprints"
+                width={1200}
+                height={900}
+                loading="eager"
+                class="w-full h-full object-cover"
+              />
+            </div>
+          </ArchitecturalFrame>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Global Track Record & Reach -->
+  <GlobalFootprint />
+
+  <!-- Delivery Models & Quality Systems -->
+  <section class="py-20 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <SectionHeading
+        index="02"
+        eyebrow="Commercial Delivery Framework"
+        title="Multi-Model Project Execution"
+        subtitle="We adapt our contractual and engineering delivery framework to match client risk profiles, financing models, and regional statutory requirements."
+        align="center"
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        
+        <div class="p-6 bg-blueprint-bg border border-slate-300">
+          <div class="font-mono text-2xl font-bold text-steel-600 mb-2">EPC</div>
+          <h3 class="font-display font-bold text-navy-900 uppercase text-sm mb-2">Engineering, Procurement &amp; Construction</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Single-point turnkey responsibility. Swift Consult provides design and engineering while Swift Global manages global procurement and field construction.
+          </p>
+        </div>
+
+        <div class="p-6 bg-blueprint-bg border border-slate-300">
+          <div class="font-mono text-2xl font-bold text-steel-600 mb-2">D-B</div>
+          <h3 class="font-display font-bold text-navy-900 uppercase text-sm mb-2">Design-Build Execution</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Fast-tracked parallel processing of structural documentation and site preparation, compressing schedule delivery by up to 30%.
+          </p>
+        </div>
+
+        <div class="p-6 bg-blueprint-bg border border-slate-300">
+          <div class="font-mono text-2xl font-bold text-steel-600 mb-2">CM</div>
+          <h3 class="font-display font-bold text-navy-900 uppercase text-sm mb-2">Construction Management</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Acting as owner's trusted technical representative. Providing quality oversight, trade contractor procurement, and critical-path scheduling.
+          </p>
+        </div>
+
+        <div class="p-6 bg-blueprint-bg border border-slate-300">
+          <div class="font-mono text-2xl font-bold text-steel-600 mb-2">PSC</div>
+          <h3 class="font-display font-bold text-navy-900 uppercase text-sm mb-2">Pure Consulting &amp; Approvals</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Independent structural condition assessments, seismic peer reviews, municipal zoning advocacy, and building permit acquisition.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,92 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Hero from '@/components/sections/Hero.astro';
+import SectorsSection from '@/components/sections/SectorsSection.astro';
+import ServicesGrid from '@/components/sections/ServicesGrid.astro';
+import ProjectsPortfolio from '@/components/sections/ProjectsPortfolio.astro';
+import ContactSection from '@/components/sections/ContactSection.astro';
+import Button from '@/components/ui/Button.astro';
+import Badge from '@/components/ui/Badge.astro';
+---
+
+<Layout
+  title="Swift Consult Inc. | Structural, Civil Engineering & Municipal Approvals"
+  description="Swift Consult Inc. is a premier Canadian engineering consultancy delivering structural analysis, seismic resilience, civil site development, and building permit approvals across North America."
+  currentEntity="consult"
+  activePath="/consult"
+  preloadImage="/images/structural-engineering.webp"
+  preloadImageMobile="/images/structural-engineering-mobile.webp"
+>
+  <!-- Hero Section pre-configured for Swift Consult -->
+  <Hero entity="consult" />
+
+  <!-- Special Consult Focus Strip -->
+  <section class="py-12 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <div class="p-6 bg-blueprint-bg border border-slate-300">
+          <Badge variant="steel" size="sm" class="mb-3">DISCIPLINE 01</Badge>
+          <h3 class="font-display font-bold text-navy-900 text-lg uppercase">Structural Analysis &amp; Seismic</h3>
+          <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+            Advanced finite element modeling (FEM) for reinforced concrete, structural steel, mass timber, and FRP retrofits under OBC, NBC, and IBC standards.
+          </p>
+        </div>
+
+        <div class="p-6 bg-blueprint-bg border border-slate-300">
+          <Badge variant="steel" size="sm" class="mb-3">DISCIPLINE 02</Badge>
+          <h3 class="font-display font-bold text-navy-900 text-lg uppercase">Civil 3D &amp; SWMM Hydrology</h3>
+          <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+            Subdivision master servicing, stormwater management ponds, underground utility design, and site grading optimization.
+          </p>
+        </div>
+
+        <div class="p-6 bg-blueprint-bg border border-slate-300">
+          <Badge variant="steel" size="sm" class="mb-3">DISCIPLINE 03</Badge>
+          <h3 class="font-display font-bold text-navy-900 text-lg uppercase">Municipal Permitting</h3>
+          <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+            Site Plan Approvals (SPA), Committee of Adjustment variances, environmental agency clearance, and building permit expediting.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Sister Entity Bridge Notice -->
+      <div class="mt-8 p-4 bg-navy-900 text-white flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3 text-xs font-mono">
+          <span class="text-amber-construction">⚡</span>
+          <span>Require international procurement or heavy industrial EPC? Explore sister entity <strong>Swift Global Inc.</strong></span>
+        </div>
+        <a
+          href="/global"
+          class="px-3 py-1.5 bg-steel-500 hover:bg-steel-600 text-white font-mono text-xs uppercase tracking-wider transition-colors whitespace-nowrap"
+        >
+          View Swift Global →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Consult Relevant Services -->
+  <ServicesGrid
+    eyebrow="Consulting Engineering Capabilities"
+    title="Structural, Civil &amp; Permitting Services"
+    subtitle="Engineered for constructability, structural safety, and rapid municipal approval turnaround."
+  />
+
+  <!-- Consult Sectors -->
+  <SectorsSection
+    eyebrow="Targeted Project Sectors"
+    title="Commercial &amp; Residential Engineering"
+    subtitle="Providing engineering solutions for landmark urban developments, mass timber residences, and municipal site infrastructure."
+  />
+
+  <!-- Filtered Projects by Swift Consult -->
+  <ProjectsPortfolio
+    entityFilter="consult"
+    limit={3}
+  />
+
+  <!-- Consult Contact Form -->
+  <ContactSection defaultEntity="consult" />
+</Layout>
