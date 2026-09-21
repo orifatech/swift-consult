@@ -1,0 +1,48 @@
+---
+interface Props {
+  index?: string;
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  align?: 'left' | 'center';
+  dark?: boolean;
+  class?: string;
+}
+
+const {
+  index,
+  eyebrow,
+  title,
+  subtitle,
+  align = 'left',
+  dark = false,
+  class: className = ''
+} = Astro.props;
+---
+
+<div class={`mb-10 sm:mb-14 ${align === 'center' ? 'text-center mx-auto max-w-3xl' : 'max-w-2xl'} ${className}`}>
+  <!-- Index / Eyebrow Header -->
+  <div class={`flex items-center gap-2 mb-3 font-mono text-xs tracking-architect uppercase ${align === 'center' ? 'justify-center' : ''} ${dark ? 'text-steel-400' : 'text-steel-600'}`}>
+    {index && (
+      <span class="font-semibold text-amber-construction">{index} //</span>
+    )}
+    {eyebrow && (
+      <span>{eyebrow}</span>
+    )}
+  </div>
+
+  <!-- Main Section Title -->
+  <h2 class={`text-2xl sm:text-3xl lg:text-4xl font-display font-bold tracking-tight uppercase ${dark ? 'text-white' : 'text-navy-900'}`}>
+    {title}
+  </h2>
+
+  <!-- Accent Divider Line -->
+  <div class={`w-12 h-0.5 mt-3 mb-4 bg-steel-500 ${align === 'center' ? 'mx-auto' : ''}`} aria-hidden="true"></div>
+
+  <!-- Subtitle -->
+  {subtitle && (
+    <p class={`text-sm sm:text-base leading-relaxed ${dark ? 'text-slate-300' : 'text-slate-600'}`}>
+      {subtitle}
+    </p>
+  )}
+</div>

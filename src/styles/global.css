@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, ::before, ::after {
+    border-radius: 0 !important;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    color: #0B1F38;
+    background-color: #F8FAFC;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* High contrast accessibility focus states */
+  :focus-visible {
+    outline: 2px solid #5B8296;
+    outline-offset: 3px;
+  }
+
+  button, input, textarea, select {
+    border-radius: 0 !important;
+  }
+}
+
+@layer utilities {
+  /* Architectural Chamfer & Diagonal Clip-Paths */
+  .clip-chamfer-tr {
+    clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 0 100%);
+  }
+
+  .clip-chamfer-bl {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 24px 100%, 0 calc(100% - 24px));
+  }
+
+  .clip-chamfer-both {
+    clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 24px 100%, 0 calc(100% - 24px));
+  }
+
+  .clip-diagonal {
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 32px), 0 100%);
+  }
+
+  /* Technical Blueprint Grid Background */
+  .bg-blueprint-grid {
+    background-image: 
+      linear-gradient(to right, rgba(91, 130, 150, 0.08) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(91, 130, 150, 0.08) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .bg-blueprint-grid-dense {
+    background-image: 
+      linear-gradient(to right, rgba(91, 130, 150, 0.12) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(91, 130, 150, 0.12) 1px, transparent 1px);
+    background-size: 16px 16px;
+  }
+
+  .bg-blueprint-grid-dark {
+    background-image: 
+      linear-gradient(to right, rgba(91, 130, 150, 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(91, 130, 150, 0.06) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* Zero shadow override */
+  .shadow-none {
+    box-shadow: none !important;
+  }
+}

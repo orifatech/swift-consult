@@ -1,0 +1,27 @@
+{
+  "name": "swift-consult",
+  "version": "1.0.0",
+  "description": "Swift Consult Inc. & Swift Global Inc. - Engineering, Procurement & Construction",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "keywords": [
+    "engineering",
+    "procurement",
+    "construction",
+    "epc",
+    "structural-engineering",
+    "civil-engineering"
+  ],
+  "author": "Swift Consult Inc. / Swift Global Inc.",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@astrojs/tailwind": "^5.1.5",
+    "astro": "^5.18.2",
+    "sharp": "^0.34.5",
+    "tailwindcss": "^3.4.19"
+  }
+}

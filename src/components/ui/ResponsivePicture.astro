@@ -1,0 +1,49 @@
+---
+interface Props {
+  desktopSrc: string;
+  mobileSrc?: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  loading?: 'lazy' | 'eager';
+  fetchpriority?: 'high' | 'low' | 'auto';
+  class?: string;
+  pictureClass?: string;
+}
+
+const {
+  desktopSrc,
+  mobileSrc,
+  alt,
+  width = 1600,
+  height = 900,
+  loading = 'lazy',
+  fetchpriority = 'auto',
+  class: className = 'w-full h-full object-cover',
+  pictureClass = 'block w-full h-full'
+} = Astro.props;
+
+// Auto-derive mobileSrc if not explicitly passed and desktopSrc matches our generated images
+const computedMobileSrc = mobileSrc || (
+  desktopSrc.endsWith('.webp') && !desktopSrc.includes('-mobile') 
+    ? desktopSrc.replace('.webp', '-mobile.webp') 
+    : desktopSrc
+);
+---
+
+<picture class={pictureClass}>
+  {computedMobileSrc && computedMobileSrc !== desktopSrc && (
+    <source media="(max-width: 768px)" srcset={computedMobileSrc} type="image/webp" />
+  )}
+  <source media="(min-width: 769px)" srcset={desktopSrc} type="image/webp" />
+  <img
+    src={desktopSrc}
+    alt={alt}
+    width={width}
+    height={height}
+    loading={loading}
+    fetchpriority={fetchpriority}
+    decoding="async"
+    class={`${className} rounded-none shadow-none`}
+  />
+</picture>

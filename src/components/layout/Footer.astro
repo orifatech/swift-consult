@@ -1,0 +1,173 @@
+---
+import { SECTORS, SERVICES, ENTITIES } from '@/data/companyData';
+import Button from '@/components/ui/Button.astro';
+---
+
+<footer class="bg-navy-950 text-white border-t border-navy-800" role="contentinfo">
+  <!-- Equal Entity Visibility Banner -->
+  <div class="border-b border-navy-800 bg-navy-900/60 py-6 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div class="space-y-1">
+        <div class="flex items-center gap-2 font-mono text-[11px] text-amber-construction uppercase tracking-architect">
+          <span>// Integrated Corporate Operating Model</span>
+        </div>
+        <p class="text-sm text-slate-300 font-sans max-w-2xl">
+          Swift Consult Inc. and Swift Global Inc. operate as unified sister entities providing seamless concept-through-delivery engineering, procurement, and construction management.
+        </p>
+      </div>
+
+      <!-- Equal Domain Anchors -->
+      <div class="flex items-center gap-3">
+        <a
+          href="/consult"
+          class="px-3 py-2 text-xs font-mono uppercase tracking-wider bg-navy-850 hover:bg-steel-600 text-white border border-steel-500/40 transition-colors"
+        >
+          swiftconsultinc.com
+        </a>
+        <span class="text-slate-600 font-mono">|</span>
+        <a
+          href="/global"
+          class="px-3 py-2 text-xs font-mono uppercase tracking-wider bg-navy-850 hover:bg-steel-600 text-white border border-steel-500/40 transition-colors"
+        >
+          swiftglobalinc.com
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Footer Grid -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+      
+      <!-- Col 1: Corporate Profile & Logos -->
+      <div class="lg:col-span-2 space-y-6">
+        <div class="flex items-center gap-3">
+          <img
+            src="/images/swift-group-logo.svg"
+            alt="Swift Consult & Global Inc. Logo"
+            width="280"
+            height="62"
+            class="h-12 w-auto brightness-200"
+            loading="lazy"
+          />
+        </div>
+
+        <p class="text-xs sm:text-sm text-slate-400 leading-relaxed font-sans max-w-md">
+          Delivering multidisciplinary structural & civil engineering, regulatory approvals, global heavy equipment procurement, and comprehensive EPC project management across Canada, the United States, the Middle East, and West Africa.
+        </p>
+
+        <!-- Technical Accreditations & Codes -->
+        <div class="space-y-2 pt-2">
+          <div class="text-[10px] font-mono uppercase text-slate-400 tracking-wider">Engineering Compliance & Standards:</div>
+          <div class="flex flex-wrap gap-1.5 font-mono text-[10px] text-steel-300">
+            <span class="px-2 py-0.5 bg-navy-900 border border-navy-800">CSA S16 / S6</span>
+            <span class="px-2 py-0.5 bg-navy-900 border border-navy-800">ACI 318</span>
+            <span class="px-2 py-0.5 bg-navy-900 border border-navy-800">OBC / NBC</span>
+            <span class="px-2 py-0.5 bg-navy-900 border border-navy-800">ISO 9001 EPC</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Col 2: Sectors -->
+      <div>
+        <h3 class="text-xs font-mono uppercase tracking-architect text-steel-400 mb-4 pb-1 border-b border-navy-800">
+          Sectors & Operations
+        </h3>
+        <ul class="space-y-2.5 text-xs text-slate-300 font-sans" role="list">
+          {SECTORS.map((sector) => (
+            <li>
+              <a href={`/sectors#${sector.id}`} class="hover:text-white transition-colors flex items-center justify-between group">
+                <span>{sector.title}</span>
+                <span class="text-slate-600 group-hover:text-amber-construction font-mono text-[10px] transition-colors">→</span>
+              </a>
+            </li>
+          ))}
+          <li class="pt-2">
+            <a href="/sectors" class="text-amber-construction font-mono text-[11px] uppercase tracking-wider hover:underline">
+              View All Sectors →
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Services Engine -->
+      <div>
+        <h3 class="text-xs font-mono uppercase tracking-architect text-steel-400 mb-4 pb-1 border-b border-navy-800">
+          Technical Services
+        </h3>
+        <ul class="space-y-2 text-xs text-slate-300 font-sans" role="list">
+          {SERVICES.map((service) => (
+            <li>
+              <a href={`/services#service-${service.number}`} class="hover:text-white transition-colors block py-0.5">
+                <span class="text-slate-500 font-mono text-[10px] mr-1">{service.number}.</span>
+                {service.title}
+              </a>
+            </li>
+          ))}
+          <li class="pt-2">
+            <a href="/services" class="text-amber-construction font-mono text-[11px] uppercase tracking-wider hover:underline">
+              Technical Engine Directory →
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Corporate Headquarters & Contacts -->
+      <div class="space-y-4">
+        <h3 class="text-xs font-mono uppercase tracking-architect text-steel-400 mb-4 pb-1 border-b border-navy-800">
+          Corporate Headquarters
+        </h3>
+        
+        <div class="text-xs text-slate-300 space-y-2 font-mono">
+          <div>
+            <span class="text-slate-500 block text-[10px] uppercase">Head Office Location</span>
+            <span class="text-white font-sans text-xs font-medium">1000 King Street West</span>
+            <span class="block text-slate-400 font-sans text-xs">Toronto, ON, M6K 3N1, Canada</span>
+          </div>
+
+          <div class="pt-1">
+            <span class="text-slate-500 block text-[10px] uppercase">Telephone / Dispatch</span>
+            <a href="tel:+15875663166" class="text-white hover:text-amber-construction font-mono text-xs transition-colors">
+              +1 (587) 566-3166
+            </a>
+          </div>
+
+          <div class="pt-1">
+            <span class="text-slate-500 block text-[10px] uppercase">Swift Consult Inquiries</span>
+            <a href="mailto:info@swiftconsultinc.com" class="text-steel-300 hover:text-white font-mono text-[11px] transition-colors break-all">
+              info@swiftconsultinc.com
+            </a>
+          </div>
+
+          <div class="pt-1">
+            <span class="text-slate-500 block text-[10px] uppercase">Swift Global Inquiries</span>
+            <a href="mailto:info@swiftglobalinc.com" class="text-steel-300 hover:text-white font-mono text-[11px] transition-colors break-all">
+              info@swiftglobalinc.com
+            </a>
+          </div>
+        </div>
+
+        <div class="pt-2">
+          <Button href="/contact" variant="accent" size="sm" class="w-full">
+            Submit Technical RFP
+          </Button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bottom Legal & Copyright Bar -->
+  <div class="border-t border-navy-900 bg-navy-950 py-6 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono text-slate-500">
+      <div>
+        © {new Date().getFullYear()} Swift Consult Inc. &amp; Swift Global Inc. All rights reserved.
+      </div>
+      <div class="flex items-center gap-4">
+        <span>Architectural Engineering &amp; EPC Sourcing</span>
+        <span>•</span>
+        <a href="/contact" class="hover:text-slate-300 transition-colors">Toronto, Canada</a>
+      </div>
+    </div>
+  </div>
+</footer>

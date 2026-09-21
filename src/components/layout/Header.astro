@@ -1,0 +1,190 @@
+---
+import EntitySwitcher from '@/components/layout/EntitySwitcher.astro';
+import Button from '@/components/ui/Button.astro';
+import { ENTITIES, type EntityKey } from '@/data/companyData';
+
+interface Props {
+  currentEntity?: EntityKey;
+  activePath?: string;
+}
+
+const { currentEntity = 'group', activePath = '/' } = Astro.props;
+const activeCompany = ENTITIES[currentEntity];
+
+const navLinks = [
+  { label: 'Home', href: currentEntity === 'consult' ? '/consult' : currentEntity === 'global' ? '/global' : '/' },
+  { label: 'About Us', href: '/about' },
+  { label: 'Sectors', href: '/sectors' },
+  { label: 'Services', href: '/services' },
+  { label: 'Projects', href: '/projects' },
+  { label: 'Contact', href: '/contact' },
+];
+---
+
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-navy-900/10">
+  <!-- Top Entity Switcher Bar -->
+  <EntitySwitcher currentEntity={currentEntity} />
+
+  <!-- Main Navigation Bar -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      
+      <!-- Logo Branding -->
+      <a href="/" class="flex items-center py-2 group focus-visible:outline-steel-500" aria-label={`${activeCompany.name} - Home`}>
+        <div class="h-12 sm:h-14 w-auto flex items-center">
+          <img
+            src={activeCompany.logoSvg}
+            alt={activeCompany.legalName}
+            width="260"
+            height="58"
+            class="h-10 sm:h-12 w-auto object-contain"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </div>
+      </a>
+
+      <!-- Desktop Nav Items -->
+      <nav class="hidden lg:flex items-center space-x-1" aria-label="Main Navigation">
+        {navLinks.map((link) => {
+          const isActive = activePath === link.href || (link.href !== '/' && activePath.startsWith(link.href));
+          return (
+            <a
+              href={link.href}
+              aria-current={isActive ? 'page' : undefined}
+              class={`px-3.5 py-2 text-xs font-display font-semibold uppercase tracking-wider transition-colors duration-150 ${
+                isActive
+                  ? 'text-navy-900 border-b-2 border-navy-900 font-bold'
+                  : 'text-slate-600 hover:text-navy-900 hover:bg-slate-50 border-b-2 border-transparent'
+              }`}
+            >
+              {link.label}
+            </a>
+          );
+        })}
+      </nav>
+
+      <!-- Right CTAs & Contact Info -->
+      <div class="hidden sm:flex items-center gap-4">
+        <!-- Direct Phone Link -->
+        <a
+          href="tel:+15875663166"
+          class="flex flex-col text-right font-mono group focus-visible:outline-steel-500"
+          aria-label="Call Toronto office at +1 (587) 566-3166"
+        >
+          <span class="text-[10px] uppercase text-slate-500 tracking-wider">Toronto HQ</span>
+          <span class="text-xs font-semibold text-navy-900 group-hover:text-steel-600 transition-colors">+1 (587) 566-3166</span>
+        </a>
+
+        <!-- Consultation Button -->
+        <Button href="/contact" variant="primary" size="sm">
+          Request Consultation
+        </Button>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <div class="flex lg:hidden items-center gap-2">
+        <a
+          href="/contact"
+          class="sm:hidden px-3 py-1.5 text-xs font-display font-semibold uppercase tracking-wider bg-navy-900 text-white rounded-none"
+        >
+          Contact
+        </a>
+        <button
+          type="button"
+          id="mobile-menu-button"
+          class="p-2.5 text-navy-900 hover:bg-slate-100 focus-visible:outline-steel-500 rounded-none border border-slate-200"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="mobile-nav-menu"
+        >
+          <svg id="hamburger-icon" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg id="close-icon" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Mobile Drawer Menu -->
+  <div
+    id="mobile-nav-menu"
+    class="hidden lg:hidden border-t border-slate-200 bg-white"
+    role="region"
+    aria-label="Mobile Navigation"
+  >
+    <div class="px-4 pt-3 pb-6 space-y-2">
+      <!-- Entity Selection in Mobile Drawer -->
+      <div class="p-3 bg-slate-50 border border-slate-200 mb-4">
+        <div class="text-[10px] font-mono uppercase text-slate-500 tracking-widest mb-2">Select Active Entity:</div>
+        <div class="grid grid-cols-2 gap-2">
+          <a
+            href="/consult"
+            class={`px-2 py-1.5 text-xs font-mono text-center uppercase tracking-wider ${
+              currentEntity === 'consult' ? 'bg-navy-900 text-white' : 'bg-white text-slate-700 border border-slate-300'
+            }`}
+          >
+            Swift Consult
+          </a>
+          <a
+            href="/global"
+            class={`px-2 py-1.5 text-xs font-mono text-center uppercase tracking-wider ${
+              currentEntity === 'global' ? 'bg-navy-900 text-white' : 'bg-white text-slate-700 border border-slate-300'
+            }`}
+          >
+            Swift Global
+          </a>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="block px-3 py-2 text-sm font-display font-medium uppercase tracking-wider text-slate-700 hover:bg-slate-100 hover:text-navy-900 border-l-2 border-transparent hover:border-navy-900"
+        >
+          {link.label}
+        </a>
+      ))}
+
+      <!-- Contact Info In Mobile Drawer -->
+      <div class="pt-4 border-t border-slate-200 space-y-2 font-mono text-xs text-slate-600">
+        <div><strong class="text-navy-900">Toronto HQ:</strong> 1000 King Street West, Toronto, ON</div>
+        <div><strong class="text-navy-900">Phone:</strong> <a href="tel:+15875663166" class="text-steel-600 underline">+1 (587) 566-3166</a></div>
+        <div><strong class="text-navy-900">Email:</strong> <a href={`mailto:${activeCompany.email}`} class="text-steel-600 underline">{activeCompany.email}</a></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const menuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-nav-menu');
+  const hamburgerIcon = document.getElementById('hamburger-icon');
+  const closeIcon = document.getElementById('close-icon');
+
+  if (menuButton && mobileMenu && hamburgerIcon && closeIcon) {
+    menuButton.addEventListener('click', () => {
+      const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
+      menuButton.setAttribute('aria-expanded', String(!isExpanded));
+      mobileMenu.classList.toggle('hidden');
+      hamburgerIcon.classList.toggle('hidden');
+      closeIcon.classList.toggle('hidden');
+    });
+
+    // Close mobile menu on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+        menuButton.setAttribute('aria-expanded', 'false');
+        mobileMenu.classList.add('hidden');
+        hamburgerIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+        menuButton.focus();
+      }
+    });
+  }
+</script>

@@ -1,0 +1,54 @@
+---
+interface Props {
+  specCode?: string;
+  coordLabel?: string;
+  chamfer?: 'tr' | 'bl' | 'both' | 'none';
+  hasCornerTicks?: boolean;
+  class?: string;
+}
+
+const {
+  specCode,
+  coordLabel,
+  chamfer = 'none',
+  hasCornerTicks = true,
+  class: className = ''
+} = Astro.props;
+
+let chamferClass = '';
+if (chamfer === 'tr') chamferClass = 'clip-chamfer-tr';
+if (chamfer === 'bl') chamferClass = 'clip-chamfer-bl';
+if (chamfer === 'both') chamferClass = 'clip-chamfer-both';
+---
+
+<div class={`relative border border-navy-900/15 bg-white p-2 ${chamferClass} ${className}`}>
+  <!-- Corner Architectural Tick Crosshairs -->
+  {hasCornerTicks && (
+    <>
+      <span class="absolute -top-[5px] -left-[5px] text-steel-500 font-mono text-[10px] leading-none select-none pointer-events-none" aria-hidden="true">+</span>
+      <span class="absolute -top-[5px] -right-[5px] text-steel-500 font-mono text-[10px] leading-none select-none pointer-events-none" aria-hidden="true">+</span>
+      <span class="absolute -bottom-[5px] -left-[5px] text-steel-500 font-mono text-[10px] leading-none select-none pointer-events-none" aria-hidden="true">+</span>
+      <span class="absolute -bottom-[5px] -right-[5px] text-steel-500 font-mono text-[10px] leading-none select-none pointer-events-none" aria-hidden="true">+</span>
+    </>
+  )}
+
+  <!-- Content Slot (Images or Media) -->
+  <div class="relative overflow-hidden bg-navy-950">
+    <slot />
+
+    <!-- Optional Technical Annotation Strip -->
+    {(specCode || coordLabel) && (
+      <div class="absolute bottom-0 inset-x-0 bg-navy-950/85 backdrop-blur-sm border-t border-white/10 px-3 py-1.5 flex items-center justify-between text-[11px] font-mono text-slate-300">
+        {specCode && (
+          <span class="flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 bg-amber-construction inline-block" aria-hidden="true"></span>
+            <span>{specCode}</span>
+          </span>
+        )}
+        {coordLabel && (
+          <span class="text-steel-300 tracking-wider">{coordLabel}</span>
+        )}
+      </div>
+    )}
+  </div>
+</div>
