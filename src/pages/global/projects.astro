@@ -1,0 +1,102 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import ArchitecturalFrame from '@/components/ui/ArchitecturalFrame.astro';
+import Button from '@/components/ui/Button.astro';
+import Badge from '@/components/ui/Badge.astro';
+import ResponsivePicture from '@/components/ui/ResponsivePicture.astro';
+import { PROJECTS } from '@/data/companyData';
+
+const globalProjects = PROJECTS.filter(p => p.entity === 'Swift Global' || p.entity === 'Unified Group');
+---
+
+<Layout
+  title="International EPC & Procurement Projects | Swift Global Inc."
+  description="Explore the global industrial track record of Swift Global Inc., including petrochemical refinery expansions, deepwater port logistics terminals, and international equipment sourcing."
+  currentEntity="global"
+  activePath="/global/projects"
+>
+  <!-- Page Header -->
+  <section class="bg-black text-white py-16 lg:py-20 border-b border-navy-800 relative overflow-hidden">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl space-y-4">
+        <div class="flex items-center gap-2">
+          <Badge variant="global">Global Track Record</Badge>
+          <span class="font-mono text-xs text-amber-construction">International EPC &amp; Sourcing Portfolio</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold uppercase tracking-tight text-white leading-tight">
+          Procurement &amp; EPC Projects
+        </h1>
+        <p class="text-base sm:text-lg text-slate-300 font-sans leading-relaxed">
+          From Middle Eastern petrochemical expansions to West African deepwater maritime supply hubs, inspect the global delivery track record executed by Swift Global Inc.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Grid -->
+  <section class="py-20 lg:py-24 bg-slate-950 text-white border-b border-navy-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {globalProjects.map((project) => (
+          <article class="bg-black border border-navy-800 hover:border-amber-500/50 transition-colors duration-200 flex flex-col group">
+            <div class="aspect-[16/10] w-full overflow-hidden border-b border-navy-800">
+              <ResponsivePicture
+                desktopSrc={project.image}
+                mobileSrc={project.imageMobile}
+                alt={project.title}
+                aspectRatio="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-2">
+                  <span class="text-amber-construction font-bold">{project.sector}</span>
+                  <span>{project.year}</span>
+                </div>
+                <h2 class="text-lg font-display font-bold uppercase tracking-tight text-white mb-2 group-hover:text-amber-construction transition-colors">
+                  {project.title}
+                </h2>
+                <div class="text-xs font-mono text-slate-400 mb-3">
+                  📍 {project.location}
+                </div>
+                <p class="text-xs sm:text-sm text-slate-300 font-sans leading-relaxed mb-4">
+                  {project.scope}
+                </p>
+              </div>
+
+              <div class="pt-4 border-t border-navy-850 flex items-center justify-between font-mono text-xs">
+                <span class="px-2 py-0.5 bg-navy-900 border border-navy-700 text-amber-construction font-semibold text-[11px]">
+                  {project.stats}
+                </span>
+                <span class="text-slate-400">EPC Turnkey</span>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Cross-Entity Prompt: Consult Engineering Projects -->
+  <section class="py-16 bg-navy-950 text-white border-b border-navy-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-gradient-to-r from-navy-900 to-black p-8 sm:p-12 border border-steel-500/30 flex flex-col lg:flex-row items-center justify-between gap-8">
+        <div class="space-y-3 max-w-2xl text-center lg:text-left">
+          <Badge variant="consult">Canadian &amp; US Engineering Portfolio</Badge>
+          <h2 class="text-2xl sm:text-3xl font-display font-bold uppercase tracking-tight text-white">
+            Looking for High-Rise Structural &amp; Municipal Permitting Projects?
+          </h2>
+          <p class="text-sm text-slate-300 font-sans leading-relaxed">
+            Discover how our sister company <strong>Swift Consult Inc.</strong> designs complex structural steel commercial towers, residential developments, and municipal water networks in Canada and the US.
+          </p>
+        </div>
+        <div class="flex-shrink-0">
+          <Button href="/consult/projects" variant="primary" size="lg">
+            View Swift Consult Projects →
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,225 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import Button from '@/components/ui/Button.astro';
+import Badge from '@/components/ui/Badge.astro';
+---
+
+<Layout
+  title="Contact Swift Global Inc. | International Procurement & EPC Desk"
+  description="Contact Swift Global Inc. at our Toronto headquarters for international equipment procurement bids, vendor prequalification, and turnkey EPC contracts."
+  currentEntity="global"
+  activePath="/global/contact"
+>
+  <!-- Page Header -->
+  <section class="bg-black text-white py-16 lg:py-20 border-b border-navy-800 relative overflow-hidden">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl space-y-4">
+        <div class="flex items-center gap-2">
+          <Badge variant="global">International Procurement Desk</Badge>
+          <span class="font-mono text-xs text-amber-construction">Toronto Headquarters • Global Sourcing</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold uppercase tracking-tight text-white leading-tight">
+          Procurement RFP &amp; EPC Tender Desk
+        </h1>
+        <p class="text-base sm:text-lg text-slate-300 font-sans leading-relaxed">
+          Submit equipment schedules, tender datasheets, or schedule a formal procurement consultation with our international EPC operations team.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & RFP Grid -->
+  <section class="py-20 lg:py-24 bg-slate-950 text-white border-b border-navy-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        
+        <!-- Left: Office & Contact Info -->
+        <div class="lg:col-span-5 space-y-8">
+          <div>
+            <span class="text-xs font-mono text-amber-construction uppercase tracking-architect">01 // Dispatch Operations</span>
+            <h2 class="text-2xl font-display font-bold uppercase tracking-tight text-white mt-1">
+              Toronto Headquarters &amp; Global Hubs
+            </h2>
+            <div class="w-12 h-0.5 bg-amber-construction mt-2 mb-4"></div>
+            <p class="text-xs sm:text-sm text-slate-300 font-sans leading-relaxed">
+              International vendor contracts, letters of credit (L/C), and maritime logistics coordination are managed through our Canadian executive desk.
+            </p>
+          </div>
+
+          <div class="space-y-4 font-mono text-xs">
+            <div class="p-5 bg-black border border-navy-800">
+              <span class="text-amber-construction block text-[10px] uppercase font-bold tracking-wider mb-1">GLOBAL HEADQUARTERS</span>
+              <div class="font-sans text-sm font-semibold text-white">Swift Global Inc.</div>
+              <div class="font-sans text-xs text-slate-400">1000 King Street West</div>
+              <div class="font-sans text-xs text-slate-400">Toronto, ON, M6K 3N1, Canada</div>
+            </div>
+
+            <div class="p-5 bg-black border border-navy-800">
+              <span class="text-amber-construction block text-[10px] uppercase font-bold tracking-wider mb-1">INTERNATIONAL TELEPHONE</span>
+              <a href="tel:+15875663166" class="text-white hover:text-amber-construction text-sm font-semibold transition-colors">
+                +1 (587) 566-3166
+              </a>
+              <div class="text-[11px] text-slate-400 font-sans mt-1">Direct Procurement Line</div>
+            </div>
+
+            <div class="p-5 bg-black border border-navy-800">
+              <span class="text-amber-construction block text-[10px] uppercase font-bold tracking-wider mb-1">PROCUREMENT DESK EMAIL</span>
+              <a href="mailto:info@swiftglobalinc.com" class="text-amber-construction hover:text-white text-sm font-semibold transition-colors underline break-all">
+                info@swiftglobalinc.com
+              </a>
+              <div class="text-[11px] text-slate-400 font-sans mt-1">Direct submission of equipment RFPs &amp; tenders</div>
+            </div>
+          </div>
+
+          <!-- Sister Entity Switch Box -->
+          <div class="p-6 bg-navy-900 border border-steel-500/40 space-y-3">
+            <div class="text-[10px] font-mono uppercase text-steel-400 tracking-widest font-bold">
+              Looking for Structural Design or Canadian Permits?
+            </div>
+            <h2 class="text-base font-display font-bold uppercase text-white">
+              Contact Swift Consult Inc.
+            </h2>
+            <p class="text-xs text-slate-300 font-sans leading-relaxed">
+              For structural calculations, P.Eng seals, Civil 3D site servicing, and Ontario/Canadian municipal approvals:
+            </p>
+            <div class="pt-2">
+              <Button href="/consult/contact" variant="primary" size="sm" class="w-full">
+                Go to Swift Consult Inquiry Form →
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Accessible Procurement RFP Form -->
+        <div class="lg:col-span-7 bg-black p-8 sm:p-10 border border-navy-800">
+          <div class="mb-6 pb-4 border-b border-navy-800">
+            <div class="text-xs font-mono uppercase text-amber-construction font-bold tracking-wider">Formal RFP Tender Submission</div>
+            <h2 class="text-xl sm:text-2xl font-display font-bold uppercase tracking-tight text-white mt-1">
+              Procurement &amp; EPC Bid Request
+            </h2>
+          </div>
+
+          <form class="space-y-5" onsubmit="event.preventDefault(); alert('Thank you for contacting Swift Global Inc. An international procurement specialist will review your tender documentation within 24 hours.');">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label for="global-name" class="block font-mono text-xs uppercase text-slate-300 font-semibold mb-1">
+                  Lead Representative Name *
+                </label>
+                <input
+                  type="text"
+                  id="global-name"
+                  name="name"
+                  required
+                  placeholder="e.g. John Doe"
+                  class="w-full p-3 bg-navy-950 border border-navy-800 text-white text-xs font-sans rounded-none focus:outline-none focus:border-amber-construction focus:ring-1 focus:ring-amber-construction"
+                />
+              </div>
+
+              <div>
+                <label for="global-org" class="block font-mono text-xs uppercase text-slate-300 font-semibold mb-1">
+                  Enterprise / Organization *
+                </label>
+                <input
+                  type="text"
+                  id="global-org"
+                  name="organization"
+                  required
+                  placeholder="e.g. PetroEnergy International"
+                  class="w-full p-3 bg-navy-950 border border-navy-800 text-white text-xs font-sans rounded-none focus:outline-none focus:border-amber-construction focus:ring-1 focus:ring-amber-construction"
+                />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label for="global-email" class="block font-mono text-xs uppercase text-slate-300 font-semibold mb-1">
+                  Corporate Email *
+                </label>
+                <input
+                  type="email"
+                  id="global-email"
+                  name="email"
+                  required
+                  placeholder="jdoe@petroenergy.com"
+                  class="w-full p-3 bg-navy-950 border border-navy-800 text-white text-xs font-sans rounded-none focus:outline-none focus:border-amber-construction focus:ring-1 focus:ring-amber-construction"
+                />
+              </div>
+
+              <div>
+                <label for="global-phone" class="block font-mono text-xs uppercase text-slate-300 font-semibold mb-1">
+                  Telephone (with country code)
+                </label>
+                <input
+                  type="tel"
+                  id="global-phone"
+                  name="phone"
+                  placeholder="+971 4 000 0000"
+                  class="w-full p-3 bg-navy-950 border border-navy-800 text-white text-xs font-sans rounded-none focus:outline-none focus:border-amber-construction focus:ring-1 focus:ring-amber-construction"
+                />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label for="global-service" class="block font-mono text-xs uppercase text-slate-300 font-semibold mb-1">
+                  Procurement / EPC Package Type *
+                </label>
+                <select
+                  id="global-service"
+                  name="service"
+                  required
+                  class="w-full p-3 bg-navy-950 border border-navy-800 text-white text-xs font-sans rounded-none focus:outline-none focus:border-amber-construction focus:ring-1 focus:ring-amber-construction"
+                >
+                  <option value="">Select Primary Package Scope</option>
+                  <option value="equipment-sourcing">Heavy Industrial Equipment Sourcing &amp; FAT</option>
+                  <option value="plant-modernization">Facility Modernization &amp; Retrofit</option>
+                  <option value="turnkey-epc">Turnkey EPC General Contracting</option>
+                  <option value="maritime-logistics">Port Staging &amp; Ocean Freight Charter</option>
+                  <option value="vendor-audit">Vendor Technical Prequalification Audit</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="global-destination" class="block font-mono text-xs uppercase text-slate-300 font-semibold mb-1">
+                  Port of Discharge / Project Region
+                </label>
+                <input
+                  type="text"
+                  id="global-destination"
+                  name="destination"
+                  placeholder="e.g. Jebel Ali Port, UAE or Lekki, Nigeria"
+                  class="w-full p-3 bg-navy-950 border border-navy-800 text-white text-xs font-sans rounded-none focus:outline-none focus:border-amber-construction focus:ring-1 focus:ring-amber-construction"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label for="global-message" class="block font-mono text-xs uppercase text-slate-300 font-semibold mb-1">
+                Equipment Specifications &amp; Commercial Scope *
+              </label>
+              <textarea
+                id="global-message"
+                name="message"
+                rows="4"
+                required
+                placeholder="Include equipment tag numbers, ASME/API requirements, delivery Incoterms (e.g. CIF, DDP), and target delivery window..."
+                class="w-full p-3 bg-navy-950 border border-navy-800 text-white text-xs font-sans rounded-none focus:outline-none focus:border-amber-construction focus:ring-1 focus:ring-amber-construction"
+              ></textarea>
+            </div>
+
+            <div class="pt-2">
+              <Button type="submit" variant="accent" size="lg" class="w-full">
+                Submit Procurement Tender RFP →
+              </Button>
+              <div class="text-[11px] font-mono text-slate-400 text-center mt-2">
+                🔒 Protected under international EPC non-disclosure agreements (NDA).
+              </div>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</Layout>

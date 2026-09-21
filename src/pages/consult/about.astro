@@ -1,0 +1,156 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import ArchitecturalFrame from '@/components/ui/ArchitecturalFrame.astro';
+import Button from '@/components/ui/Button.astro';
+import Badge from '@/components/ui/Badge.astro';
+import ResponsivePicture from '@/components/ui/ResponsivePicture.astro';
+---
+
+<Layout
+  title="About Swift Consult Inc. | Structural & Civil Engineering Practice"
+  description="Learn about Swift Consult Inc., our engineering methodology, Canadian P.Eng licensure, structural and civil capabilities, and municipal permitting expertise."
+  currentEntity="consult"
+  activePath="/consult/about"
+>
+  <!-- Page Header -->
+  <section class="bg-navy-950 text-white py-16 lg:py-20 border-b border-navy-800 relative overflow-hidden">
+    <div class="absolute inset-0 bg-blueprint-grid-dark opacity-60 pointer-events-none" aria-hidden="true"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl space-y-4">
+        <div class="flex items-center gap-2">
+          <Badge variant="consult">Practice Overview</Badge>
+          <span class="font-mono text-xs text-steel-400">Toronto Headquarters • North America</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold uppercase tracking-tight text-white leading-tight">
+          About Swift Consult Inc.
+        </h1>
+        <p class="text-base sm:text-lg text-slate-300 font-sans leading-relaxed">
+          Founded on the principle of analytical rigor, Swift Consult Inc. provides comprehensive structural engineering, AutoCAD Civil 3D site servicing, SWMM hydraulic modeling, and municipal permit clearance.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Engineering Philosophy & Credentials -->
+  <section class="py-20 lg:py-24 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left: Copy -->
+        <div class="lg:col-span-7 space-y-6">
+          <SectionHeading
+            index="01 //"
+            title="Structural Integrity & Regulatory Authority"
+            subtitle="Bridging architectural design aspirations with statutory building regulations and engineering reality."
+          />
+
+          <p class="text-sm sm:text-base text-slate-600 font-sans leading-relaxed">
+            Every building structure must withstand static dead loads, dynamic live occupancy, extreme wind shear, and seismic events. At Swift Consult Inc., our engineers combine advanced finite element modeling (FEM) with exhaustive knowledge of the Ontario Building Code (OBC), National Building Code of Canada (NBC), and American standard codes (IBC, ACI, AISC).
+          </p>
+
+          <p class="text-sm sm:text-base text-slate-600 font-sans leading-relaxed">
+            Our civil division complements our structural team with comprehensive land servicing, municipal water and sanitary network design, and stormwater management plans (SWM) built using EPA SWMM hydraulic modeling.
+          </p>
+
+          <!-- Core Credential Pillars -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 font-mono text-xs">
+            <div class="p-4 bg-blueprint-bg border border-slate-300">
+              <span class="text-steel-600 font-bold block mb-1">01 / LICENSURE</span>
+              <p class="text-slate-700 font-sans text-xs">Professional Engineers Ontario (PEO) licensed practice delivering sealed structural drawings and peer reviews.</p>
+            </div>
+            <div class="p-4 bg-blueprint-bg border border-slate-300">
+              <span class="text-steel-600 font-bold block mb-1">02 / PERMIT SPEED</span>
+              <p class="text-slate-700 font-sans text-xs">Direct relationships with municipal authorities and conservation agencies ensuring 100% first-pass approvals.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Frame Image -->
+        <div class="lg:col-span-5">
+          <ArchitecturalFrame
+            cut="both"
+            annotationStrip={{
+              code: "CSA-S16 / PEO LICENSED",
+              location: "TORONTO ENGINEERING PRACTICE"
+            }}
+          >
+            <div class="aspect-[4/3] w-full">
+              <ResponsivePicture
+                desktopSrc="/images/structural-engineering.webp"
+                mobileSrc="/images/structural-engineering-mobile.webp"
+                alt="Swift Consult Structural Engineering Analysis"
+                aspectRatio="w-full h-full object-cover"
+              />
+            </div>
+          </ArchitecturalFrame>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Sister Company Synergy -->
+  <section class="py-20 bg-blueprint-bg border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-12">
+        <SectionHeading
+          index="02 //"
+          title="The Sister Entity Synergy: Swift Global Inc."
+          subtitle="How Swift Consult Inc. and Swift Global Inc. collaborate to offer clients an unbroken continuum from design through international procurement."
+        />
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="p-8 bg-white border border-slate-300 space-y-4">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-200 font-mono text-xs">
+            <strong class="text-navy-900 uppercase">Swift Consult Inc. (This Website)</strong>
+            <span class="text-steel-600">Design &amp; Permits</span>
+          </div>
+          <h2 class="text-xl font-display font-bold uppercase text-navy-900">Engineering Engine</h2>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-sans">
+            Responsible for structural calculations, foundation design, civil infrastructure, seismic resilience, site plan control, and municipal building permit signoffs.
+          </p>
+          <ul class="space-y-1.5 text-xs text-slate-700 font-mono" role="list">
+            <li>✓ Structural Design &amp; Calculation Stamps</li>
+            <li>✓ AutoCAD Civil 3D &amp; Hydrology Modeling</li>
+            <li>✓ Canadian &amp; US Municipal Approvals</li>
+          </ul>
+        </div>
+
+        <div class="p-8 bg-navy-950 text-white border border-navy-800 space-y-4">
+          <div class="flex items-center justify-between pb-3 border-b border-navy-800 font-mono text-xs">
+            <strong class="text-amber-construction uppercase">Swift Global Inc. (Sister Entity)</strong>
+            <span class="text-slate-400">Procurement &amp; EPC</span>
+          </div>
+          <h2 class="text-xl font-display font-bold uppercase text-white">Execution Engine</h2>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
+            Responsible for heavy equipment sourcing, factory acceptance testing (FAT), international freight, industrial plant modernization, and turnkey EPC delivery.
+          </p>
+          <div class="pt-4">
+            <Button href="/global" variant="accent" size="sm">
+              Visit Swift Global Inc. Website →
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="py-16 bg-navy-950 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+      <h2 class="text-2xl sm:text-3xl font-display font-bold uppercase tracking-tight text-white">
+        Collaborate with Our Toronto Engineering Team
+      </h2>
+      <p class="text-sm text-slate-300 font-sans max-w-xl mx-auto">
+        Whether you are planning a new high-rise development or require a peer structural review, our engineers are ready to assist.
+      </p>
+      <div>
+        <Button href="/consult/contact" variant="primary" size="lg">
+          Schedule Engineering Consultation →
+        </Button>
+      </div>
+    </div>
+  </section>
+</Layout>

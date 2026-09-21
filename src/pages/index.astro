@@ -1,40 +1,279 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import Hero from '@/components/sections/Hero.astro';
-import SectorsSection from '@/components/sections/SectorsSection.astro';
-import ServicesGrid from '@/components/sections/ServicesGrid.astro';
-import UnifiedEntitiesBanner from '@/components/sections/UnifiedEntitiesBanner.astro';
-import GlobalFootprint from '@/components/sections/GlobalFootprint.astro';
-import ProjectsPortfolio from '@/components/sections/ProjectsPortfolio.astro';
-import ContactSection from '@/components/sections/ContactSection.astro';
+import ResponsivePicture from '@/components/ui/ResponsivePicture.astro';
+import { ENTITIES } from '@/data/companyData';
 ---
 
 <Layout
-  title="Integrated Engineering, Global Procurement & Construction Management"
-  description="Swift Consult Inc. & Swift Global Inc. provide end-to-end engineering design, structural & civil analysis, heavy industrial equipment procurement, and turnkey EPC construction delivery across Canada, the USA, the Middle East, and West Africa."
+  title="Select Entity | Swift Consult Inc. & Swift Global Inc."
+  description="Gateway portal for Swift Consult Inc. (Structural & Civil Engineering, Permitting) and Swift Global Inc. (Heavy Industrial Procurement & Turnkey EPC)."
   currentEntity="group"
-  activePath="/"
-  preloadImage="/images/commercial-tower.webp"
-  preloadImageMobile="/images/commercial-tower-mobile.webp"
+  hideNavAndFooter={true}
 >
-  <!-- Hero Section -->
-  <Hero entity="group" />
+  <div class="min-h-screen flex flex-col bg-navy-950 text-white relative overflow-hidden font-sans">
+    
+    <!-- Blueprint Coordinate Grid Overlay -->
+    <div class="absolute inset-0 bg-blueprint-grid-dark opacity-60 pointer-events-none" aria-hidden="true"></div>
 
-  <!-- Unified Entities Strategic Statement -->
-  <UnifiedEntitiesBanner />
+    <!-- Top Global Gateway Header -->
+    <header class="relative z-30 border-b border-navy-800 bg-navy-950/90 backdrop-blur-md px-4 sm:px-6 lg:px-8 py-3.5">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
+        
+        <!-- Logo & Holding Identity -->
+        <div class="flex items-center gap-3">
+          <img
+            src="/images/swift-group-logo.svg"
+            alt="Swift Consult & Swift Global"
+            width="260"
+            height="50"
+            class="h-9 sm:h-10 w-auto brightness-200"
+          />
+          <span class="hidden sm:inline-block w-px h-6 bg-slate-700"></span>
+          <span class="hidden sm:inline-block font-mono text-[11px] text-slate-400 uppercase tracking-widest">
+            Corporate Gateway
+          </span>
+        </div>
 
-  <!-- 3 Core Industry Sectors -->
-  <SectorsSection />
+        <!-- Toronto HQ Info & Contact -->
+        <div class="flex items-center gap-4 text-xs font-mono text-slate-300">
+          <div class="hidden lg:flex items-center gap-2">
+            <span class="w-1.5 h-1.5 bg-amber-construction animate-pulse" aria-hidden="true"></span>
+            <span class="text-slate-400">Toronto HQ:</span>
+            <span>1000 King St W</span>
+          </div>
+          <span class="hidden lg:inline text-slate-700">|</span>
+          <a
+            href="tel:+15875663166"
+            class="hover:text-amber-construction transition-colors flex items-center gap-1.5"
+            aria-label="Call Toronto office at +1 (587) 566-3166"
+          >
+            <span class="text-steel-400">TEL:</span>
+            <span class="font-semibold text-white">+1 (587) 566-3166</span>
+          </a>
+        </div>
 
-  <!-- 5 Core Services Engine -->
-  <ServicesGrid />
+      </div>
+    </header>
 
-  <!-- Global Reach & Track Record -->
-  <GlobalFootprint />
+    <!-- Main Fullscreen Split-Screen Portal Area -->
+    <main class="relative z-20 flex-grow grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-navy-800">
+      
+      <!-- ==========================================
+           LEFT WING: SWIFT CONSULT INC. (ENGINEERING)
+           ========================================== -->
+      <section 
+        aria-labelledby="consult-heading"
+        class="relative group flex flex-col justify-between p-6 sm:p-10 lg:p-14 overflow-hidden bg-gradient-to-br from-navy-950 via-[#0a182b] to-[#0d223c] transition-all duration-300 hover:bg-[#0c2442]"
+      >
+        <!-- Background Imagery with Precision Cut -->
+        <div class="absolute inset-0 opacity-25 group-hover:opacity-35 transition-opacity duration-700 mix-blend-luminosity pointer-events-none">
+          <ResponsivePicture
+            desktopSrc="/images/commercial-tower.webp"
+            mobileSrc="/images/commercial-tower-mobile.webp"
+            alt="Swift Consult Commercial Engineering"
+            aspectRatio="h-full w-full object-cover"
+            loading="eager"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/80 to-navy-950/40"></div>
+        </div>
 
-  <!-- Selected EPC Projects Portfolio -->
-  <ProjectsPortfolio limit={3} />
+        <!-- Corner Technical Crosshair Ticks -->
+        <span class="absolute top-3 left-3 text-steel-400 font-mono text-xs select-none" aria-hidden="true">+</span>
+        <span class="absolute top-3 right-3 text-steel-400 font-mono text-xs select-none" aria-hidden="true">+</span>
+        <span class="absolute bottom-3 left-3 text-steel-400 font-mono text-xs select-none" aria-hidden="true">+</span>
+        <span class="absolute bottom-3 right-3 text-steel-400 font-mono text-xs select-none" aria-hidden="true">+</span>
 
-  <!-- Contact & RFP Inquiry Hub -->
-  <ContactSection defaultEntity="group" />
+        <!-- Top Entity Badge & Domain -->
+        <div class="relative z-10 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="inline-flex items-center px-2.5 py-1 text-[11px] font-mono uppercase tracking-wider bg-steel-500/20 text-steel-300 border border-steel-500/40">
+              Structural &amp; Civil Engineering
+            </span>
+            <span class="font-mono text-xs text-steel-400 hidden sm:inline">
+              swiftconsultinc.com
+            </span>
+          </div>
+
+          <div class="h-10 sm:h-12 flex items-center">
+            <img
+              src="/images/swift-consult-logo.svg"
+              alt="Swift Consult Inc."
+              width="240"
+              height="50"
+              class="h-8 sm:h-10 w-auto brightness-200"
+            />
+          </div>
+
+          <h2 id="consult-heading" class="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold uppercase tracking-tight text-white leading-tight pt-2">
+            Engineering Precision. Code Authority. Permit Certainty.
+          </h2>
+
+          <p class="text-sm sm:text-base text-slate-300 font-sans leading-relaxed max-w-xl">
+            Providing comprehensive structural engineering, AutoCAD Civil 3D site servicing, SWMM stormwater hydrology, and municipal building permit approvals across North American jurisdictions.
+          </p>
+
+          <!-- Core Discipline Checkmarks -->
+          <div class="pt-4 grid grid-cols-1 sm:grid-cols-2 gap-2.5 font-mono text-xs text-slate-200">
+            <div class="flex items-center gap-2 p-2 bg-navy-900/70 border border-steel-500/30">
+              <span class="text-steel-400 font-bold">■</span>
+              <span>Structural Steel &amp; Mass-Timber</span>
+            </div>
+            <div class="flex items-center gap-2 p-2 bg-navy-900/70 border border-steel-500/30">
+              <span class="text-steel-400 font-bold">■</span>
+              <span>Civil 3D &amp; SWMM Hydrology</span>
+            </div>
+            <div class="flex items-center gap-2 p-2 bg-navy-900/70 border border-steel-500/30">
+              <span class="text-steel-400 font-bold">■</span>
+              <span>100% Permit Approval Rate</span>
+            </div>
+            <div class="flex items-center gap-2 p-2 bg-navy-900/70 border border-steel-500/30">
+              <span class="text-steel-400 font-bold">■</span>
+              <span>OBC / NBC / IBC / ACI / CSA</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Action CTA & Quick Nav Links -->
+        <div class="relative z-10 pt-8 mt-auto space-y-4">
+          <a
+            href="/consult"
+            class="group/btn flex items-center justify-between w-full p-4 sm:p-5 bg-steel-500 hover:bg-steel-400 text-white font-display text-sm sm:text-base font-bold uppercase tracking-wider transition-all duration-150 border border-steel-400 shadow-lg"
+          >
+            <span>Enter Swift Consult Website</span>
+            <span class="font-mono text-lg transition-transform duration-200 group-hover/btn:translate-x-1" aria-hidden="true">→</span>
+          </a>
+
+          <!-- Quick Deep Sub-Links -->
+          <div class="flex flex-wrap items-center justify-between gap-2 text-[11px] font-mono text-slate-400 pt-1">
+            <span class="text-slate-500">Direct Destinations:</span>
+            <div class="flex items-center gap-3">
+              <a href="/consult/about" class="hover:text-white underline decoration-slate-600">About</a>
+              <span>•</span>
+              <a href="/consult/services" class="hover:text-white underline decoration-slate-600">Services</a>
+              <span>•</span>
+              <a href="/consult/projects" class="hover:text-white underline decoration-slate-600">Projects</a>
+              <span>•</span>
+              <a href="/consult/contact" class="hover:text-white underline decoration-slate-600">Contact</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           RIGHT WING: SWIFT GLOBAL INC. (PROCUREMENT & EPC)
+           ========================================== -->
+      <section 
+        aria-labelledby="global-heading"
+        class="relative group flex flex-col justify-between p-6 sm:p-10 lg:p-14 overflow-hidden bg-gradient-to-br from-black via-[#080f1a] to-[#121922] transition-all duration-300 hover:bg-[#0c1624]"
+      >
+        <!-- Background Imagery with Industrial Cut -->
+        <div class="absolute inset-0 opacity-25 group-hover:opacity-35 transition-opacity duration-700 mix-blend-luminosity pointer-events-none">
+          <ResponsivePicture
+            desktopSrc="/images/industrial-plant.webp"
+            mobileSrc="/images/industrial-plant-mobile.webp"
+            alt="Swift Global Industrial Plant"
+            aspectRatio="h-full w-full object-cover"
+            loading="eager"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black via-black/85 to-black/40"></div>
+        </div>
+
+        <!-- Corner Technical Crosshair Ticks -->
+        <span class="absolute top-3 left-3 text-amber-construction font-mono text-xs select-none" aria-hidden="true">+</span>
+        <span class="absolute top-3 right-3 text-amber-construction font-mono text-xs select-none" aria-hidden="true">+</span>
+        <span class="absolute bottom-3 left-3 text-amber-construction font-mono text-xs select-none" aria-hidden="true">+</span>
+        <span class="absolute bottom-3 right-3 text-amber-construction font-mono text-xs select-none" aria-hidden="true">+</span>
+
+        <!-- Top Entity Badge & Domain -->
+        <div class="relative z-10 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="inline-flex items-center px-2.5 py-1 text-[11px] font-mono uppercase tracking-wider bg-amber-950/80 text-amber-300 border border-amber-500/50">
+              Procurement &amp; Turnkey EPC
+            </span>
+            <span class="font-mono text-xs text-amber-construction hidden sm:inline">
+              swiftglobalinc.com
+            </span>
+          </div>
+
+          <div class="h-10 sm:h-12 flex items-center">
+            <img
+              src="/images/swift-global-logo.svg"
+              alt="Swift Global Inc."
+              width="240"
+              height="50"
+              class="h-8 sm:h-10 w-auto brightness-200"
+            />
+          </div>
+
+          <h2 id="global-heading" class="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold uppercase tracking-tight text-white leading-tight pt-2">
+            Global Supply Chain. Heavy Industrial. Turnkey EPC.
+          </h2>
+
+          <p class="text-sm sm:text-base text-slate-300 font-sans leading-relaxed max-w-xl">
+            Executing strategic international equipment sourcing, technical vendor prequalification, industrial facility modernizations, and multi-model EPC delivery across North America, the Middle East, and West Africa.
+          </p>
+
+          <!-- Core Discipline Checkmarks -->
+          <div class="pt-4 grid grid-cols-1 sm:grid-cols-2 gap-2.5 font-mono text-xs text-slate-200">
+            <div class="flex items-center gap-2 p-2 bg-navy-950/80 border border-amber-500/30">
+              <span class="text-amber-construction font-bold">■</span>
+              <span>Heavy Equipment Sourcing &amp; FAT</span>
+            </div>
+            <div class="flex items-center gap-2 p-2 bg-navy-950/80 border border-amber-500/30">
+              <span class="text-amber-construction font-bold">■</span>
+              <span>Industrial Facility Modernization</span>
+            </div>
+            <div class="flex items-center gap-2 p-2 bg-navy-950/80 border border-amber-500/30">
+              <span class="text-amber-construction font-bold">■</span>
+              <span>Global Freight &amp; Port Staging</span>
+            </div>
+            <div class="flex items-center gap-2 p-2 bg-navy-950/80 border border-amber-500/30">
+              <span class="text-amber-construction font-bold">■</span>
+              <span>Turnkey EPC &amp; CM at-Risk</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Action CTA & Quick Nav Links -->
+        <div class="relative z-10 pt-8 mt-auto space-y-4">
+          <a
+            href="/global"
+            class="group/btn flex items-center justify-between w-full p-4 sm:p-5 bg-amber-construction hover:bg-amber-400 text-navy-950 font-display text-sm sm:text-base font-extrabold uppercase tracking-wider transition-all duration-150 border border-amber-300 shadow-lg"
+          >
+            <span>Enter Swift Global Website</span>
+            <span class="font-mono text-lg transition-transform duration-200 group-hover/btn:translate-x-1" aria-hidden="true">→</span>
+          </a>
+
+          <!-- Quick Deep Sub-Links -->
+          <div class="flex flex-wrap items-center justify-between gap-2 text-[11px] font-mono text-slate-400 pt-1">
+            <span class="text-slate-500">Direct Destinations:</span>
+            <div class="flex items-center gap-3">
+              <a href="/global/about" class="hover:text-amber-construction underline decoration-slate-600">About</a>
+              <span>•</span>
+              <a href="/global/services" class="hover:text-amber-construction underline decoration-slate-600">Services</a>
+              <span>•</span>
+              <a href="/global/projects" class="hover:text-amber-construction underline decoration-slate-600">Projects</a>
+              <span>•</span>
+              <a href="/global/contact" class="hover:text-amber-construction underline decoration-slate-600">Contact</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Bottom Governance & Operating Continuum Bar -->
+    <footer class="relative z-30 border-t border-navy-800 bg-black/90 px-4 sm:px-6 lg:px-8 py-3 text-xs font-mono text-slate-400">
+      <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
+        <div class="flex items-center gap-2">
+          <span class="text-steel-400">Operating Continuum:</span>
+          <span class="text-slate-200">Two Specialized Powerhouses • One Integrated EPC Delivery Model</span>
+        </div>
+        <div class="text-[11px] text-slate-500">
+          © {new Date().getFullYear()} Swift Consult Inc. &amp; Swift Global Inc. All rights reserved.
+        </div>
+      </div>
+    </footer>
+
+  </div>
 </Layout>

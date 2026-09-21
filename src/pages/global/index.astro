@@ -1,0 +1,408 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import ArchitecturalFrame from '@/components/ui/ArchitecturalFrame.astro';
+import Button from '@/components/ui/Button.astro';
+import Badge from '@/components/ui/Badge.astro';
+import ResponsivePicture from '@/components/ui/ResponsivePicture.astro';
+import { SERVICES, SECTORS, PROJECTS, GLOBAL_REGIONS } from '@/data/companyData';
+
+const globalServices = SERVICES.filter(s => s.entityRole === 'Swift Global' || s.entityRole === 'Joint Competency');
+const globalSectors = SECTORS.filter(s => s.leadEntity === 'Swift Global' || s.leadEntity === 'Joint Delivery');
+const globalProjects = PROJECTS.filter(p => p.entity === 'Swift Global' || p.entity === 'Unified Group');
+---
+
+<Layout
+  title="International Engineering Procurement & Turnkey EPC"
+  description="Swift Global Inc. provides heavy industrial equipment procurement, vendor prequalification, petrochemical facility upgrades, and turnkey EPC execution across North America, the Middle East, and West Africa."
+  currentEntity="global"
+  activePath="/global"
+  preloadImage="/images/industrial-plant.webp"
+  preloadImageMobile="/images/industrial-plant-mobile.webp"
+>
+
+  <!-- ==========================================
+       HERO: HEAVY INDUSTRIAL POWER & GLOBAL REACH
+       ========================================== -->
+  <section class="relative bg-black text-white overflow-hidden border-b border-navy-850" aria-label="Swift Global Hero">
+    <!-- Industrial Diagonal Line Accent Grid -->
+    <div class="absolute inset-0 bg-blueprint-grid-dark opacity-40 pointer-events-none" aria-hidden="true"></div>
+    <div class="absolute -top-40 -right-40 w-96 h-96 bg-amber-500/10 filter blur-3xl pointer-events-none" aria-hidden="true"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-28">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- Left: Value Proposition -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="flex items-center gap-3">
+            <span class="inline-flex items-center px-2.5 py-1 text-xs font-mono font-bold uppercase tracking-wider bg-amber-950 text-amber-300 border border-amber-500/40">
+              International EPC &amp; Procurement
+            </span>
+            <span class="text-xs font-mono text-slate-400">Toronto HQ • Middle East • West Africa</span>
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold uppercase tracking-tight text-white leading-[1.12]">
+            Global Supply Chain. Heavy Industrial. Turnkey EPC.
+          </h1>
+
+          <p class="text-base sm:text-lg text-slate-300 font-sans leading-relaxed max-w-2xl">
+            Swift Global Inc. executes high-consequence heavy equipment procurement, technical vendor prequalification, industrial plant upgrades, and turnkey EPC construction delivery across North America, the Middle East, and West Africa.
+          </p>
+
+          <div class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
+            <Button href="/global/contact" variant="accent" size="lg">
+              Submit Procurement RFP →
+            </Button>
+            <Button href="/global/services" variant="outline" size="lg" class="text-white border-slate-700 hover:border-amber-construction hover:bg-navy-900">
+              Procurement &amp; EPC Capabilities
+            </Button>
+          </div>
+
+          <!-- Industrial Key Metrics -->
+          <div class="pt-6 border-t border-navy-900">
+            <div class="text-[11px] font-mono text-amber-construction uppercase tracking-architect mb-3">
+              Operational Scale &amp; International Standards:
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
+              <div class="p-2.5 bg-navy-950 border border-navy-800">
+                <span class="text-amber-construction block text-[10px]">GOVERNANCE</span>
+                <span class="font-bold text-white">ISO 9001 QMS</span>
+              </div>
+              <div class="p-2.5 bg-navy-950 border border-navy-800">
+                <span class="text-amber-construction block text-[10px]">INSPECTION</span>
+                <span class="font-bold text-white">FAT &amp; ASME</span>
+              </div>
+              <div class="p-2.5 bg-navy-950 border border-navy-800">
+                <span class="text-amber-construction block text-[10px]">LOGISTICS</span>
+                <span class="font-bold text-white">Incoterms 2020</span>
+              </div>
+              <div class="p-2.5 bg-navy-950 border border-navy-800">
+                <span class="text-amber-construction block text-[10px]">DELIVERY</span>
+                <span class="font-bold text-white">Turnkey EPC</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Industrial Frame -->
+        <div class="lg:col-span-5 relative">
+          <ArchitecturalFrame
+            cut="bl"
+            class="border-amber-500/30 bg-black"
+            annotationStrip={{
+              code: "ASME / API / ISO 9001 EPC",
+              location: "GLOBAL LOGISTICS & EPC PRACTICE"
+            }}
+          >
+            <div class="aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/3] w-full">
+              <ResponsivePicture
+                desktopSrc="/images/industrial-plant.webp"
+                mobileSrc="/images/industrial-plant-mobile.webp"
+                alt="Swift Global Heavy Industrial Plant Expansion"
+                aspectRatio="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                loading="eager"
+              />
+            </div>
+          </ArchitecturalFrame>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SECTION: SISTER ENTITY PROMINENT CALLOUT
+       ========================================== -->
+  <section class="bg-gradient-to-r from-navy-950 via-navy-900 to-steel-950 text-white py-6 px-4 sm:px-6 lg:px-8 border-b border-navy-800">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <span class="w-3 h-3 bg-steel-400 flex-shrink-0" aria-hidden="true"></span>
+        <div>
+          <span class="font-mono text-xs uppercase text-steel-300 tracking-wider">Looking for Structural Engineering or Canadian Building Permits?</span>
+          <p class="text-xs text-slate-300">Visit our sister organization <strong>Swift Consult Inc.</strong> for structural calculations, Civil 3D hydrology, and municipal approvals.</p>
+        </div>
+      </div>
+      <a
+        href="/consult"
+        class="flex-shrink-0 px-4 py-2 font-mono text-xs font-bold uppercase tracking-wider bg-steel-500 text-white hover:bg-steel-400 border border-steel-400 transition-colors"
+      >
+        Switch to Swift Consult Inc. →
+      </a>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SECTION: PROCUREMENT & EPC SERVICES
+       ========================================== -->
+  <section class="py-20 lg:py-24 bg-navy-950 text-white border-b border-navy-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-12 gap-6">
+        <div>
+          <div class="flex items-center gap-2 mb-3 font-mono text-xs tracking-architect uppercase text-amber-construction">
+            <span>01 //</span>
+            <span>Procurement &amp; Execution Engine</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-display font-bold tracking-tight uppercase text-white">
+            Core Industrial &amp; EPC Capabilities
+          </h2>
+          <div class="w-12 h-0.5 mt-3 mb-4 bg-amber-construction" aria-hidden="true"></div>
+          <p class="text-sm sm:text-base leading-relaxed text-slate-300 max-w-2xl">
+            Sourcing heavy machinery, managing global logistics, and administering turnkey EPC contracts with uncompromised quality assurance.
+          </p>
+        </div>
+        <div>
+          <Button href="/global/services" variant="accent" size="md">
+            View All EPC Services &amp; Specs →
+          </Button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {globalServices.map((service) => (
+          <article class="p-8 border border-navy-800 hover:border-amber-500/60 bg-black transition-all duration-200 flex flex-col justify-between group">
+            <div>
+              <div class="flex items-center justify-between mb-4 pb-3 border-b border-navy-850 font-mono">
+                <span class="text-2xl font-bold font-display text-amber-construction">
+                  {service.number} //
+                </span>
+                <span class="px-2 py-0.5 bg-amber-950 text-amber-300 border border-amber-600/40 text-[10px] uppercase font-bold">
+                  {service.entityRole}
+                </span>
+              </div>
+
+              <h2 class="text-xl font-display font-bold uppercase tracking-tight text-white mb-3">
+                {service.title}
+              </h2>
+
+              <p class="text-xs sm:text-sm text-slate-300 font-sans leading-relaxed mb-6">
+                {service.shortDesc}
+              </p>
+
+              <div class="space-y-2 mb-6">
+                <div class="text-[10px] font-mono uppercase text-amber-construction tracking-wider">Operational Deliverables:</div>
+                <ul class="space-y-1.5 text-xs text-slate-300" role="list">
+                  {service.features.map((f) => (
+                    <li class="flex items-start gap-2">
+                      <span class="text-amber-construction font-mono text-xs mt-0.5">■</span>
+                      <span>{f}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div class="pt-4 border-t border-navy-850 flex items-center justify-between font-mono text-xs">
+              <span class="text-[11px] text-slate-400">{service.keySpecs[0]?.label}: <strong class="text-white">{service.keySpecs[0]?.value}</strong></span>
+              <a href={`/global/services#service-${service.number}`} class="text-amber-construction hover:text-white font-semibold uppercase tracking-wider flex items-center gap-1">
+                <span>Details</span>
+                <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SECTION: INDUSTRIAL SECTORS
+       ========================================== -->
+  <section class="py-20 lg:py-24 bg-slate-950 text-white border-b border-navy-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-12 max-w-2xl">
+        <div class="flex items-center gap-2 mb-3 font-mono text-xs tracking-architect uppercase text-amber-construction">
+          <span>02 //</span>
+          <span>Industrial Sectors</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-display font-bold tracking-tight uppercase text-white">
+          Facilities &amp; Infrastructure Sectors
+        </h2>
+        <div class="w-12 h-0.5 mt-3 mb-4 bg-amber-construction" aria-hidden="true"></div>
+        <p class="text-sm sm:text-base leading-relaxed text-slate-400">
+          Industrial facilities, petrochemical processing plants, and deepwater marine logistics hubs across international economic zones.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
+        {globalSectors.map((sector) => (
+          <article class="bg-black border border-navy-800 hover:border-amber-500/50 transition-colors duration-200 flex flex-col group">
+            <div class="aspect-[16/10] w-full overflow-hidden border-b border-navy-800">
+              <ResponsivePicture
+                desktopSrc={sector.imageDesktop}
+                mobileSrc={sector.imageMobile}
+                alt={sector.title}
+                aspectRatio="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+            <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-2 font-mono text-xs">
+                  <span class="text-amber-construction uppercase tracking-wider font-semibold">{sector.leadEntity}</span>
+                  <span class="text-slate-400">Middle East &amp; West Africa</span>
+                </div>
+                <h2 class="text-xl font-display font-bold uppercase tracking-tight text-white mb-3">
+                  {sector.title}
+                </h2>
+                <p class="text-xs sm:text-sm text-slate-300 font-sans leading-relaxed mb-6">
+                  {sector.summary}
+                </p>
+                <ul class="space-y-2 text-xs text-slate-300 font-sans mb-6" role="list">
+                  {sector.bulletPoints.map((b) => (
+                    <li class="flex items-start gap-2">
+                      <span class="text-amber-construction font-mono text-sm leading-none mt-0.5">■</span>
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div class="pt-4 border-t border-navy-850 flex items-center justify-between">
+                <div class="font-mono text-xs">
+                  <span class="text-slate-500 block text-[10px] uppercase">{sector.stats[0]?.label}</span>
+                  <span class="text-amber-construction font-bold">{sector.stats[0]?.value}</span>
+                </div>
+                <Button href={`/global/sectors#${sector.id}`} variant="accent" size="sm">
+                  Sector Scope →
+                </Button>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SECTION: GLOBAL FOOTPRINT
+       ========================================== -->
+  <section class="py-20 bg-black text-white border-b border-navy-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-12 max-w-2xl">
+        <div class="flex items-center gap-2 mb-3 font-mono text-xs tracking-architect uppercase text-amber-construction">
+          <span>03 //</span>
+          <span>International Supply Routes</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-display font-bold uppercase tracking-tight text-white">
+          Active Global Dispatch Hubs
+        </h2>
+        <p class="text-sm text-slate-400 mt-2 font-sans">
+          Swift Global Inc. maintains strategic procurement and vendor inspection presences across 4 international regions.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 font-mono text-xs">
+        {GLOBAL_REGIONS.map((r) => (
+          <div class="p-5 bg-navy-950 border border-navy-800 flex flex-col justify-between">
+            <div>
+              <div class="text-2xl mb-2">{r.flag}</div>
+              <h3 class="font-display font-bold text-white text-base uppercase mb-1">{r.region}</h3>
+              <p class="text-[11px] text-slate-300 font-sans leading-relaxed mb-4">{r.description}</p>
+            </div>
+            <div class="pt-3 border-t border-navy-850">
+              <span class="text-[10px] text-amber-construction uppercase block">Hubs:</span>
+              <span class="text-white text-[11px]">{r.keyHubs.join(', ')}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SECTION: INDUSTRIAL PROJECTS
+       ========================================== -->
+  <section class="py-20 lg:py-24 bg-navy-950 text-white border-b border-navy-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-12 gap-6">
+        <div>
+          <div class="flex items-center gap-2 mb-3 font-mono text-xs tracking-architect uppercase text-amber-construction">
+            <span>04 //</span>
+            <span>Track Record</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-display font-bold uppercase tracking-tight text-white">
+            Procurement &amp; Turnkey EPC Portfolio
+          </h2>
+          <p class="text-sm text-slate-300 mt-2 max-w-xl">
+            Recent representative international facility expansions, equipment sourcing programs, and deepwater marine terminals.
+          </p>
+        </div>
+        <div>
+          <Button href="/global/projects" variant="accent" size="md">
+            View All Global Projects →
+          </Button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {globalProjects.map((p) => (
+          <article class="bg-black border border-navy-800 hover:border-amber-500/50 transition-colors duration-200 flex flex-col group">
+            <div class="aspect-[16/10] w-full overflow-hidden border-b border-navy-850">
+              <ResponsivePicture
+                desktopSrc={p.image}
+                mobileSrc={p.imageMobile}
+                alt={p.title}
+                aspectRatio="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+            <div class="p-5 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between text-[11px] font-mono text-slate-400 mb-2">
+                  <span class="text-amber-construction font-semibold">{p.location}</span>
+                  <span class="text-slate-400">{p.year}</span>
+                </div>
+                <h3 class="font-display font-bold text-white text-base uppercase leading-snug mb-2 group-hover:text-amber-construction transition-colors">
+                  {p.title}
+                </h3>
+                <p class="text-xs text-slate-300 font-sans leading-relaxed mb-4">
+                  {p.scope}
+                </p>
+              </div>
+              <div class="pt-3 border-t border-navy-850 font-mono text-xs flex items-center justify-between">
+                <span class="px-2 py-0.5 bg-navy-900 border border-navy-700 text-amber-construction font-semibold text-[11px]">
+                  {p.stats}
+                </span>
+                <span class="text-slate-400">EPC Turnkey</span>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SECTION: PROCUREMENT RFP HUB
+       ========================================== -->
+  <section class="py-20 bg-black text-white relative overflow-hidden">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div class="lg:col-span-7 space-y-4">
+          <Badge variant="global">Direct Procurement Desk</Badge>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-display font-bold uppercase tracking-tight text-white">
+            Ready to Solicit Equipment Bids or Award EPC Packages?
+          </h2>
+          <p class="text-sm sm:text-base text-slate-300 font-sans leading-relaxed max-w-xl">
+            Our international procurement team manages technical vendor prequalification, factory acceptance inspections (FAT), and cross-border delivery under Incoterms 2020.
+          </p>
+          <div class="pt-4 flex flex-col sm:flex-row gap-4 font-mono text-xs text-slate-300">
+            <div class="p-3 bg-navy-950 border border-navy-800">
+              <span class="text-amber-construction block text-[10px]">PROCUREMENT DESK:</span>
+              <a href="mailto:info@swiftglobalinc.com" class="text-white hover:underline font-semibold">info@swiftglobalinc.com</a>
+            </div>
+            <div class="p-3 bg-navy-950 border border-navy-800">
+              <span class="text-amber-construction block text-[10px]">DISPATCH PHONE:</span>
+              <a href="tel:+15875663166" class="text-white hover:underline font-semibold">+1 (587) 566-3166</a>
+            </div>
+          </div>
+        </div>
+        <div class="lg:col-span-5 p-6 sm:p-8 bg-navy-950 border border-amber-500/30">
+          <h3 class="text-lg font-display font-bold uppercase text-white mb-2">Submit Procurement RFP</h3>
+          <p class="text-xs text-slate-300 font-sans mb-4">Submit equipment specification datasheets or solicit EPC turnkey proposals.</p>
+          <Button href="/global/contact" variant="accent" size="md" class="w-full">
+            Open Procurement RFP Form →
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>

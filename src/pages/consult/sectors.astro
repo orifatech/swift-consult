@@ -1,0 +1,136 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import ArchitecturalFrame from '@/components/ui/ArchitecturalFrame.astro';
+import Button from '@/components/ui/Button.astro';
+import Badge from '@/components/ui/Badge.astro';
+import ResponsivePicture from '@/components/ui/ResponsivePicture.astro';
+import { SECTORS } from '@/data/companyData';
+
+const consultSectors = SECTORS.filter(s => s.leadEntity === 'Swift Consult' || s.leadEntity === 'Joint Delivery');
+---
+
+<Layout
+  title="Industry Sectors | Swift Consult Inc."
+  description="Explore the sectors served by Swift Consult Inc., including commercial building high-rises, mixed-use redevelopments, and residential developments."
+  currentEntity="consult"
+  activePath="/consult/sectors"
+>
+  <!-- Page Header -->
+  <section class="bg-navy-950 text-white py-16 lg:py-20 border-b border-navy-800 relative overflow-hidden">
+    <div class="absolute inset-0 bg-blueprint-grid-dark opacity-60 pointer-events-none" aria-hidden="true"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl space-y-4">
+        <div class="flex items-center gap-2">
+          <Badge variant="consult">Sectors &amp; Markets</Badge>
+          <span class="font-mono text-xs text-steel-400">Consulting Engineering Scope</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold uppercase tracking-tight text-white leading-tight">
+          Sectors &amp; Practice Areas
+        </h1>
+        <p class="text-base sm:text-lg text-slate-300 font-sans leading-relaxed">
+          From high-density urban commercial towers to master-planned residential communities, Swift Consult Inc. provides the engineering rigour required to deliver landmark properties.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sectors List -->
+  <section class="py-20 lg:py-24 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+      {consultSectors.map((sector, index) => {
+        const isReversed = index % 2 !== 0;
+        return (
+          <article id={sector.id} class="scroll-mt-28 border border-slate-300 bg-blueprint-bg p-8 sm:p-10 lg:p-12">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+              
+              <div class={`lg:col-span-7 space-y-6 ${isReversed ? 'lg:order-2' : 'lg:order-1'}`}>
+                <div class="flex items-center gap-3 font-mono">
+                  <Badge variant="consult">SEC 0{index + 1} //</Badge>
+                  <span class="text-xs text-steel-600 font-semibold uppercase">{sector.leadEntity}</span>
+                </div>
+
+                <h2 class="text-2xl sm:text-3xl font-display font-bold uppercase tracking-tight text-navy-900">
+                  {sector.title}
+                </h2>
+
+                <p class="text-sm sm:text-base text-slate-600 font-sans leading-relaxed">
+                  {sector.summary}
+                </p>
+
+                <div class="space-y-3 pt-2">
+                  <div class="text-[11px] font-mono uppercase text-slate-500 tracking-wider">Sector Offerings &amp; Scope:</div>
+                  <ul class="space-y-2 text-xs sm:text-sm text-slate-700" role="list">
+                    {sector.bulletPoints.map((point) => (
+                      <li class="flex items-start gap-2.5">
+                        <span class="text-steel-500 font-mono text-sm leading-none mt-0.5">■</span>
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div class="pt-4 border-t border-slate-300 flex flex-wrap gap-4 font-mono text-xs">
+                  {sector.stats.map((s) => (
+                    <div class="p-2.5 bg-white border border-slate-300">
+                      <span class="text-slate-500 block text-[10px] uppercase">{s.label}</span>
+                      <strong class="text-navy-900">{s.value}</strong>
+                    </div>
+                  ))}
+                </div>
+
+                <div class="pt-4">
+                  <Button href="/consult/contact" variant="primary" size="md">
+                    Discuss {sector.title} →
+                  </Button>
+                </div>
+              </div>
+
+              <div class={`lg:col-span-5 ${isReversed ? 'lg:order-1' : 'lg:order-2'}`}>
+                <ArchitecturalFrame
+                  cut={isReversed ? 'bl' : 'tr'}
+                  annotationStrip={{
+                    code: sector.stats[0]?.value || 'SECTOR DELIVERABLE',
+                    location: 'TORONTO HQ / CANADA'
+                  }}
+                >
+                  <div class="aspect-[4/3] w-full">
+                    <ResponsivePicture
+                      desktopSrc={sector.imageDesktop}
+                      mobileSrc={sector.imageMobile}
+                      alt={sector.title}
+                      aspectRatio="w-full h-full object-cover"
+                    />
+                  </div>
+                </ArchitecturalFrame>
+              </div>
+
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  </section>
+
+  <!-- Cross-Entity Prompt: Industrial Sectors -->
+  <section class="py-16 bg-navy-950 text-white border-b border-navy-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-gradient-to-r from-navy-900 to-black p-8 sm:p-12 border border-amber-500/30 flex flex-col lg:flex-row items-center justify-between gap-8">
+        <div class="space-y-3 max-w-2xl text-center lg:text-left">
+          <Badge variant="global">Industrial &amp; Energy Facilities</Badge>
+          <h2 class="text-2xl sm:text-3xl font-display font-bold uppercase tracking-tight text-white">
+            Need Industrial Facility Engineering or Port Logistics?
+          </h2>
+          <p class="text-sm text-slate-300 font-sans leading-relaxed">
+            Our sister entity <strong>Swift Global Inc.</strong> specializes in industrial processing facilities, petrochemical terminals, and heavy maritime infrastructure across North America and international markets.
+          </p>
+        </div>
+        <div class="flex-shrink-0">
+          <Button href="/global/sectors" variant="accent" size="lg">
+            View Swift Global Industrial Sectors →
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

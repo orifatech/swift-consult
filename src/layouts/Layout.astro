@@ -12,20 +12,23 @@ interface Props {
   ogImage?: string;
   preloadImage?: string;
   preloadImageMobile?: string;
+  hideNavAndFooter?: boolean;
 }
 
 const {
   title,
   description = 'Swift Consult Inc. & Swift Global Inc. — Integrated structural engineering, civil design, municipal permitting, international equipment procurement, and turnkey EPC project management across Canada, the USA, the Middle East, and West Africa.',
-  currentEntity = 'group',
-  activePath = '/',
+  currentEntity = 'consult',
+  activePath = '/consult',
   ogImage = '/images/commercial-tower.webp',
   preloadImage,
-  preloadImageMobile
+  preloadImageMobile,
+  hideNavAndFooter = false
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://swiftconsultinc.com').href;
-const activeCompany = ENTITIES[currentEntity];
+const activeCompany = ENTITIES[currentEntity] || ENTITIES.consult;
+const isGlobal = currentEntity === 'global';
 
 // Structured Data (JSON-LD) for SEO
 const jsonLd = {
@@ -99,7 +102,7 @@ const jsonLd = {
     <link rel="canonical" href={canonicalURL} />
     <meta name="robots" content="index, follow" />
     <meta name="author" content="Swift Consult Inc. & Swift Global Inc." />
-    <meta name="theme-color" content="#0B1F38" />
+    <meta name="theme-color" content={isGlobal ? "#050E1A" : "#0B1F38"} />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -107,7 +110,7 @@ const jsonLd = {
     <meta property="og:title" content={`${title} | ${activeCompany.legalName}`} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:site_name" content="Swift Consult & Swift Global" />
+    <meta property="og:site_name" content={activeCompany.name} />
     <meta property="og:locale" content="en_CA" />
 
     <!-- Twitter Cards -->
@@ -146,7 +149,13 @@ const jsonLd = {
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
-  <body class="min-h-screen flex flex-col bg-blueprint-bg text-navy-900 selection:bg-steel-500 selection:text-white">
+  <body class={`min-h-screen flex flex-col font-sans transition-colors ${
+    isGlobal
+      ? 'bg-slate-950 text-slate-100 selection:bg-amber-construction selection:text-navy-950'
+      : currentEntity === 'group'
+        ? 'bg-navy-950 text-white selection:bg-steel-500 selection:text-white'
+        : 'bg-blueprint-bg text-navy-900 selection:bg-steel-500 selection:text-white'
+  }`}>
     
     <!-- Accessibility: Skip to Main Content Link -->
     <a
@@ -157,7 +166,9 @@ const jsonLd = {
     </a>
 
     <!-- Header Navigation -->
-    <Header currentEntity={currentEntity} activePath={activePath} />
+    {!hideNavAndFooter && (
+      <Header currentEntity={currentEntity} activePath={activePath} />
+    )}
 
     <!-- Main Landmark -->
     <main id="main-content" class="flex-grow focus:outline-none" tabindex="-1">
@@ -165,7 +176,9 @@ const jsonLd = {
     </main>
 
     <!-- Global Corporate Footer -->
-    <Footer />
+    {!hideNavAndFooter && (
+      <Footer currentEntity={currentEntity} />
+    )}
 
   </body>
 </html>

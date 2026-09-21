@@ -1,5 +1,11 @@
 export type EntityKey = 'group' | 'consult' | 'global';
 
+export interface NavLinkItem {
+  label: string;
+  href: string;
+  badge?: string;
+}
+
 export interface CompanyEntity {
   id: EntityKey;
   name: string;
@@ -16,6 +22,19 @@ export interface CompanyEntity {
   colorTheme: {
     accent: string;
     border: string;
+    heroBg: string;
+    badgeStyle: string;
+  };
+  navLinks: NavLinkItem[];
+  crossEntity: {
+    targetId: EntityKey;
+    targetName: string;
+    targetLegalName: string;
+    targetHref: string;
+    targetDomain: string;
+    targetSubtitle: string;
+    ctaLabel: string;
+    description: string;
   };
 }
 
@@ -26,7 +45,7 @@ export const ENTITIES: Record<EntityKey, CompanyEntity> = {
     legalName: 'Swift Consult Inc. & Swift Global Inc.',
     domain: 'swiftconsultinc.com / swiftglobalinc.com',
     tagline: 'Integrated Engineering, Global Procurement & Construction Management',
-    badgeText: 'Unified Dual-Entity Portal',
+    badgeText: 'Unified Dual-Entity Gateway',
     primaryFocus: 'End-to-End International EPC Delivery',
     description: 'A unified consortium pairing Canadian engineering precision and regulatory expertise with international heavy industrial procurement and EPC construction execution.',
     email: 'info@swiftconsultinc.com',
@@ -36,6 +55,24 @@ export const ENTITIES: Record<EntityKey, CompanyEntity> = {
     colorTheme: {
       accent: 'text-navy-900',
       border: 'border-navy-900',
+      heroBg: 'bg-navy-950',
+      badgeStyle: 'bg-amber-50 text-amber-900 border-amber-construction/60'
+    },
+    navLinks: [
+      { label: 'Gateway Portal', href: '/' },
+      { label: 'Swift Consult Inc.', href: '/consult' },
+      { label: 'Swift Global Inc.', href: '/global' },
+      { label: 'Contact', href: '/consult/contact' }
+    ],
+    crossEntity: {
+      targetId: 'consult',
+      targetName: 'Swift Consult Inc.',
+      targetLegalName: 'Swift Consult Inc.',
+      targetHref: '/consult',
+      targetDomain: 'swiftconsultinc.com',
+      targetSubtitle: 'Structural Engineering & Municipal Permitting',
+      ctaLabel: 'Enter Swift Consult Website →',
+      description: 'Explore structural calculations, civil engineering, and Canadian municipal permitting.'
     }
   },
   consult: {
@@ -43,7 +80,7 @@ export const ENTITIES: Record<EntityKey, CompanyEntity> = {
     name: 'Swift Consult Inc.',
     legalName: 'Swift Consult Inc.',
     domain: 'swiftconsultinc.com',
-    tagline: 'Engineering Design, Structural Analysis & Municipal Approvals',
+    tagline: 'Structural Engineering, Civil Design & Municipal Approvals',
     badgeText: 'Engineering & Design Consultancy',
     primaryFocus: 'Structural, Civil & Regulatory Approvals',
     description: 'Providing comprehensive structural engineering, municipal site design, seismic evaluation, and building permit acquisition across North American jurisdictions.',
@@ -54,6 +91,26 @@ export const ENTITIES: Record<EntityKey, CompanyEntity> = {
     colorTheme: {
       accent: 'text-steel-600',
       border: 'border-steel-500',
+      heroBg: 'bg-navy-950',
+      badgeStyle: 'bg-steel-100 text-steel-900 border-steel-300'
+    },
+    navLinks: [
+      { label: 'Home', href: '/consult' },
+      { label: 'About', href: '/consult/about' },
+      { label: 'Services', href: '/consult/services' },
+      { label: 'Sectors', href: '/consult/sectors' },
+      { label: 'Projects', href: '/consult/projects' },
+      { label: 'Contact', href: '/consult/contact' }
+    ],
+    crossEntity: {
+      targetId: 'global',
+      targetName: 'Swift Global Inc.',
+      targetLegalName: 'Swift Global Inc.',
+      targetHref: '/global',
+      targetDomain: 'swiftglobalinc.com',
+      targetSubtitle: 'Procurement & Turnkey EPC',
+      ctaLabel: 'Switch to Swift Global Inc. →',
+      description: 'Need heavy equipment sourcing or turnkey EPC in the Middle East or West Africa?'
     }
   },
   global: {
@@ -70,8 +127,28 @@ export const ENTITIES: Record<EntityKey, CompanyEntity> = {
     address: '1000 King Street West, Toronto, ON, M6K 3N1',
     logoSvg: '/images/swift-global-logo.svg',
     colorTheme: {
-      accent: 'text-navy-900',
-      border: 'border-navy-900',
+      accent: 'text-amber-construction',
+      border: 'border-amber-construction',
+      heroBg: 'bg-black',
+      badgeStyle: 'bg-amber-950 text-amber-300 border-amber-600/50'
+    },
+    navLinks: [
+      { label: 'Home', href: '/global' },
+      { label: 'About', href: '/global/about' },
+      { label: 'Services', href: '/global/services' },
+      { label: 'Sectors', href: '/global/sectors' },
+      { label: 'Projects', href: '/global/projects' },
+      { label: 'Contact', href: '/global/contact' }
+    ],
+    crossEntity: {
+      targetId: 'consult',
+      targetName: 'Swift Consult Inc.',
+      targetLegalName: 'Swift Consult Inc.',
+      targetHref: '/consult',
+      targetDomain: 'swiftconsultinc.com',
+      targetSubtitle: 'Structural & Permitting',
+      ctaLabel: 'Switch to Swift Consult Inc. →',
+      description: 'Need structural design stamps, Civil 3D hydrology, or Canadian building permits?'
     }
   }
 };
