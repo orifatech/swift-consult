@@ -20,28 +20,12 @@ const images = [
     name: 'structural-engineering'
   },
   {
-    src: '/Users/Elero/.gemini/antigravity/brain/1adefe67-967d-45a9-ba71-d61ee10daba9/civil_site_development_1789977669395.png',
-    name: 'civil-site'
-  },
-  {
-    src: '/Users/Elero/.gemini/antigravity/brain/1adefe67-967d-45a9-ba71-d61ee10daba9/global_logistics_procurement_1789977741231.png',
-    name: 'global-logistics'
-  },
-  {
     src: '/Users/Elero/.gemini/antigravity/brain/576114fd-bad6-454f-99ec-fd671fbc90b0/consult_bim_model_1790536391750.png',
     name: 'bim-engineering-model'
   },
   {
     src: '/Users/Elero/.gemini/antigravity/brain/576114fd-bad6-454f-99ec-fd671fbc90b0/consult_civil_infra_1790536460521.png',
     name: 'civil-infrastructure-aerial'
-  },
-  {
-    src: '/Users/Elero/.gemini/antigravity/brain/576114fd-bad6-454f-99ec-fd671fbc90b0/global_heavy_equip_1790536709969.png',
-    name: 'heavy-equipment-mfg'
-  },
-  {
-    src: '/Users/Elero/.gemini/antigravity/brain/576114fd-bad6-454f-99ec-fd671fbc90b0/global_epc_plant_1790536867684.png',
-    name: 'international-epc-site'
   },
   {
     src: '/Users/Elero/.gemini/antigravity/brain/576114fd-bad6-454f-99ec-fd671fbc90b0/consult_hero_bg_1790572433960.png',
@@ -52,13 +36,6 @@ const images = [
 const outDir = path.resolve('public/images');
 if (!fs.existsSync(outDir)) {
   fs.mkdirSync(outDir, { recursive: true });
-}
-
-// Copy original logo
-const logoSrc = '/Users/Elero/.gemini/antigravity/brain/1adefe67-967d-45a9-ba71-d61ee10daba9/.user_uploaded/media_1789975850885.webp';
-if (fs.existsSync(logoSrc)) {
-  fs.copyFileSync(logoSrc, path.join(outDir, 'swift-consult-logo.webp'));
-  console.log('Copied logo to public/images/swift-consult-logo.webp');
 }
 
 for (const img of images) {
