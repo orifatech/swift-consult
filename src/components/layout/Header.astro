@@ -18,7 +18,7 @@ const { activePath = '/' } = Astro.props;
         <!-- Brand Logo -->
         <a
           href="/"
-          class="flex items-center py-2 group focus-visible:outline-steel-500 rounded-lg"
+          class="flex items-center py-2 group focus-visible:outline-steel-500 rounded-md"
           aria-label="Swift Consult Inc. Home"
         >
           <div class="h-10 sm:h-12 w-auto flex items-center">
@@ -35,7 +35,7 @@ const { activePath = '/' } = Astro.props;
         </a>
 
         <!-- Desktop Navigation Items -->
-        <div class="hidden lg:flex items-center space-x-1">
+        <div class="hidden xl:flex items-center space-x-1">
           {COMPANY.navLinks.map((link) => {
             const isHome = link.href === '/';
             const isActive = isHome ? activePath === '/' : activePath.startsWith(link.href);
@@ -44,7 +44,7 @@ const { activePath = '/' } = Astro.props;
               <a
                 href={link.href}
                 aria-current={isActive ? 'page' : undefined}
-                class={`px-4 py-2 rounded-lg text-xs font-display font-semibold uppercase tracking-wider transition-all duration-200 ${
+                class={`px-4 py-2 rounded-md text-xs font-display font-semibold uppercase tracking-wider transition-all duration-200 ${
                   isActive
                     ? 'text-navy-900 bg-slate-100/90 font-bold shadow-sm'
                     : 'text-slate-600 hover:text-navy-900 hover:bg-slate-50'
@@ -56,11 +56,11 @@ const { activePath = '/' } = Astro.props;
           })}
         </div>
 
-        <!-- Right Action Hub: Toronto Dispatch & Proposal Button -->
-        <div class="hidden sm:flex items-center gap-4">
+        <!-- Right Action Hub: Toronto Dispatch & Proposal Button (Desktop xl+ only) -->
+        <div class="hidden xl:flex items-center gap-4">
           <a
             href="tel:+15875663166"
-            class="flex flex-col text-right font-mono group focus-visible:outline-steel-500 rounded-lg px-2 py-1"
+            class="flex flex-col text-right font-mono group focus-visible:outline-steel-500 rounded-md px-2 py-1"
             aria-label="Call Toronto dispatch at +1 (587) 566-3166"
           >
             <span class="text-[10px] uppercase tracking-wider text-slate-500">
@@ -76,18 +76,12 @@ const { activePath = '/' } = Astro.props;
           </Button>
         </div>
 
-        <!-- Mobile Hamburger Button -->
-        <div class="flex lg:hidden items-center gap-2">
-          <a
-            href="/contact"
-            class="sm:hidden px-3 py-1.5 rounded-lg text-xs font-display font-bold uppercase tracking-wider bg-navy-900 text-white shadow-sm"
-          >
-            Proposal
-          </a>
+        <!-- Mobile & Tablet Hamburger Button (Visible on mobile, md, and lg tabs) -->
+        <div class="flex xl:hidden items-center">
           <button
             type="button"
             id="mobile-menu-button"
-            class="p-2.5 rounded-xl text-navy-900 bg-slate-100 border border-slate-200 hover:bg-slate-200 focus-visible:outline-steel-500 transition-colors"
+            class="p-2.5 rounded-md text-navy-900 bg-slate-100 border border-slate-200 hover:bg-slate-200 focus-visible:outline-steel-500 transition-colors"
             aria-label="Open navigation menu"
             aria-expanded="false"
             aria-controls="mobile-nav-panel"
@@ -102,17 +96,17 @@ const { activePath = '/' } = Astro.props;
     </div>
   </nav>
 
-  <!-- Mobile Navigation Backdrop Overlay -->
+  <!-- Mobile & Tablet Navigation Backdrop Overlay -->
   <div
     id="mobile-nav-backdrop"
-    class="fixed inset-0 z-40 bg-navy-950/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out lg:hidden"
+    class="fixed inset-0 z-40 bg-navy-950/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out xl:hidden"
     aria-hidden="true"
   ></div>
 
-  <!-- Full-Height Slide-in Mobile Navigation Panel (Slides from right) -->
+  <!-- Full-Height Slide-in Mobile & Tablet Navigation Panel (Slides from right) -->
   <div
     id="mobile-nav-panel"
-    class="fixed top-0 right-0 bottom-0 z-50 w-full max-w-sm sm:max-w-md h-full bg-white text-navy-950 shadow-2xl border-l border-slate-200 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col justify-between overflow-y-auto lg:hidden"
+    class="fixed top-0 right-0 bottom-0 z-50 w-full max-w-sm sm:max-w-md h-full bg-white text-navy-950 shadow-2xl border-l border-slate-200 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col justify-between overflow-y-auto xl:hidden"
     role="dialog"
     aria-modal="true"
     aria-label="Mobile Navigation Menu"
@@ -131,7 +125,7 @@ const { activePath = '/' } = Astro.props;
       <button
         type="button"
         id="mobile-nav-close"
-        class="p-2 rounded-xl text-slate-500 hover:text-navy-900 bg-slate-100 hover:bg-slate-200 transition-colors focus-visible:outline-steel-500"
+        class="p-2 rounded-md text-slate-500 hover:text-navy-900 bg-slate-100 hover:bg-slate-200 transition-colors focus-visible:outline-steel-500"
         aria-label="Close navigation menu"
       >
         <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -152,7 +146,7 @@ const { activePath = '/' } = Astro.props;
           <a
             href={link.href}
             aria-current={isActive ? 'page' : undefined}
-            class={`flex items-center justify-between px-4 py-3 rounded-xl text-sm font-display font-semibold uppercase tracking-wider transition-all duration-200 ${
+            class={`flex items-center justify-between px-4 py-3 rounded-md text-sm font-display font-semibold uppercase tracking-wider transition-all duration-200 ${
               isActive
                 ? 'text-navy-900 bg-slate-100 font-bold border-l-4 border-steel-500 pl-3'
                 : 'text-slate-700 hover:bg-slate-50 hover:text-navy-900'

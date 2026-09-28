@@ -48,14 +48,14 @@ const sister = COMPANY.sisterCompany;
           </div>
 
           <div class="space-y-4 font-mono text-xs">
-            <div class="p-5 rounded-xl bg-blueprint-bg border border-slate-200 shadow-sm space-y-1">
+            <div class="p-5 rounded-md bg-blueprint-bg border border-slate-200 shadow-sm space-y-1">
               <span class="text-steel-600 block text-[10px] uppercase font-bold tracking-wider">PRACTICE LOCATION</span>
               <div class="font-sans text-sm font-bold text-navy-900">{COMPANY.legalName}</div>
               <div class="font-sans text-xs text-slate-600">{COMPANY.address}</div>
               <div class="font-sans text-xs text-slate-500">Toronto, ON, M6K 3N1, Canada</div>
             </div>
 
-            <div class="p-5 rounded-xl bg-blueprint-bg border border-slate-200 shadow-sm space-y-1">
+            <div class="p-5 rounded-md bg-blueprint-bg border border-slate-200 shadow-sm space-y-1">
               <span class="text-steel-600 block text-[10px] uppercase font-bold tracking-wider">DIRECT TELEPHONE</span>
               <a href="tel:+15875663166" class="text-navy-900 hover:text-steel-600 text-sm font-bold transition-colors block">
                 {COMPANY.phone}
@@ -63,7 +63,7 @@ const sister = COMPANY.sisterCompany;
               <div class="text-[11px] text-slate-500 font-sans mt-0.5">Mon–Fri: 8:00 AM – 6:00 PM EST</div>
             </div>
 
-            <div class="p-5 rounded-xl bg-blueprint-bg border border-slate-200 shadow-sm space-y-1">
+            <div class="p-5 rounded-md bg-blueprint-bg border border-slate-200 shadow-sm space-y-1">
               <span class="text-steel-600 block text-[10px] uppercase font-bold tracking-wider">ENGINEERING INQUIRIES</span>
               <a href={`mailto:${COMPANY.email}`} class="text-steel-600 hover:text-navy-900 text-sm font-bold transition-colors underline break-all block">
                 {COMPANY.email}
@@ -73,7 +73,7 @@ const sister = COMPANY.sisterCompany;
           </div>
 
           <!-- Sister Entity Switch Box -->
-          <div class="p-6 rounded-2xl bg-navy-950 text-white border border-navy-850 space-y-3 shadow-lg">
+          <div class="p-6 rounded-md bg-navy-950 text-white border border-navy-850 space-y-3 shadow-lg">
             <div class="text-[10px] font-mono uppercase text-amber-400 tracking-wider font-bold">
               Looking for Procurement or Industrial EPC?
             </div>
@@ -88,7 +88,7 @@ const sister = COMPANY.sisterCompany;
                 href={sister.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-navy-950 text-xs font-mono font-bold uppercase transition-all shadow-sm"
+                class="inline-flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-md bg-amber-500 hover:bg-amber-400 text-navy-950 text-xs font-mono font-bold uppercase transition-all shadow-sm"
               >
                 <span>{sister.ctaLabel}</span>
                 <span>↗</span>
@@ -98,7 +98,7 @@ const sister = COMPANY.sisterCompany;
         </div>
 
         <!-- Right: Accessible Engineering Form -->
-        <div class="lg:col-span-7 bg-blueprint-bg p-8 sm:p-10 rounded-2xl border border-slate-200 shadow-card">
+        <div class="lg:col-span-7 bg-blueprint-bg p-8 sm:p-10 rounded-md border border-slate-200 shadow-card">
           <div class="mb-6 pb-4 border-b border-slate-200">
             <span class="text-xs font-mono uppercase text-steel-600 font-bold tracking-wider">Formal RFP Submission</span>
             <h2 class="text-xl sm:text-2xl font-display font-bold uppercase tracking-tight text-navy-900 mt-1">
@@ -117,7 +117,7 @@ const sister = COMPANY.sisterCompany;
                   id="consult-name"
                   required
                   placeholder="e.g. David Sterling, Architect"
-                  class="w-full px-4 py-3 rounded-xl bg-white border border-slate-300 text-navy-900 placeholder-slate-400 focus:border-steel-500 focus:outline-none font-sans text-sm shadow-sm"
+                  class="w-full px-4 py-3 rounded-md bg-white border border-slate-300 text-navy-900 placeholder-slate-400 focus:border-steel-500 focus:outline-none font-sans text-sm shadow-sm"
                 />
               </div>
 
@@ -130,7 +130,7 @@ const sister = COMPANY.sisterCompany;
                   id="consult-org"
                   required
                   placeholder="e.g. Sterling Architecture Ltd."
-                  class="w-full px-4 py-3 rounded-xl bg-white border border-slate-300 text-navy-900 placeholder-slate-400 focus:border-steel-500 focus:outline-none font-sans text-sm shadow-sm"
+                  class="w-full px-4 py-3 rounded-md bg-white border border-slate-300 text-navy-900 placeholder-slate-400 focus:border-steel-500 focus:outline-none font-sans text-sm shadow-sm"
                 />
               </div>
             </div>
@@ -145,7 +145,7 @@ const sister = COMPANY.sisterCompany;
                   id="consult-email"
                   required
                   placeholder="name@organization.com"
-                  class="w-full px-4 py-3 rounded-xl bg-white border border-slate-300 text-navy-900 placeholder-slate-400 focus:border-steel-500 focus:outline-none font-sans text-sm shadow-sm"
+                  class="w-full px-4 py-3 rounded-md bg-white border border-slate-300 text-navy-900 placeholder-slate-400 focus:border-steel-500 focus:outline-none font-sans text-sm shadow-sm"
                 />
               </div>
 
@@ -158,7 +158,7 @@ const sister = COMPANY.sisterCompany;
                   id="consult-phone"
                   required
                   placeholder="+1 (555) 000-0000"
-                  class="w-full px-4 py-3 rounded-xl bg-white border border-slate-300 text-navy-900 placeholder-slate-400 focus:border-steel-500 focus:outline-none font-sans text-sm shadow-sm"
+                  class="w-full px-4 py-3 rounded-md bg-white border border-slate-300 text-navy-900 placeholder-slate-400 focus:border-steel-500 focus:outline-none font-sans text-sm shadow-sm"
                 />
               </div>
             </div>
@@ -171,7 +171,7 @@ const sister = COMPANY.sisterCompany;
                 type="text"
                 id="project-site"
                 placeholder="e.g. City of Toronto, Mississauga, Calgary, Houston"
-                class="w-full px-4 py-3 rounded-xl bg-white border border-slate-300 text-navy-900 placeholder-slate-400 focus:border-steel-500 focus:outline-none font-sans text-sm shadow-sm"
+                class="w-full px-4 py-3 rounded-md bg-white border border-slate-300 text-navy-900 placeholder-slate-400 focus:border-steel-500 focus:outline-none font-sans text-sm shadow-sm"
               />
             </div>
 
@@ -180,19 +180,19 @@ const sister = COMPANY.sisterCompany;
                 Primary Engineering Disciplines Required (Check all that apply):
               </span>
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-sans text-slate-700">
-                <label class="flex items-center gap-2 p-2.5 rounded-lg bg-white border border-slate-200 cursor-pointer hover:border-steel-400 shadow-sm">
+                <label class="flex items-center gap-2 p-2.5 rounded-md bg-white border border-slate-200 cursor-pointer hover:border-steel-400 shadow-sm">
                   <input type="checkbox" class="accent-steel-600 rounded" />
                   <span>Structural Design &amp; Calculations</span>
                 </label>
-                <label class="flex items-center gap-2 p-2.5 rounded-lg bg-white border border-slate-200 cursor-pointer hover:border-steel-400 shadow-sm">
+                <label class="flex items-center gap-2 p-2.5 rounded-md bg-white border border-slate-200 cursor-pointer hover:border-steel-400 shadow-sm">
                   <input type="checkbox" class="accent-steel-600 rounded" />
                   <span>Civil 3D Site Servicing &amp; SWM</span>
                 </label>
-                <label class="flex items-center gap-2 p-2.5 rounded-lg bg-white border border-slate-200 cursor-pointer hover:border-steel-400 shadow-sm">
+                <label class="flex items-center gap-2 p-2.5 rounded-md bg-white border border-slate-200 cursor-pointer hover:border-steel-400 shadow-sm">
                   <input type="checkbox" class="accent-steel-600 rounded" />
                   <span>Building Permit Expediting</span>
                 </label>
-                <label class="flex items-center gap-2 p-2.5 rounded-lg bg-white border border-slate-200 cursor-pointer hover:border-steel-400 shadow-sm">
+                <label class="flex items-center gap-2 p-2.5 rounded-md bg-white border border-slate-200 cursor-pointer hover:border-steel-400 shadow-sm">
                   <input type="checkbox" class="accent-steel-600 rounded" />
                   <span>BIM 3D Modeling &amp; Coordination</span>
                 </label>
@@ -208,7 +208,7 @@ const sister = COMPANY.sisterCompany;
                 rows="5"
                 required
                 placeholder="Describe building typology, number of storeys, gross floor area, known site constraints, or target municipal permit submission date..."
-                class="w-full px-4 py-3 rounded-xl bg-white border border-slate-300 text-navy-900 placeholder-slate-400 focus:border-steel-500 focus:outline-none font-sans text-sm shadow-sm"
+                class="w-full px-4 py-3 rounded-md bg-white border border-slate-300 text-navy-900 placeholder-slate-400 focus:border-steel-500 focus:outline-none font-sans text-sm shadow-sm"
               ></textarea>
             </div>
 

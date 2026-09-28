@@ -27,7 +27,7 @@ const sister = COMPANY.sisterCompany;
           href={sister.href}
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-navy-950 font-display text-xs font-bold uppercase tracking-wider transition-all shadow-md group"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-md bg-amber-500 hover:bg-amber-400 text-navy-950 font-display text-xs font-bold uppercase tracking-wider transition-all shadow-md group"
         >
           <span>{sister.ctaLabel}</span>
           <span class="group-hover:translate-x-0.5 transition-transform" aria-hidden="true">↗</span>
@@ -135,20 +135,20 @@ const sister = COMPANY.sisterCompany;
         </h3>
         
         <div class="text-xs text-slate-300 space-y-2.5 font-mono">
-          <div class="p-3 rounded-xl bg-navy-900 border border-navy-800 space-y-0.5">
+          <div class="p-3 rounded-md bg-navy-900 border border-navy-800 space-y-0.5">
             <span class="text-slate-400 block text-[10px] uppercase">Corporate Address</span>
             <span class="text-white font-sans text-xs font-medium block">{COMPANY.address}</span>
             <span class="text-slate-400 font-sans text-xs">Toronto, Ontario, Canada</span>
           </div>
 
-          <div class="p-3 rounded-xl bg-navy-900 border border-navy-800 space-y-0.5">
+          <div class="p-3 rounded-md bg-navy-900 border border-navy-800 space-y-0.5">
             <span class="text-slate-400 block text-[10px] uppercase">Official Email</span>
             <a href={`mailto:${COMPANY.email}`} class="font-mono text-xs text-steel-300 hover:text-white transition-colors underline break-all block">
               {COMPANY.email}
             </a>
           </div>
 
-          <div class="p-3 rounded-xl bg-navy-900 border border-navy-800 space-y-0.5">
+          <div class="p-3 rounded-md bg-navy-900 border border-navy-800 space-y-0.5">
             <span class="text-slate-400 block text-[10px] uppercase">Dispatch Line</span>
             <a href="tel:+15875663166" class="text-white hover:text-steel-300 font-mono text-xs transition-colors block">
               {COMPANY.phone}
