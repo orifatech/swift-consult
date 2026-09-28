@@ -42,6 +42,10 @@ const images = [
   {
     src: '/Users/Elero/.gemini/antigravity/brain/576114fd-bad6-454f-99ec-fd671fbc90b0/global_epc_plant_1790536867684.png',
     name: 'international-epc-site'
+  },
+  {
+    src: '/Users/Elero/.gemini/antigravity/brain/576114fd-bad6-454f-99ec-fd671fbc90b0/consult_hero_bg_1790572433960.png',
+    name: 'consult-hero-bg'
   }
 ];
 
