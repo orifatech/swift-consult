@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 120" fill="none" class="w-auto h-full">
+  <!-- Architectural & Industrial Mark -->
+  <g id="mark">
+    <!-- Left outer building -->
+    <path d="M24 102 L24 64 L54 44 L54 102 Z" fill="#F8FAFC"/>
+    <!-- Main Center Tower Left Column -->
+    <path d="M62 102 L62 26 L100 0 L100 102 L86 102 L86 26 L76 33 L76 102 Z" fill="#F8FAFC"/>
+    <!-- Middle accent tower (Warm Amber Gold) -->
+    <path d="M108 102 L108 34 L126 46 L126 102 Z" fill="#D4AF37"/>
+    <!-- Right tower -->
+    <path d="M134 102 L134 56 L152 68 L152 102 Z" fill="#F8FAFC"/>
+  </g>
+
+  <!-- Divider Line -->
+  <line x1="172" y1="14" x2="172" y2="102" stroke="#D4AF37" stroke-width="2.5" stroke-opacity="0.8"/>
+
+  <!-- Brand Typography -->
+  <g id="brand-text">
+    <text x="194" y="56" font-family="'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif" font-size="54" font-weight="800" letter-spacing="0.12em" fill="#FFFFFF">SWIFT</text>
+    <text x="194" y="96" font-family="'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif" font-size="30" font-weight="700" letter-spacing="0.20em" fill="#D4AF37">GLOBAL INC.</text>
+  </g>
+</svg>

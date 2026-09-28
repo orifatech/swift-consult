@@ -33,8 +33,14 @@ export default {
           "border-dark": "#1B2E47",
         },
         amber: {
+          gold: "#D4AF37",
           construction: "#C5A059",
           highvis: "#E29547",
+        },
+        obsidian: {
+          950: "#03070E",
+          900: "#060D18",
+          800: "#0E1D32",
         },
       },
       fontFamily: {
