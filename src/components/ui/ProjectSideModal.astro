@@ -1,0 +1,271 @@
+---
+import type { ProjectItem } from '@/data/companyData';
+import Badge from './Badge.astro';
+
+interface Props {
+  projects: ProjectItem[];
+}
+
+const { projects } = Astro.props;
+---
+
+<div
+  id="project-side-modal"
+  class="fixed inset-0 z-50 pointer-events-none transition-all duration-300"
+  aria-hidden="true"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="side-modal-title"
+>
+  <!-- Modal Backdrop Overlay -->
+  <div
+    id="side-modal-backdrop"
+    class="fixed inset-0 bg-navy-950/70 backdrop-blur-sm opacity-0 transition-opacity duration-300 pointer-events-none"
+  ></div>
+
+  <!-- Slide-Over Drawer Panel -->
+  <aside
+    id="side-modal-drawer"
+    class="fixed right-0 top-0 bottom-0 w-full max-w-2xl bg-white shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300 ease-out z-10 overflow-hidden pointer-events-auto border-l border-slate-200"
+  >
+    <!-- Drawer Top Header Bar -->
+    <div class="px-6 py-4 bg-slate-50 border-b border-slate-200 flex items-center justify-between flex-shrink-0">
+      <div class="flex items-center gap-2">
+        <span class="inline-block w-2 h-2 rounded-full bg-steel-500 animate-pulse"></span>
+        <span class="font-mono text-xs text-slate-500 uppercase tracking-widest">Engineering Technical Dossier</span>
+      </div>
+      <button
+        id="side-modal-close"
+        type="button"
+        class="w-9 h-9 rounded-md bg-white border border-slate-300 text-slate-500 hover:text-navy-900 hover:bg-slate-100 flex items-center justify-center transition-colors focus-visible:outline-2 focus-visible:outline-navy-900"
+        aria-label="Close project specifications drawer"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Scrollable Project Content Container -->
+    <div class="flex-1 overflow-y-auto px-6 sm:px-8 py-6 space-y-6">
+      {projects.map((project) => (
+        <article
+          id={`modal-project-${project.id}`}
+          class="project-modal-pane hidden space-y-6"
+          data-project-id={project.id}
+        >
+          <!-- Badges & Metadata Header -->
+          <div class="space-y-3">
+            <div class="flex flex-wrap items-center gap-2">
+              <Badge variant="steel">{project.sector}</Badge>
+              <span class="px-2.5 py-0.5 rounded-md text-xs font-mono font-medium bg-slate-100 text-slate-600 border border-slate-200">
+                {project.region}
+              </span>
+              <span class="px-2.5 py-0.5 rounded-md text-xs font-mono font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                {project.completionStatus || 'Delivered'}
+              </span>
+            </div>
+
+            <h2 class="text-2xl sm:text-3xl font-display font-extrabold text-navy-900 leading-tight">
+              {project.title}
+            </h2>
+
+            <div class="flex flex-wrap items-center gap-4 text-xs font-mono text-slate-500 pt-1">
+              <span class="flex items-center gap-1">📍 {project.location}</span>
+              <span>•</span>
+              <span>Year: {project.year}</span>
+              {project.clientType && (
+                <>
+                  <span>•</span>
+                  <span>Client: {project.clientType}</span>
+                </>
+              )}
+            </div>
+          </div>
+
+          <!-- Project Hero Image Frame -->
+          <div class="relative aspect-[16/10] rounded-md overflow-hidden border border-slate-200 bg-slate-100 shadow-sm">
+            <img
+              src={project.image}
+              alt={project.title}
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+            <div class="absolute bottom-3 right-3 bg-navy-950/85 backdrop-blur-md text-white px-3 py-1.5 rounded-md text-xs font-mono border border-navy-800">
+              {project.stats}
+            </div>
+          </div>
+
+          <!-- Scope of Work & Structural Engineering Narrative -->
+          <div class="space-y-2">
+            <h3 class="font-mono text-xs uppercase tracking-wider text-steel-600 font-bold flex items-center gap-1.5">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              Engineering Scope of Work
+            </h3>
+            <p class="text-sm text-slate-700 leading-relaxed font-sans bg-slate-50 p-4 rounded-md border border-slate-200">
+              {project.scope}
+            </p>
+          </div>
+
+          <!-- Key Deliverables & Highlights -->
+          {project.highlights && project.highlights.length > 0 && (
+            <div class="space-y-3">
+              <h3 class="font-mono text-xs uppercase tracking-wider text-steel-600 font-bold flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Key Engineering Deliverables & Milestones
+              </h3>
+              <ul class="space-y-2.5">
+                {project.highlights.map((highlight) => (
+                  <li class="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 font-sans">
+                    <span class="inline-flex items-center justify-center w-4 h-4 rounded-full bg-steel-100 text-steel-700 text-[10px] font-bold mt-0.5 flex-shrink-0">✓</span>
+                    <span>{highlight}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <!-- Technical Specifications Matrix -->
+          {project.specifications && project.specifications.length > 0 && (
+            <div class="space-y-3">
+              <h3 class="font-mono text-xs uppercase tracking-wider text-steel-600 font-bold flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                </svg>
+                Technical Specifications & Code Compliance
+              </h3>
+              <div class="rounded-md border border-slate-200 overflow-hidden text-xs font-mono">
+                {project.specifications.map((spec, idx) => (
+                  <div class={`grid grid-cols-1 sm:grid-cols-3 p-3 gap-1 ${idx % 2 === 0 ? 'bg-slate-50' : 'bg-white'}`}>
+                    <dt class="font-semibold text-slate-500">{spec.label}</dt>
+                    <dd class="sm:col-span-2 text-navy-900 font-medium">{spec.value}</dd>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </article>
+      ))}
+    </div>
+
+    <!-- Sticky Drawer Footer CTA -->
+    <div class="p-5 sm:p-6 bg-slate-50 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 flex-shrink-0">
+      <div class="space-y-0.5 text-center sm:text-left">
+        <p class="font-display font-bold text-sm text-navy-900">Planning a Comparable Project?</p>
+        <p class="font-sans text-xs text-slate-500">Consult with licensed P.Eng structural & civil engineers.</p>
+      </div>
+      <a
+        href="/contact"
+        class="w-full sm:w-auto inline-flex items-center justify-center font-display uppercase tracking-wider font-bold rounded-md bg-navy-900 text-white hover:bg-steel-600 active:bg-navy-950 transition-colors px-5 py-2.5 text-xs shadow-card flex-shrink-0"
+      >
+        Request Engineering Consultation →
+      </a>
+    </div>
+  </aside>
+</div>
+
+<script>
+  function setupProjectSideModal() {
+    const modal = document.getElementById('project-side-modal');
+    const backdrop = document.getElementById('side-modal-backdrop');
+    const drawer = document.getElementById('side-modal-drawer');
+    const closeBtn = document.getElementById('side-modal-close');
+    const panes = document.querySelectorAll<HTMLElement>('.project-modal-pane');
+    const triggers = document.querySelectorAll<HTMLElement>('[data-project-trigger]');
+
+    if (!modal || !backdrop || !drawer || !closeBtn) return;
+
+    let activeTrigger: HTMLElement | null = null;
+
+    function openModal(projectId: string, triggerEl?: HTMLElement) {
+      if (triggerEl) activeTrigger = triggerEl;
+
+      // Hide all panes, show selected project pane
+      panes.forEach((pane) => {
+        if (pane.getAttribute('data-project-id') === projectId) {
+          pane.classList.remove('hidden');
+        } else {
+          pane.classList.add('hidden');
+        }
+      });
+
+      // Show modal & backdrop
+      modal?.classList.remove('pointer-events-none');
+      backdrop?.classList.remove('opacity-0', 'pointer-events-none');
+      backdrop?.classList.add('opacity-100', 'pointer-events-auto');
+
+      // Slide drawer in
+      drawer?.classList.remove('translate-x-full');
+      drawer?.classList.add('translate-x-0');
+
+      modal?.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('overflow-hidden');
+
+      // Focus close button
+      closeBtn?.focus();
+    }
+
+    function closeModal() {
+      // Slide drawer out
+      drawer?.classList.remove('translate-x-0');
+      drawer?.classList.add('translate-x-full');
+
+      // Fade backdrop
+      backdrop?.classList.remove('opacity-100', 'pointer-events-auto');
+      backdrop?.classList.add('opacity-0', 'pointer-events-none');
+
+      modal?.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('overflow-hidden');
+
+      setTimeout(() => {
+        modal?.classList.add('pointer-events-none');
+      }, 300);
+
+      // Return focus to trigger
+      if (activeTrigger) {
+        activeTrigger.focus();
+        activeTrigger = null;
+      }
+    }
+
+    // Attach click listeners to cards/triggers
+    triggers.forEach((trigger) => {
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        const projectId = trigger.getAttribute('data-project-trigger');
+        if (projectId) {
+          openModal(projectId, trigger);
+        }
+      });
+
+      // Handle keyboard Enter / Space on accessible cards
+      trigger.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const projectId = trigger.getAttribute('data-project-trigger');
+          if (projectId) {
+            openModal(projectId, trigger);
+          }
+        }
+      });
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+    backdrop.addEventListener('click', closeModal);
+
+    // Global ESC key listener
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') {
+        closeModal();
+      }
+    });
+  }
+
+  // Support initial load and Astro client-side page transitions
+  setupProjectSideModal();
+  document.addEventListener('astro:page-load', setupProjectSideModal);
+</script>

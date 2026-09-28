@@ -3,9 +3,18 @@ import Layout from '@/layouts/Layout.astro';
 import Button from '@/components/ui/Button.astro';
 import Badge from '@/components/ui/Badge.astro';
 import ResponsivePicture from '@/components/ui/ResponsivePicture.astro';
+import ProjectSideModal from '@/components/ui/ProjectSideModal.astro';
 import { PROJECTS, COMPANY } from '@/data/companyData';
 
 const sister = COMPANY.sisterCompany;
+
+const categories = [
+  { label: 'All', value: 'all', count: PROJECTS.length },
+  { label: 'Commercial', value: 'Commercial', count: PROJECTS.filter((p) => p.sector === 'Commercial').length },
+  { label: 'Residential', value: 'Residential', count: PROJECTS.filter((p) => p.sector === 'Residential').length },
+  { label: 'Civil Infrastructure', value: 'Civil Infrastructure', count: PROJECTS.filter((p) => p.sector === 'Civil Infrastructure').length },
+  { label: 'Industrial', value: 'Industrial', count: PROJECTS.filter((p) => p.sector === 'Industrial').length },
+];
 ---
 
 <Layout
@@ -20,7 +29,7 @@ const sister = COMPANY.sisterCompany;
       <div class="max-w-3xl space-y-4">
         <div class="flex items-center gap-2">
           <Badge variant="steel">Track Record</Badge>
-          <span class="font-mono text-xs text-steel-300">Canadian &amp; US Engineering Portfolio</span>
+          <span class="font-mono text-xs text-steel-300">Our Engineering Portfolio</span>
         </div>
         <h1 class="text-3xl sm:text-5xl font-display font-extrabold uppercase tracking-tight text-white leading-tight">
           Delivered Engineering Projects
@@ -32,46 +41,99 @@ const sister = COMPANY.sisterCompany;
     </div>
   </section>
 
-  <!-- Projects Grid -->
-  <section class="py-20 lg:py-28 bg-white border-b border-slate-200">
-    <div class="max-w-7xl mx-auto px-6 md:px-10 lg:px-12">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+  <!-- Projects Section with Category Tabs & 3-Column Card Grid -->
+  <section class="py-16 lg:py-24 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-6 md:px-10 lg:px-12 space-y-10">
+      
+      <!-- Category Filter Tabs -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200">
+        <div class="flex flex-wrap items-center gap-2" role="tablist" aria-label="Filter projects by engineering category">
+          {categories.map((cat, index) => (
+            <button
+              type="button"
+              role="tab"
+              aria-selected={index === 0 ? 'true' : 'false'}
+              data-filter={cat.value}
+              class={`category-tab px-4 py-2 rounded-md font-mono text-xs font-semibold uppercase tracking-wider transition-all duration-200 flex items-center gap-2 border ${
+                index === 0
+                  ? 'bg-navy-900 text-white border-navy-900 shadow-sm'
+                  : 'bg-white text-slate-600 border-slate-200 hover:text-navy-900 hover:bg-slate-50'
+              }`}
+            >
+              <span>{cat.label}</span>
+              <span
+                class={`category-count px-1.5 py-0.5 rounded text-[10px] ${
+                  index === 0 ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-500'
+                }`}
+              >
+                {cat.count}
+              </span>
+            </button>
+          ))}
+        </div>
+
+        <p class="font-mono text-xs text-slate-500">
+          Showing <span id="visible-projects-count">{PROJECTS.length}</span> verified projects
+        </p>
+      </div>
+
+      <!-- 3-Column Projects Grid -->
+      <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
         {PROJECTS.map((project) => (
-          <article class="bg-slate-50 rounded-md overflow-hidden border border-slate-200 shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between group">
-            <div class="relative aspect-[16/10] overflow-hidden">
+          <article
+            class="project-card bg-white rounded-md overflow-hidden border border-slate-200 shadow-card hover:shadow-card-hover hover:border-steel-400 transition-all duration-300 flex flex-col justify-between group cursor-pointer focus-visible:outline-2 focus-visible:outline-navy-900"
+            role="button"
+            tabindex="0"
+            data-project-trigger={project.id}
+            data-category={project.sector}
+            aria-label={`View full engineering specifications for ${project.title}`}
+          >
+            <!-- Card Image -->
+            <div class="relative aspect-[16/10] overflow-hidden bg-slate-100">
               <ResponsivePicture
                 desktopSrc={project.image}
                 mobileSrc={project.imageMobile}
                 alt={project.title}
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
-              <div class="absolute top-4 left-4">
-                <span class="px-3 py-1 rounded-md text-xs font-mono uppercase bg-white/95 text-navy-900 border border-slate-200 backdrop-blur-md shadow-sm">
+              <div class="absolute inset-0 bg-gradient-to-t from-navy-950/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+              <!-- Badges on Image -->
+              <div class="absolute top-3 left-3">
+                <span class="px-2.5 py-1 rounded-md text-[11px] font-mono uppercase bg-white/95 text-navy-900 border border-slate-200 backdrop-blur-md shadow-sm font-semibold">
                   {project.sector}
+                </span>
+              </div>
+              <div class="absolute top-3 right-3">
+                <span class="px-2.5 py-1 rounded-md text-[11px] font-mono bg-navy-950/80 text-white border border-navy-800 backdrop-blur-md">
+                  {project.year}
                 </span>
               </div>
             </div>
 
-            <div class="p-6 sm:p-8 space-y-4 flex-grow flex flex-col justify-between">
-              <div class="space-y-3">
-                <div class="flex items-center gap-2 font-mono text-xs text-slate-500">
-                  <span>📍 {project.location}</span>
-                  <span>•</span>
-                  <span>{project.year}</span>
+            <!-- Compact Card Body -->
+            <div class="p-5 sm:p-6 space-y-3 flex-grow flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="flex items-center gap-1.5 font-mono text-xs text-slate-500">
+                  <span>📍</span>
+                  <span class="truncate">{project.location}</span>
                 </div>
 
-                <h2 class="text-2xl font-display font-bold text-navy-900 group-hover:text-steel-600 transition-colors">
+                <h2 class="text-lg sm:text-xl font-display font-bold text-navy-900 group-hover:text-steel-600 transition-colors line-clamp-2 leading-snug">
                   {project.title}
                 </h2>
 
-                <p class="text-sm text-slate-600 font-sans leading-relaxed">
-                  {project.scope}
+                <p class="text-xs font-mono text-steel-700 bg-slate-50 px-2.5 py-1.5 rounded-md border border-slate-200/80 line-clamp-1">
+                  {project.stats}
                 </p>
               </div>
 
-              <div class="pt-4 border-t border-slate-200 flex items-center justify-between text-xs font-mono">
-                <span class="text-steel-600 font-bold">{project.stats}</span>
-                <span class="text-slate-500">P.Eng Sealed ✓</span>
+              <!-- Card Footer Action Affordance -->
+              <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-mono">
+                <span class="text-steel-600 font-bold flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
+                  View Full Specs &rarr;
+                </span>
+                <span class="text-slate-400">P.Eng Sealed ✓</span>
               </div>
             </div>
           </article>
@@ -98,10 +160,12 @@ const sister = COMPANY.sisterCompany;
             href={sister.href}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 px-6 py-4 rounded-md bg-amber-500 hover:bg-amber-400 text-navy-950 font-display text-xs font-bold uppercase tracking-wider transition-all shadow-md group"
+            class="inline-flex items-center gap-2 px-6 py-3 bg-amber-500 hover:bg-amber-400 active:bg-amber-600 text-obsidian-950 font-display font-bold uppercase tracking-wider text-xs rounded-md transition-colors shadow-lg shadow-amber-500/10"
           >
-            <span>{sister.ctaLabel}</span>
-            <span class="group-hover:translate-x-0.5 transition-transform" aria-hidden="true">↗</span>
+            <span>Visit Swift Global Inc.</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
           </a>
         </div>
       </div>
@@ -109,19 +173,85 @@ const sister = COMPANY.sisterCompany;
   </section>
 
   <!-- CTA Section -->
-  <section class="py-20 bg-white text-navy-900 text-center">
+  <section class="py-20 lg:py-28 bg-white text-center">
     <div class="max-w-4xl mx-auto px-6 md:px-10 lg:px-12 space-y-6">
-      <h2 class="text-3xl sm:text-4xl font-display font-extrabold uppercase text-navy-900">
-        Discuss Engineering Delivery for Your Site
+      <Badge variant="steel">Project Delivery</Badge>
+      <h2 class="text-3xl sm:text-4xl font-display font-extrabold uppercase tracking-tight text-navy-900">
+        Ready to Discuss Your Next Engineering Project?
       </h2>
-      <p class="text-base text-slate-600 max-w-xl mx-auto font-sans">
-        Submit your architectural plans or site survey for a detailed engineering proposal.
+      <p class="text-base text-slate-600 max-w-xl mx-auto font-sans leading-relaxed">
+        Engage our structural and civil engineering teams early in your schematic phase to accelerate permitting and optimize structural systems.
       </p>
-      <div class="pt-4">
+      <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
         <Button href="/contact" variant="primary" size="lg">
-          Request Engineering Proposal →
+          Request Project Consultation →
+        </Button>
+        <Button href="/services" variant="secondary" size="lg">
+          Explore Practice Areas
         </Button>
       </div>
     </div>
   </section>
+
+  <!-- Side Modal Component -->
+  <ProjectSideModal projects={PROJECTS} />
 </Layout>
+
+<script>
+  function setupCategoryFiltering() {
+    const tabs = document.querySelectorAll<HTMLButtonElement>('.category-tab');
+    const cards = document.querySelectorAll<HTMLElement>('.project-card');
+    const visibleCountEl = document.getElementById('visible-projects-count');
+
+    if (!tabs.length || !cards.length) return;
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const filter = tab.getAttribute('data-filter');
+        if (!filter) return;
+
+        // Update active tab styles
+        tabs.forEach((t) => {
+          const isActive = t === tab;
+          t.setAttribute('aria-selected', isActive ? 'true' : 'false');
+          const countBadge = t.querySelector('.category-count');
+
+          if (isActive) {
+            t.classList.remove('bg-white', 'text-slate-600', 'border-slate-200', 'hover:bg-slate-50');
+            t.classList.add('bg-navy-900', 'text-white', 'border-navy-900', 'shadow-sm');
+            if (countBadge) {
+              countBadge.classList.remove('bg-slate-100', 'text-slate-500');
+              countBadge.classList.add('bg-white/20', 'text-white');
+            }
+          } else {
+            t.classList.remove('bg-navy-900', 'text-white', 'border-navy-900', 'shadow-sm');
+            t.classList.add('bg-white', 'text-slate-600', 'border-slate-200', 'hover:bg-slate-50');
+            if (countBadge) {
+              countBadge.classList.remove('bg-white/20', 'text-white');
+              countBadge.classList.add('bg-slate-100', 'text-slate-500');
+            }
+          }
+        });
+
+        // Filter cards and count visible
+        let visibleCount = 0;
+        cards.forEach((card) => {
+          const category = card.getAttribute('data-category');
+          if (filter === 'all' || category === filter) {
+            card.classList.remove('hidden');
+            visibleCount++;
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+
+        if (visibleCountEl) {
+          visibleCountEl.textContent = visibleCount.toString();
+        }
+      });
+    });
+  }
+
+  setupCategoryFiltering();
+  document.addEventListener('astro:page-load', setupCategoryFiltering);
+</script>

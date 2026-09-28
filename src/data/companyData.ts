@@ -236,6 +236,11 @@ export const SECTORS: SectorItem[] = [
   },
 ];
 
+export interface ProjectSpecification {
+  label: string;
+  value: string;
+}
+
 export interface ProjectItem {
   id: string;
   title: string;
@@ -247,6 +252,10 @@ export interface ProjectItem {
   image: string;
   imageMobile: string;
   stats: string;
+  clientType?: string;
+  completionStatus?: string;
+  highlights?: string[];
+  specifications?: ProjectSpecification[];
 }
 
 export const PROJECTS: ProjectItem[] = [
@@ -258,10 +267,26 @@ export const PROJECTS: ProjectItem[] = [
     region: "Canada",
     year: "2024",
     scope:
-      "Complete structural engineering design, lateral wind-resisting frame, BIM clash detection, and municipal Site Plan approval.",
+      "Complete structural engineering design, lateral wind-resisting concrete core, cantilevered podium framing, Autodesk Revit BIM clash mitigation, and expedited municipal Site Plan Control approval.",
     image: "/images/commercial-tower.webp",
     imageMobile: "/images/commercial-tower-mobile.webp",
     stats: "42 Storeys • LEED Gold • P.Eng Stamped",
+    clientType: "Institutional Commercial Developer",
+    completionStatus: "Delivered & Occupied",
+    highlights: [
+      "Designed dynamic ductile shear-wall lateral system resisting severe lake-effect wind forces",
+      "Resolved 180+ multi-trade mechanical/structural geometric clashes in Revit LOD 350",
+      "Engineered 4 subterranean parking levels with deep secant pile shoring next to transit line",
+      "Secured municipal building permit with zero first-cycle engineering deficiencies"
+    ],
+    specifications: [
+      { label: "Building Height", value: "42 Storeys (158 m)" },
+      { label: "Floor Area", value: "720,000 sq.ft" },
+      { label: "Structural Framing", value: "Reinforced Post-Tensioned Concrete & Structural Steel" },
+      { label: "Governing Codes", value: "Ontario Building Code (OBC), CSA A23.3, CSA S16" },
+      { label: "BIM Coordination", value: "Autodesk Revit & Navisworks Manage (LOD 350)" },
+      { label: "Certification", value: "LEED Gold Certified • P.Eng Sealed Drawings" }
+    ]
   },
   {
     id: "forest-hill-timber",
@@ -271,10 +296,26 @@ export const PROJECTS: ProjectItem[] = [
     region: "Canada",
     year: "2024",
     scope:
-      "Integrated architectural engineering, mass timber structural analysis, foundation design, and building permit acquisition.",
+      "Integrated architectural engineering, mass timber structural analysis, cross-laminated timber (CLT) diaphragm design, concrete foundation integration, and building permit acquisition.",
     image: "/images/residential-development.webp",
     imageMobile: "/images/residential-development-mobile.webp",
     stats: "64 Premium Units • Mass Timber",
+    clientType: "Private Residential Developer",
+    completionStatus: "Substantially Completed",
+    highlights: [
+      "Engineered hybrid mass timber (CLT & Glulam) framing reducing carbon footprint by 38%",
+      "Specialized acoustic and fire-rated floor diaphragm design meeting strict Part 3 OBC codes",
+      "Optimized modular prefabrication sequence cutting on-site erection time by 3 weeks",
+      "Full construction general review with daily field reports and municipal progress certifications"
+    ],
+    specifications: [
+      { label: "Project Scale", value: "64 Boutique Residential Suites (6 Storeys)" },
+      { label: "Gross Floor Area", value: "115,000 sq.ft" },
+      { label: "Primary Material", value: "Cross-Laminated Timber (CLT) & Glulam Posts" },
+      { label: "Acoustic Rating", value: "STC 58 / IIC 55 Field Verified" },
+      { label: "Governing Codes", value: "OBC 2024 Mass Timber Provisions / CSA O86" },
+      { label: "Engineering Scope", value: "Structural Analysis & Field Review Signoff" }
+    ]
   },
   {
     id: "midwest-municipal-basin",
@@ -284,10 +325,26 @@ export const PROJECTS: ProjectItem[] = [
     region: "USA",
     year: "2023",
     scope:
-      "AutoCAD Civil 3D site grading, SWMM hydrological simulation, retention basin hydraulic modeling, and drainage approvals.",
+      "AutoCAD Civil 3D site grading, SWMM continuous hydrological simulation, regional retention basin hydraulic modeling, municipal trunk sewer design, and state drainage authority approvals.",
     image: "/images/civil-infrastructure-aerial.webp",
     imageMobile: "/images/civil-infrastructure-aerial-mobile.webp",
     stats: "140 Hectares Serviced • Civil 3D",
+    clientType: "Municipal Infrastructure Authority & Land Consortium",
+    completionStatus: "Commissioned & Assumed",
+    highlights: [
+      "Modeled 100-year storm event flood resilience via 2D hydrodynamic overland flow modeling",
+      "Designed twin 35,000 m³ retention ponds with low-impact development (LID) bio-filtration",
+      "Engineered 4.2 km of dual-trunk sanitary and storm sewers with trenchless micro-tunneling",
+      "Coordinated agency assumption with city engineering departments with 100% compliance"
+    ],
+    specifications: [
+      { label: "Servicing Area", value: "140 Hectares (345 Acres)" },
+      { label: "Retention Volume", value: "70,000 m³ Total Capacity" },
+      { label: "Hydraulic Modeling", value: "EPA SWMM 5.2 & HydroCAD Civil 3D" },
+      { label: "Trunk Sewer Diameter", value: "600 mm to 1,500 mm Reinforced Concrete" },
+      { label: "Regulatory Agency", value: "City Floodplain Management & Water District" },
+      { label: "Project Outcome", value: "Zero Downstream Surcharge Assumption" }
+    ]
   },
   {
     id: "calgary-intermodal-hub",
@@ -297,11 +354,85 @@ export const PROJECTS: ProjectItem[] = [
     region: "Canada",
     year: "2023",
     scope:
-      "Long-span structural steel framing design, overhead crane runway engineering, heavy civil pavement design, and building permits.",
+      "Long-span structural steel framing design, overhead gantry crane runway engineering, high-load industrial concrete slab-on-grade, heavy truck court civil grading, and Alberta building permits.",
     image: "/images/structural-engineering.webp",
     imageMobile: "/images/structural-engineering-mobile.webp",
     stats: "240,000 sq.ft • CSA S16 Certified",
+    clientType: "National Freight & Logistics Operator",
+    completionStatus: "Fully Operational",
+    highlights: [
+      "Designed 48-meter clear span open-web steel roof joists allowing unobstructed forklift logistics",
+      "Engineered twin 25-ton top-running overhead crane runways with dynamic fatigue calculations",
+      "Heavy-duty 250 mm fiber-reinforced slab-on-grade designed for 80 kN post point loads",
+      "Secured City of Calgary Building Permit and APEGA professional practice authorization"
+    ],
+    specifications: [
+      { label: "Enclosed Facility", value: "240,000 sq.ft Clear-Span Warehouse" },
+      { label: "Clear Eave Height", value: "36 ft (11.0 m) Clear" },
+      { label: "Crane Runway Load", value: "Twin 25-Ton Class D Heavy Service" },
+      { label: "Slab Specifications", value: "Heavy Industrial Post-Tensioned F-Min 65" },
+      { label: "Governing Standards", value: "NBC Alberta Edition, CSA S16, CSA S136" },
+      { label: "Accreditation", value: "APEGA Permit to Practice Stamped" }
+    ]
   },
+  {
+    id: "lakeview-waterfront-condos",
+    title: "Lakeview Waterfront Twin Residential Towers",
+    sector: "Residential",
+    location: "Mississauga, Ontario, Canada",
+    region: "Canada",
+    year: "2024",
+    scope:
+      "Twin 28-storey waterfront condominium towers with connected 4-level podium, lakefront hydro-static foundation water-stop engineering, vibration isolation, and structural peer review.",
+    image: "/images/bim-engineering-model.webp",
+    imageMobile: "/images/bim-engineering-model-mobile.webp",
+    stats: "520 Suites • Twin 28-Storey Towers",
+    clientType: "Urban High-Rise Condominium Developer",
+    completionStatus: "Under Construction - Superstructure",
+    highlights: [
+      "Engineered deep reinforced raft slab resisting high hydrostatic water pressure from lake table",
+      "Optimized column grid layout in Revit BIM eliminating transfer slab penalties across podium",
+      "Wind tunnel testing coordination and aerodynamic corner softening reducing overturning moment by 14%",
+      "Comprehensive structural field inspection regime with ultrasonic rebar and concrete core tests"
+    ],
+    specifications: [
+      { label: "Building Height", value: "Twin 28 Storeys (92 m)" },
+      { label: "Total Unit Count", value: "520 Residential Suites + Retail Podium" },
+      { label: "Foundation System", value: "2.4 m Deep Waterproof Raft Slab on Bedrock" },
+      { label: "Concrete Strength", value: "Up to 65 MPa High-Performance Mix" },
+      { label: "Software Platform", value: "ETABS, SAFE, Autodesk Revit (LOD 350)" },
+      { label: "Quality Standard", value: "PEO General Review / CSA A23.1 Compliance" }
+    ]
+  },
+  {
+    id: "ontario-transit-hub",
+    title: "Metropolitan Regional Transit Interchange",
+    sector: "Commercial",
+    location: "Markham, Ontario, Canada",
+    region: "Canada",
+    year: "2023",
+    scope:
+      "Structural steel canopy framework, multi-platform pedestrian concourse bridge, civil bus-loop grade separation, stormwater retention tanks, and accessibility compliance certification.",
+    image: "/images/industrial-plant.webp",
+    imageMobile: "/images/industrial-plant-mobile.webp",
+    stats: "18,000 Daily Riders • Civic Gateway",
+    clientType: "Regional Transportation Authority",
+    completionStatus: "Completed & Commissioned",
+    highlights: [
+      "Architecturally exposed structural steel (AESS Category 4) space-frame canopy spanning 60 meters",
+      "Vibration-damped pedestrian overpass spanning active multi-track railway corridor",
+      "Integrated underground stormwater detention tank providing peak-flow attenuation for entire precinct",
+      "Full compliance with Metrolinx, AODA, and National Building Code of Canada requirements"
+    ],
+    specifications: [
+      { label: "Concourse Footprint", value: "85,000 sq.ft Covered Transit Hub" },
+      { label: "AESS Classification", value: "CISC AESS 4 Showcase Steelwork" },
+      { label: "Rail Corridor Clearance", value: "7.1 m Vertical Railway Safety Envelope" },
+      { label: "Stormwater Storage", value: "1,200 m³ Modular Underground Vault" },
+      { label: "Standards", value: "CSA S16 / AREMA Rail Guidelines / OBC" },
+      { label: "Engineering Scope", value: "Prime Structural & Civil Lead Consultant" }
+    ]
+  }
 ];
 
 export const ENGINEERING_ACCREDITATIONS = [

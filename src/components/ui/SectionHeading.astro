@@ -24,7 +24,7 @@ const {
 const textSubtitle = subtitle || lead;
 ---
 
-<div class={`mb-10 sm:mb-14 ${align === 'center' ? 'text-center mx-auto max-w-3xl' : 'max-w-2xl'} ${className}`}>
+<div class={`${align === 'center' ? 'text-center mx-auto max-w-3xl' : 'max-w-2xl'} ${className}`}>
   <!-- Index / Eyebrow Header -->
   <div class={`flex items-center gap-2 mb-3 font-mono text-xs tracking-architect uppercase ${align === 'center' ? 'justify-center' : ''} ${dark ? 'text-steel-400' : 'text-steel-600'}`}>
     {index && (

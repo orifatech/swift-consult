@@ -1,47 +1,14 @@
 ---
 import { SECTORS, SERVICES, COMPANY, ENGINEERING_ACCREDITATIONS } from '@/data/companyData';
-import Button from '@/components/ui/Button.astro';
-
-const sister = COMPANY.sisterCompany;
 ---
 
 <footer class="bg-navy-950 text-white border-t border-navy-900" role="contentinfo">
-  
-  <!-- Sister Entity Referral Promo Banner -->
-  <aside aria-label="Sister company reference" class="py-10 px-6 md:px-10 lg:px-12 border-b border-navy-900 bg-gradient-to-r from-navy-950 via-navy-900 to-navy-950">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-      <div class="space-y-1.5 text-center md:text-left">
-        <div class="flex items-center justify-center md:justify-start gap-2 font-mono text-xs uppercase tracking-wider">
-          <span class="w-2 h-2 rounded-full bg-amber-400"></span>
-          <span class="text-slate-400">Sister Entity:</span>
-          <strong class="text-amber-300">{sister.name}</strong>
-          <span class="text-slate-500 font-normal">({sister.subtitle})</span>
-        </div>
-        <p class="text-sm text-slate-300 font-sans max-w-2xl leading-relaxed">
-          {sister.description}
-        </p>
-      </div>
-
-      <div class="flex items-center gap-3">
-        <a
-          href={sister.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 px-6 py-3 rounded-md bg-amber-500 hover:bg-amber-400 text-navy-950 font-display text-xs font-bold uppercase tracking-wider transition-all shadow-md group"
-        >
-          <span>{sister.ctaLabel}</span>
-          <span class="group-hover:translate-x-0.5 transition-transform" aria-hidden="true">↗</span>
-        </a>
-      </div>
-    </div>
-  </aside>
-
   <!-- Main Footer Grid -->
   <div class="max-w-7xl mx-auto px-6 md:px-10 lg:px-12 py-16">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-16">
       
       <!-- Col 1: Corporate Profile & Logos -->
-      <div class="lg:col-span-2 space-y-6">
+      <div class="space-y-4">
         <div class="flex items-center gap-3">
           <img
             src="/images/swift-consult-logo.svg"
@@ -59,11 +26,11 @@ const sister = COMPANY.sisterCompany;
 
         <!-- Technical Accreditations & Codes -->
         <div class="space-y-2 pt-2">
-          <div class="text-[10px] font-mono uppercase tracking-wider text-steel-400">
+          <div class="text-xs font-mono uppercase tracking-wider text-steel-400">
             Engineering Practice &amp; Regulatory Licensure:
           </div>
           <div class="flex flex-wrap gap-2 font-mono text-[10px] text-slate-200">
-            {ENGINEERING_ACCREDITATIONS.map((acc) => (
+            {ENGINEERING_ACCREDITATIONS.slice(0, 2).map((acc) => (
               <span class="px-2.5 py-1 rounded-md bg-navy-900 border border-navy-800">
                 {acc.organization}
               </span>
@@ -77,7 +44,7 @@ const sister = COMPANY.sisterCompany;
         <h3 class="text-xs font-mono uppercase tracking-architect text-steel-400 mb-4 pb-1 border-b border-navy-800">
           Focus Sectors
         </h3>
-        <ul class="space-y-2.5 text-xs text-slate-300 font-sans" role="list">
+        <ul class="space-y-2.5 text-sm text-slate-300 font-sans" role="list">
           {SECTORS.map((sector) => (
             <li>
               <a
@@ -85,14 +52,14 @@ const sister = COMPANY.sisterCompany;
                 class="hover:text-white transition-colors flex items-center justify-between group"
               >
                 <span>{sector.title}</span>
-                <span class="font-mono text-[10px] text-slate-500 group-hover:text-steel-400 transition-colors">→</span>
+                <span class="font-mono text-xs text-slate-500 group-hover:text-steel-400 transition-colors">→</span>
               </a>
             </li>
           ))}
           <li class="pt-2">
             <a
               href="/sectors"
-              class="font-mono text-[11px] uppercase tracking-wider text-steel-400 hover:text-white hover:underline"
+              class="font-mono text-xs uppercase tracking-wider text-steel-400 hover:text-white hover:underline"
             >
               All Sectors &amp; Typologies →
             </a>
@@ -102,7 +69,7 @@ const sister = COMPANY.sisterCompany;
 
       <!-- Col 3: Core Capabilities -->
       <div>
-        <h3 class="text-xs font-mono uppercase tracking-architect text-steel-400 mb-4 pb-1 border-b border-navy-800">
+        <h3 class="text-sm font-mono uppercase tracking-architect text-steel-400 mb-4 pb-1 border-b border-navy-800">
           Engineering Scope
         </h3>
         <ul class="space-y-2 text-xs text-slate-300 font-sans" role="list">
@@ -112,7 +79,7 @@ const sister = COMPANY.sisterCompany;
                 href={`/services#service-${service.number}`}
                 class="hover:text-white transition-colors block py-0.5"
               >
-                <span class="text-slate-500 font-mono text-[10px] mr-1">{service.number}.</span>
+                <span class="text-slate-500 font-mono text-xs mr-1">{service.number}.</span>
                 {service.title}
               </a>
             </li>
@@ -120,7 +87,7 @@ const sister = COMPANY.sisterCompany;
           <li class="pt-2">
             <a
               href="/services"
-              class="font-mono text-[11px] uppercase tracking-wider text-steel-400 hover:text-white hover:underline"
+              class="font-mono text-xs uppercase tracking-wider text-steel-400 hover:text-white hover:underline"
             >
               All Capabilities →
             </a>
@@ -129,54 +96,43 @@ const sister = COMPANY.sisterCompany;
       </div>
 
       <!-- Col 4: Corporate Headquarters & Contacts -->
-      <div class="space-y-4">
-        <h3 class="text-xs font-mono uppercase tracking-architect text-steel-400 mb-4 pb-1 border-b border-navy-800">
-          Headquarters
-        </h3>
-        
-        <div class="text-xs text-slate-300 space-y-2.5 font-mono">
-          <div class="p-3 rounded-md bg-navy-900 border border-navy-800 space-y-0.5">
+      <div class="space-y-4 col-span-full ">
+        <div class="text-xs text-slate-300 font-mono grid grid-cols-1 sm:grid-cols-3 gap-6 xl:gap-8">
+          <div class="p-3 rounded-md bg-navy-900 border border-navy-800 space-y-1.5">
             <span class="text-slate-400 block text-[10px] uppercase">Corporate Address</span>
             <span class="text-white font-sans text-xs font-medium block">{COMPANY.address}</span>
             <span class="text-slate-400 font-sans text-xs">Toronto, Ontario, Canada</span>
           </div>
 
-          <div class="p-3 rounded-md bg-navy-900 border border-navy-800 space-y-0.5">
-            <span class="text-slate-400 block text-[10px] uppercase">Official Email</span>
-            <a href={`mailto:${COMPANY.email}`} class="font-mono text-xs text-steel-300 hover:text-white transition-colors underline break-all block">
+          <div class="p-3 rounded-md bg-navy-900 border border-navy-800 space-y-1.5">
+            <span class="text-slate-400 block text-xs uppercase">Official Email</span>
+            <a href={`mailto:${COMPANY.email}`} class="font-mono text-xs text-white hover:text-steel-300 transition-colors hover:underline break-all block">
               {COMPANY.email}
             </a>
           </div>
 
-          <div class="p-3 rounded-md bg-navy-900 border border-navy-800 space-y-0.5">
+          <div class="p-3 rounded-md bg-navy-900 border border-navy-800 space-y-1.5">
             <span class="text-slate-400 block text-[10px] uppercase">Dispatch Line</span>
             <a href="tel:+15875663166" class="text-white hover:text-steel-300 font-mono text-xs transition-colors block">
               {COMPANY.phone}
             </a>
           </div>
         </div>
-
-        <div class="pt-2">
-          <Button href="/contact" variant="primary" size="sm" class="w-full">
-            Schedule Engineering Consultation
-          </Button>
-        </div>
       </div>
-
     </div>
   </div>
 
   <!-- Bottom Legal & Copyright Bar -->
   <div class="border-t border-navy-900 py-6 px-6 md:px-10 lg:px-12 text-xs font-mono bg-navy-950 text-slate-400">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row sm:flex-wrap items-center justify-between gap-3">
       <div>
         © {new Date().getFullYear()} {COMPANY.legalName} All rights reserved.
       </div>
-      <div class="flex items-center gap-4">
+      <div class="flex flex-wrap items-center gap-3">
         <span>Licensed P.Eng Engineering Practice</span>
         <span>•</span>
         <a href="/contact" class="hover:text-slate-300 transition-colors">
-          Toronto HQ
+          Contact HQ
         </a>
       </div>
     </div>

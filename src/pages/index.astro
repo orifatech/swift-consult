@@ -52,11 +52,6 @@ const sister = COMPANY.sisterCompany;
     <!-- Layer 2: Hero Foreground Content (Left aligned) -->
     <div class="relative z-20 w-full max-w-7xl mx-auto px-6 md:px-10 lg:px-12 py-20 sm:py-28 lg:py-32">
       <div class="max-w-2xl lg:max-w-3xl space-y-7">
-        <div class="flex items-center gap-2.5">
-          <Badge variant="steel">Licensed Engineering Practice</Badge>
-          <span class="text-xs font-mono text-steel-300">PEO • APEGA • EGBC</span>
-        </div>
-
         <h1 class="text-3xl sm:text-5xl lg:text-[56px] font-display font-extrabold uppercase tracking-tight text-white leading-[1.08]">
           Structural Precision <br/>
           <span class="text-steel-400">Civil Systems</span> <br/>
@@ -105,7 +100,7 @@ const sister = COMPANY.sisterCompany;
   </section>
 
   <!-- Core Metric Highlights -->
-  <section class="py-12 bg-white border-b border-slate-200/90" aria-label="Key Performance Metrics">
+  <section class="py-12 bg-white" aria-label="Key Performance Metrics">
     <div class="max-w-7xl mx-auto px-6 md:px-10 lg:px-12">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
         <div class="p-4 rounded-md bg-slate-50 border border-slate-200 space-y-1">
@@ -136,9 +131,8 @@ const sister = COMPANY.sisterCompany;
   </section>
 
   <!-- Engineering Capabilities Matrix -->
-  <section class="py-20 lg:py-28 bg-blueprint-bg" aria-labelledby="services-heading">
-    <div class="max-w-7xl mx-auto px-6 md:px-10 lg:px-12 space-y-14">
-      
+  <section class="py-16 md:py-20 bg-blueprint-bg" aria-labelledby="services-heading">
+    <div class="max-w-7xl mx-auto px-6 md:px-10 lg:px-12 space-y-8">
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
           <SectionHeading
@@ -154,36 +148,25 @@ const sister = COMPANY.sisterCompany;
         </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8">
         {SERVICES.map((service) => (
-          <article class="bg-white rounded-md p-7 border border-slate-200 shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between group">
+          <article class="bg-white rounded-md p-5 border border-slate-200 shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between group">
             <div class="space-y-4">
-              <div class="flex items-center justify-between pb-3 border-b border-slate-100">
-                <span class="font-mono text-sm font-bold text-steel-600">{service.number} //</span>
-                <span class="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-md bg-steel-50 text-steel-700 border border-steel-200">
+              <div class="space-y-2.5">
+              <span class="inline-block text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-md bg-steel-50 text-steel-700 border border-steel-200">
                   {service.keySpecs[0]?.label || 'P.ENG'}
                 </span>
-              </div>
-
-              <h3 class="text-xl font-display font-bold uppercase text-navy-900 group-hover:text-steel-600 transition-colors">
+              <h3 class="text-2xl font-display font-extrabold uppercase text-navy-900 group-hover:text-steel-600 transition-colors">
                 {service.title}
               </h3>
+              </div>
 
               <p class="text-sm text-slate-600 font-sans leading-relaxed">
                 {service.shortDesc}
               </p>
-
-              <ul class="space-y-2 pt-2 text-xs text-slate-700 font-sans">
-                {service.features.slice(0, 3).map((feature) => (
-                  <li class="flex items-start gap-2">
-                    <span class="text-steel-500 font-bold">✓</span>
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
             </div>
 
-            <div class="pt-6 mt-4 border-t border-slate-100">
+            <div class="pt-2 mt-2 border-t border-slate-100">
               <a
                 href={`/services#service-${service.number}`}
                 class="inline-flex items-center gap-1.5 font-mono text-xs uppercase font-bold text-steel-600 group-hover:text-navy-900 transition-colors"
@@ -200,8 +183,8 @@ const sister = COMPANY.sisterCompany;
   </section>
 
   <!-- Featured Projects Showcase -->
-  <section class="py-20 lg:py-28 bg-white border-t border-slate-200/90">
-    <div class="max-w-7xl mx-auto px-6 md:px-10 lg:px-12 space-y-14">
+  <section class="py-16 lg:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-6 md:px-10 lg:px-12 space-y-8">
       
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
@@ -235,7 +218,7 @@ const sister = COMPANY.sisterCompany;
               </div>
             </div>
 
-            <div class="p-6 sm:p-8 space-y-4 flex-grow flex flex-col justify-between">
+            <div class="p-5 md:p-6 space-y-4 flex-grow flex flex-col justify-between">
               <div class="space-y-2.5">
                 <div class="flex items-center gap-2 font-mono text-xs text-slate-500">
                   <span>📍 {project.location}</span>
@@ -275,10 +258,10 @@ const sister = COMPANY.sisterCompany;
               International Industrial Operations
             </span>
           </div>
-          <h2 class="text-2xl sm:text-3xl font-display font-extrabold uppercase text-white">
+          <h2 class="text-3xl sm:text-5xl font-display font-extrabold uppercase text-white">
             Need Heavy Equipment Procurement or Turnkey EPC?
           </h2>
-          <p class="text-sm sm:text-base text-slate-300 font-sans leading-relaxed">
+          <p class="text-sm sm:text-[17px] text-slate-300 font-sans leading-relaxed">
             Our sister entity, <strong>Swift Global Inc.</strong>, specializes in international capital equipment sourcing, Factory Acceptance Testing (FAT), marine terminal logistics, and turnkey industrial EPC facilities across North America, the Middle East, and West Africa.
           </p>
         </div>
@@ -300,20 +283,20 @@ const sister = COMPANY.sisterCompany;
 
   <!-- Consultation Booking Callout -->
   <section class="py-20 lg:py-24 bg-white text-navy-900 text-center">
-    <div class="max-w-4xl mx-auto px-6 md:px-10 lg:px-12 space-y-6">
+    <div class="max-w-5xl mx-auto px-6 md:px-10 lg:px-12 space-y-6">
       <Badge variant="steel">Direct Engineering Engagement</Badge>
       <h2 class="text-3xl sm:text-5xl font-display font-extrabold uppercase text-navy-900">
         Ready to Advance Your Architectural or Civil Project?
       </h2>
-      <p class="text-base text-slate-600 max-w-xl mx-auto font-sans leading-relaxed">
+      <p class="text-base md:text-lg text-slate-600 max-w-2xl mx-auto font-sans leading-relaxed">
         Speak directly with our senior structural and civil engineers. We provide prompt feasibility evaluations and clear engineering proposals.
       </p>
       <div class="pt-4 flex flex-col sm:flex-row justify-center gap-4">
-        <Button href="/contact" variant="primary" size="lg">
-          Schedule Engineering Consultation →
+        <Button href="/contact" variant="primary" size="lg" class="font-bold">
+          Schedule Consultation →
         </Button>
-        <Button href="tel:+15875663166" variant="secondary" size="lg">
-          Call Toronto Office: +1 (587) 566-3166
+        <Button href="tel:+15875663166" variant="secondary" size="lg" class="font-bold">
+          Call: +1 (587) 566-3166
         </Button>
       </div>
     </div>
