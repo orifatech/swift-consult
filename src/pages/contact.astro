@@ -106,7 +106,7 @@ const sister = COMPANY.sisterCompany;
             </h2>
           </div>
 
-          <form class="space-y-5" onsubmit="event.preventDefault(); alert('Thank you for contacting Swift Consult Inc. A licensed Professional Engineer will review your project parameters and respond within 24 business hours.');">
+          <form id="consult-rfp-form" class="space-y-5">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div class="space-y-1.5">
                 <label for="consult-name" class="block text-xs font-mono uppercase text-slate-700">
@@ -221,4 +221,15 @@ const sister = COMPANY.sisterCompany;
       </div>
     </div>
   </section>
+
+  <script>
+    const form = document.getElementById('consult-rfp-form') as HTMLFormElement | null;
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Thank you for contacting Swift Consult Inc. A licensed Professional Engineer will review your project parameters and respond within 24 business hours.');
+        form.reset();
+      });
+    }
+  </script>
 </Layout>
