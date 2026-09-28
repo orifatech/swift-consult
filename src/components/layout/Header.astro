@@ -7,13 +7,12 @@ interface Props {
 }
 
 const { activePath = '/' } = Astro.props;
-const sister = COMPANY.sisterCompany;
 ---
 
 <header class="sticky top-0 z-50 transition-colors duration-200">
   <!-- Main Navigation Bar -->
   <nav class="bg-white/90 backdrop-blur-xl border-b border-slate-200/80 shadow-sm" aria-label="Main Navigation">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto px-6 md:px-10 lg:px-12">
       <div class="flex items-center justify-between h-20">
         
         <!-- Brand Logo -->
@@ -88,99 +87,138 @@ const sister = COMPANY.sisterCompany;
           <button
             type="button"
             id="mobile-menu-button"
-            class="p-2.5 rounded-xl text-navy-900 bg-slate-100 border border-slate-200 hover:bg-slate-200 focus-visible:outline-steel-500"
+            class="p-2.5 rounded-xl text-navy-900 bg-slate-100 border border-slate-200 hover:bg-slate-200 focus-visible:outline-steel-500 transition-colors"
             aria-label="Open navigation menu"
             aria-expanded="false"
-            aria-controls="mobile-nav-menu"
+            aria-controls="mobile-nav-panel"
           >
-            <svg id="hamburger-icon" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-            <svg id="close-icon" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         </div>
 
       </div>
     </div>
-
-    <!-- Mobile Drawer Menu -->
-    <div
-      id="mobile-nav-menu"
-      class="hidden lg:hidden border-t border-slate-200 bg-white/98 backdrop-blur-2xl"
-      role="region"
-      aria-label="Mobile Navigation"
-    >
-      <div class="px-4 pt-4 pb-6 space-y-4">
-        
-        <!-- Sister Entity Callout in Mobile Drawer -->
-        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
-          <div class="text-[10px] font-mono uppercase text-slate-500 tracking-wider">
-            Looking for Heavy Industrial &amp; EPC Procurement?
-          </div>
-          <a
-            href={sister.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex items-center justify-between py-2 px-3 rounded-lg bg-navy-950 text-amber-300 hover:text-white text-xs font-mono font-bold uppercase border border-navy-800"
-          >
-            <span>{sister.ctaLabel}</span>
-            <span>↗</span>
-          </a>
-        </div>
-
-        <!-- Links -->
-        <div class="space-y-1">
-          {COMPANY.navLinks.map((link) => (
-            <a
-              href={link.href}
-              class="block px-4 py-2.5 rounded-lg text-sm font-display font-medium uppercase tracking-wider text-slate-800 hover:bg-slate-100 hover:text-navy-900 transition-colors"
-            >
-              {link.label}
-            </a>
-          ))}
-        </div>
-
-        <!-- Contact Info in Mobile Drawer -->
-        <div class="pt-4 border-t border-slate-200 font-mono text-xs text-slate-600 space-y-1.5">
-          <div><strong class="text-navy-900">Toronto HQ:</strong> 1000 King Street West</div>
-          <div><strong class="text-navy-900">Telephone:</strong> <a href="tel:+15875663166" class="text-steel-600 underline">+1 (587) 566-3166</a></div>
-          <div><strong class="text-navy-900">Email:</strong> <a href={`mailto:${COMPANY.email}`} class="text-steel-600 underline">{COMPANY.email}</a></div>
-        </div>
-
-        <div class="pt-2">
-          <Button href="/contact" variant="primary" size="md" class="w-full">
-            Request Proposal
-          </Button>
-        </div>
-      </div>
-    </div>
   </nav>
+
+  <!-- Mobile Navigation Backdrop Overlay -->
+  <div
+    id="mobile-nav-backdrop"
+    class="fixed inset-0 z-40 bg-navy-950/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out lg:hidden"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Full-Height Slide-in Mobile Navigation Panel (Slides from right) -->
+  <div
+    id="mobile-nav-panel"
+    class="fixed top-0 right-0 bottom-0 z-50 w-full max-w-sm sm:max-w-md h-full bg-white text-navy-950 shadow-2xl border-l border-slate-200 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col justify-between overflow-y-auto lg:hidden"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Mobile Navigation Menu"
+  >
+    <!-- Top Bar: Logo & Dedicated Close Button -->
+    <div class="p-6 border-b border-slate-100 flex items-center justify-between">
+      <a href="/" class="flex items-center" aria-label="Swift Consult Inc. Home">
+        <img
+          src="/images/swift-consult-logo.svg"
+          alt="Swift Consult Inc."
+          width="180"
+          height="40"
+          class="h-8 w-auto object-contain"
+        />
+      </a>
+      <button
+        type="button"
+        id="mobile-nav-close"
+        class="p-2 rounded-xl text-slate-500 hover:text-navy-900 bg-slate-100 hover:bg-slate-200 transition-colors focus-visible:outline-steel-500"
+        aria-label="Close navigation menu"
+      >
+        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Middle: Navigation Links (No website switcher) -->
+    <div class="px-6 py-6 space-y-2 flex-1">
+      <div class="text-[10px] font-mono uppercase text-slate-400 tracking-wider mb-2">
+        Site Navigation
+      </div>
+      {COMPANY.navLinks.map((link) => {
+        const isHome = link.href === '/';
+        const isActive = isHome ? activePath === '/' : activePath.startsWith(link.href);
+        return (
+          <a
+            href={link.href}
+            aria-current={isActive ? 'page' : undefined}
+            class={`flex items-center justify-between px-4 py-3 rounded-xl text-sm font-display font-semibold uppercase tracking-wider transition-all duration-200 ${
+              isActive
+                ? 'text-navy-900 bg-slate-100 font-bold border-l-4 border-steel-500 pl-3'
+                : 'text-slate-700 hover:bg-slate-50 hover:text-navy-900'
+            }`}
+          >
+            <span>{link.label}</span>
+            <span class="text-steel-400 text-xs">→</span>
+          </a>
+        );
+      })}
+    </div>
+
+    <!-- Bottom: Contact Info & CTA Button -->
+    <div class="p-6 border-t border-slate-100 bg-slate-50/70 space-y-4 font-mono text-xs text-slate-600">
+      <div class="space-y-1.5">
+        <div><strong class="text-navy-900">Toronto HQ:</strong> {COMPANY.address}</div>
+        <div><strong class="text-navy-900">Telephone:</strong> <a href="tel:+15875663166" class="text-steel-600 hover:underline">+1 (587) 566-3166</a></div>
+        <div><strong class="text-navy-900">Email:</strong> <a href={`mailto:${COMPANY.email}`} class="text-steel-600 hover:underline">{COMPANY.email}</a></div>
+      </div>
+      <Button href="/contact" variant="primary" size="md" class="w-full">
+        Request Proposal
+      </Button>
+    </div>
+  </div>
 </header>
 
 <script>
-  const menuButton = document.getElementById('mobile-menu-button');
-  const mobileMenu = document.getElementById('mobile-nav-menu');
-  const hamburgerIcon = document.getElementById('hamburger-icon');
-  const closeIcon = document.getElementById('close-icon');
+  const openButton = document.getElementById('mobile-menu-button');
+  const closeButton = document.getElementById('mobile-nav-close');
+  const backdrop = document.getElementById('mobile-nav-backdrop');
+  const panel = document.getElementById('mobile-nav-panel');
 
-  if (menuButton && mobileMenu && hamburgerIcon && closeIcon) {
-    menuButton.addEventListener('click', () => {
-      const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
-      menuButton.setAttribute('aria-expanded', String(!isExpanded));
-      mobileMenu.classList.toggle('hidden');
-      hamburgerIcon.classList.toggle('hidden');
-      closeIcon.classList.toggle('hidden');
+  function openDrawer() {
+    if (!backdrop || !panel || !openButton) return;
+    openButton.setAttribute('aria-expanded', 'true');
+    backdrop.classList.remove('opacity-0', 'pointer-events-none');
+    backdrop.classList.add('opacity-100', 'pointer-events-auto');
+    panel.classList.remove('translate-x-full');
+    panel.classList.add('translate-x-0');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeDrawer() {
+    if (!backdrop || !panel || !openButton) return;
+    openButton.setAttribute('aria-expanded', 'false');
+    backdrop.classList.remove('opacity-100', 'pointer-events-auto');
+    backdrop.classList.add('opacity-0', 'pointer-events-none');
+    panel.classList.remove('translate-x-0');
+    panel.classList.add('translate-x-full');
+    document.body.style.overflow = '';
+  }
+
+  if (openButton && closeButton && backdrop && panel) {
+    openButton.addEventListener('click', openDrawer);
+    closeButton.addEventListener('click', closeDrawer);
+    backdrop.addEventListener('click', closeDrawer);
+
+    // Close when clicking any nav link
+    panel.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', closeDrawer);
     });
 
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
-        menuButton.setAttribute('aria-expanded', 'false');
-        mobileMenu.classList.add('hidden');
-        hamburgerIcon.classList.remove('hidden');
-        closeIcon.classList.add('hidden');
-        menuButton.focus();
+      if (e.key === 'Escape' && panel.classList.contains('translate-x-0')) {
+        closeDrawer();
+        openButton.focus();
       }
     });
   }
