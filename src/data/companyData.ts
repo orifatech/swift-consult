@@ -1,13 +1,9 @@
-export type EntityKey = 'group' | 'consult' | 'global';
-
 export interface NavLinkItem {
   label: string;
   href: string;
-  badge?: string;
 }
 
 export interface CompanyEntity {
-  id: EntityKey;
   name: string;
   legalName: string;
   domain: string;
@@ -19,216 +15,52 @@ export interface CompanyEntity {
   phone: string;
   address: string;
   logoSvg: string;
-  colorTheme: {
-    accent: string;
-    border: string;
-    heroBg: string;
-    badgeStyle: string;
-  };
   navLinks: NavLinkItem[];
-  crossEntity: {
-    targetId: EntityKey;
-    targetName: string;
-    targetLegalName: string;
-    targetHref: string;
-    targetDomain: string;
-    targetSubtitle: string;
+  sisterCompany: {
+    name: string;
+    legalName: string;
+    href: string;
+    domain: string;
+    subtitle: string;
     ctaLabel: string;
     description: string;
   };
 }
 
-export const ENTITIES: Record<EntityKey, CompanyEntity> = {
-  group: {
-    id: 'group',
-    name: 'Swift Group',
-    legalName: 'Swift Consult Inc. & Swift Global Inc.',
-    domain: 'swiftconsultinc.com / swiftglobalinc.com',
-    tagline: 'Integrated Engineering, Global Procurement & Construction Management',
-    badgeText: 'Unified Dual-Entity Gateway',
-    primaryFocus: 'End-to-End International EPC Delivery',
-    description: 'A unified consortium pairing Canadian engineering precision and regulatory expertise with international heavy industrial procurement and EPC construction execution.',
-    email: 'info@swiftconsultinc.com',
-    phone: '+1 (587) 566-3166',
-    address: '1000 King Street West, Toronto, ON, M6K 3N1',
-    logoSvg: '/images/swift-group-logo.svg',
-    colorTheme: {
-      accent: 'text-navy-900',
-      border: 'border-navy-900',
-      heroBg: 'bg-navy-950',
-      badgeStyle: 'bg-amber-50 text-amber-900 border-amber-construction/60'
-    },
-    navLinks: [
-      { label: 'Gateway Portal', href: '/' },
-      { label: 'Swift Consult Inc.', href: '/consult' },
-      { label: 'Swift Global Inc.', href: '/global' },
-      { label: 'Contact', href: '/consult/contact' }
-    ],
-    crossEntity: {
-      targetId: 'consult',
-      targetName: 'Swift Consult Inc.',
-      targetLegalName: 'Swift Consult Inc.',
-      targetHref: '/consult',
-      targetDomain: 'swiftconsultinc.com',
-      targetSubtitle: 'Structural Engineering & Municipal Permitting',
-      ctaLabel: 'Enter Swift Consult Website →',
-      description: 'Explore structural calculations, civil engineering, and Canadian municipal permitting.'
-    }
-  },
-  consult: {
-    id: 'consult',
-    name: 'Swift Consult Inc.',
-    legalName: 'Swift Consult Inc.',
-    domain: 'swiftconsultinc.com',
-    tagline: 'Structural Engineering, Civil Design & Municipal Approvals',
-    badgeText: 'Engineering & Design Consultancy',
-    primaryFocus: 'Structural, Civil & Regulatory Approvals',
-    description: 'Providing comprehensive structural engineering, municipal site design, seismic evaluation, and building permit acquisition across North American jurisdictions.',
-    email: 'info@swiftconsultinc.com',
-    phone: '+1 (587) 566-3166',
-    address: '1000 King Street West, Toronto, ON, M6K 3N1',
-    logoSvg: '/images/swift-consult-logo.svg',
-    colorTheme: {
-      accent: 'text-steel-600',
-      border: 'border-steel-500',
-      heroBg: 'bg-navy-950',
-      badgeStyle: 'bg-steel-100 text-steel-900 border-steel-300'
-    },
-    navLinks: [
-      { label: 'Home', href: '/consult' },
-      { label: 'About', href: '/consult/about' },
-      { label: 'Services', href: '/consult/services' },
-      { label: 'Sectors', href: '/consult/sectors' },
-      { label: 'Projects', href: '/consult/projects' },
-      { label: 'Contact', href: '/consult/contact' }
-    ],
-    crossEntity: {
-      targetId: 'global',
-      targetName: 'Swift Global Inc.',
-      targetLegalName: 'Swift Global Inc.',
-      targetHref: '/global',
-      targetDomain: 'swiftglobalinc.com',
-      targetSubtitle: 'Procurement & Turnkey EPC',
-      ctaLabel: 'Switch to Swift Global Inc. →',
-      description: 'Need heavy equipment sourcing or turnkey EPC in the Middle East or West Africa?'
-    }
-  },
-  global: {
-    id: 'global',
+export const COMPANY: CompanyEntity = {
+  name: 'Swift Consult Inc.',
+  legalName: 'Swift Consult Inc.',
+  domain: 'swiftconsultinc.com',
+  tagline: 'Structural Engineering, Civil Design & Municipal Approvals',
+  badgeText: 'Licensed Engineering Practice',
+  primaryFocus: 'Structural, Civil & Regulatory Approvals',
+  description: 'Providing comprehensive structural engineering calculations, municipal site design, Civil 3D hydrology, seismic analysis, and building permit acquisition across North American jurisdictions.',
+  email: 'info@swiftconsultinc.com',
+  phone: '+1 (587) 566-3166',
+  address: '1000 King Street West, Toronto, ON, M6K 3N1',
+  logoSvg: '/images/swift-consult-logo.svg',
+  navLinks: [
+    { label: 'Home', href: '/' },
+    { label: 'About', href: '/about' },
+    { label: 'Services', href: '/services' },
+    { label: 'Sectors', href: '/sectors' },
+    { label: 'Projects', href: '/projects' },
+    { label: 'Contact', href: '/contact' }
+  ],
+  sisterCompany: {
     name: 'Swift Global Inc.',
     legalName: 'Swift Global Inc.',
+    href: 'https://swiftglobalinc.com',
     domain: 'swiftglobalinc.com',
-    tagline: 'Engineering Procurement, Heavy Industrial & Cross-Border EPC',
-    badgeText: 'Procurement & International EPC',
-    primaryFocus: 'Supply Chain, Industrial Facilities & Turnkey Project Delivery',
-    description: 'Executing complex international equipment sourcing, technical vendor prequalification, industrial facility upgrades, and multi-model EPC delivery across Canada, the US, the Middle East, and West Africa.',
-    email: 'info@swiftglobalinc.com',
-    phone: '+1 (587) 566-3166',
-    address: '1000 King Street West, Toronto, ON, M6K 3N1',
-    logoSvg: '/images/swift-global-logo.svg',
-    colorTheme: {
-      accent: 'text-amber-construction',
-      border: 'border-amber-construction',
-      heroBg: 'bg-black',
-      badgeStyle: 'bg-amber-950 text-amber-300 border-amber-600/50'
-    },
-    navLinks: [
-      { label: 'Home', href: '/global' },
-      { label: 'About', href: '/global/about' },
-      { label: 'Services', href: '/global/services' },
-      { label: 'Sectors', href: '/global/sectors' },
-      { label: 'Projects', href: '/global/projects' },
-      { label: 'Contact', href: '/global/contact' }
-    ],
-    crossEntity: {
-      targetId: 'consult',
-      targetName: 'Swift Consult Inc.',
-      targetLegalName: 'Swift Consult Inc.',
-      targetHref: '/consult',
-      targetDomain: 'swiftconsultinc.com',
-      targetSubtitle: 'Structural & Permitting',
-      ctaLabel: 'Switch to Swift Consult Inc. →',
-      description: 'Need structural design stamps, Civil 3D hydrology, or Canadian building permits?'
-    }
+    subtitle: 'International Procurement & Turnkey EPC',
+    ctaLabel: 'Visit Swift Global Inc. →',
+    description: 'Looking for heavy equipment sourcing, Factory Acceptance Testing (FAT), petrochemical facility retrofits, or turnkey EPC delivery in the Middle East or West Africa?'
   }
 };
-
-export interface SectorItem {
-  id: string;
-  slug: string;
-  title: string;
-  leadEntity: 'Swift Consult' | 'Swift Global' | 'Joint Delivery';
-  summary: string;
-  imageDesktop: string;
-  imageMobile: string;
-  bulletPoints: string[];
-  stats: { label: string; value: string }[];
-}
-
-export const SECTORS: SectorItem[] = [
-  {
-    id: 'commercial',
-    slug: 'commercial',
-    title: 'Commercial Building & Development',
-    leadEntity: 'Joint Delivery',
-    summary: 'Comprehensive engineering and project delivery for landmark commercial high-rises, mixed-use corporate centers, and facility refurbishments.',
-    imageDesktop: '/images/commercial-tower.webp',
-    imageMobile: '/images/commercial-tower-mobile.webp',
-    bulletPoints: [
-      'New commercial building development & construction',
-      'Commercial refurbishment & strategic redevelopment',
-      'Existing property & structural asset improvement',
-      'Technical project delivery & facility operational programs'
-    ],
-    stats: [
-      { label: 'Floor Space Delivered', value: '2.4M+ sq.ft' },
-      { label: 'Regulatory Approvals', value: '100% Rate' }
-    ]
-  },
-  {
-    id: 'industrial',
-    slug: 'industrial',
-    title: 'Industrial Engineering & Facility Operations',
-    leadEntity: 'Swift Global',
-    summary: 'Multidisciplinary engineering, heavy equipment procurement, and infrastructure modernization for high-output industrial processing facilities.',
-    imageDesktop: '/images/industrial-plant.webp',
-    imageMobile: '/images/industrial-plant-mobile.webp',
-    bulletPoints: [
-      'Industrial facility development & process optimization',
-      'Multidisciplinary engineering & efficiency upgrades',
-      'Equipment, systems, and heavy infrastructure modernization',
-      'Process piping, pressure vessel integration & safety audits'
-    ],
-    stats: [
-      { label: 'Operational Uptime', value: '99.8%' },
-      { label: 'International Sites', value: '18+ Plants' }
-    ]
-  },
-  {
-    id: 'residential',
-    slug: 'residential',
-    title: 'Residential Buildings & Development',
-    leadEntity: 'Swift Consult',
-    summary: 'Concept-through-delivery residential engineering, blending high-performance structural systems with contemporary architectural elegance.',
-    imageDesktop: '/images/residential-development.webp',
-    imageMobile: '/images/residential-development-mobile.webp',
-    bulletPoints: [
-      'Small- to medium-scale residential project planning & design',
-      'Integrated structural, architectural, and MEP solutions',
-      'Concept-through-delivery project execution',
-      'Mass timber, structural steel, and reinforced concrete integration'
-    ],
-    stats: [
-      { label: 'Residential Units', value: '1,800+' },
-      { label: 'Delivery Model', value: 'Turnkey EPC' }
-    ]
-  }
-];
 
 export interface ServiceItem {
   number: string;
   title: string;
-  entityRole: 'Swift Consult' | 'Swift Global' | 'Joint Competency';
   shortDesc: string;
   imageDesktop: string;
   imageMobile: string;
@@ -240,91 +72,154 @@ export const SERVICES: ServiceItem[] = [
   {
     number: '01',
     title: 'Structural Engineering & Design',
-    entityRole: 'Swift Consult',
-    shortDesc: 'Rigorous structural analysis, seismic resistance evaluations, and resilient engineering across concrete, structural steel, and mass-timber.',
-    imageDesktop: '/images/structural-engineering.webp',
-    imageMobile: '/images/structural-engineering-mobile.webp',
+    shortDesc: 'Rigorous finite element structural analysis, P.Eng stamped calculations, seismic resilience evaluations, and structural designs across reinforced concrete, structural steel, and mass timber.',
+    imageDesktop: '/images/bim-engineering-model.webp',
+    imageMobile: '/images/bim-engineering-model-mobile.webp',
     features: [
-      'Structural analysis, seismic evaluation, and condition assessments',
-      'Material mastery: Reinforced Concrete, Structural Steel, Timber/Mass-Timber, FRP',
-      'Retrofitting aging structures & independent peer design reviews',
-      'Finite element modeling, vibration analysis, and load-path optimization'
+      'P.Eng stamped structural calculation packages and construction drawings',
+      'Material mastery: Reinforced Concrete, Structural Steel, Mass Timber, Composite FRP',
+      'Structural condition assessments, seismic retrofits, and independent peer reviews',
+      'Finite element modeling, wind tunnel load mitigation, and foundation design'
     ],
     keySpecs: [
-      { label: 'Design Codes', value: 'OBC / NBC / IBC / ACI / CSA' },
-      { label: 'Materials', value: 'Steel, Concrete, Mass Timber' }
+      { label: 'Design Codes', value: 'OBC / NBC / IBC / CSA S16 / CSA A23.3' },
+      { label: 'Credentials', value: 'Licensed P.Eng Engineers' }
     ]
   },
   {
     number: '02',
     title: 'Civil, Municipal & Site Development',
-    entityRole: 'Swift Consult',
-    shortDesc: 'Complete civil infrastructure design, municipal servicing, stormwater management, and advanced hydraulic modeling for land development.',
-    imageDesktop: '/images/civil-site.webp',
-    imageMobile: '/images/civil-site-mobile.webp',
+    shortDesc: 'Complete civil site infrastructure design, municipal servicing, lot grading, stormwater management (SWM), and advanced hydraulic modeling for commercial and residential developments.',
+    imageDesktop: '/images/civil-infrastructure-aerial.webp',
+    imageMobile: '/images/civil-infrastructure-aerial-mobile.webp',
     features: [
-      'Site development, municipal servicing design, and subdivision planning',
-      'Advanced software expertise: AutoCAD Civil 3D, SWMM hydraulic modeling',
-      'Stormwater management, lot grading, erosion control, and municipal approvals',
-      'Water distribution, sanitary sewer networks, and site access coordination'
+      'Subdivision servicing design, municipal road alignments, and site access planning',
+      'Advanced 3D civil modeling: AutoCAD Civil 3D, SWMM hydraulic & hydrologic analysis',
+      'Stormwater retention ponds, low impact development (LID), and erosion control plans',
+      'Sanitary sewer networks, domestic water distribution, and fire-flow calculations'
     ],
     keySpecs: [
-      { label: 'Tooling', value: 'AutoCAD Civil 3D, SWMM' },
-      { label: 'Domain', value: 'Municipal Infrastructure' }
+      { label: 'Software Suite', value: 'AutoCAD Civil 3D, SWMM, HydroCAD' },
+      { label: 'Jurisdictions', value: 'Ontario, Alberta, BC, US Municipalities' }
     ]
   },
   {
     number: '03',
     title: 'Permitting, Planning & Approvals',
-    entityRole: 'Swift Consult',
-    shortDesc: 'Fast-tracked regulatory compliance, municipal liaison, site plan approvals, and environmental permit coordination across agencies.',
+    shortDesc: 'Fast-tracked municipal building permits, Site Plan Control approvals, Committee of Adjustment representation, and multi-agency environmental clearances.',
     imageDesktop: '/images/commercial-tower.webp',
     imageMobile: '/images/commercial-tower-mobile.webp',
     features: [
-      'Building permit applications & regulatory compliance coordination',
-      'Municipal, site plan control, subdivision, and environmental approvals',
-      'Authority liaison & technical documentation tracking',
-      'Zoning bylaws, Committee of Adjustment, and variance representation'
+      'Building permit application management & building code matrix compilation',
+      'Site Plan Control (SPC), subdivision draft plan, and rezoning approvals',
+      'Municipal liaison, technical comment resolution, and expedited tracking',
+      'Committee of Adjustment (CoA) and Minor Variance expert representation'
     ],
     keySpecs: [
-      { label: 'Jurisdictions', value: 'Canada & US Municipalities' },
-      { label: 'Tracking', value: 'End-to-End Agency Liaison' }
+      { label: 'Success Rate', value: '100% First-Cycle Approval Rate' },
+      { label: 'Liaison', value: 'Dedicated Municipal Case Officers' }
     ]
   },
   {
     number: '04',
-    title: 'Engineering Procurement & Technical Services',
-    entityRole: 'Swift Global',
-    shortDesc: 'Strategic international equipment sourcing, technical bid leveling, quality assurance expediting, and global supply chain logistics.',
-    imageDesktop: '/images/global-logistics.webp',
-    imageMobile: '/images/global-logistics-mobile.webp',
+    title: 'BIM & 3D Engineering Modeling',
+    shortDesc: 'High-precision Building Information Modeling (BIM) with Autodesk Revit, clash detection, LOD 300-400 structural frameworks, and multidisciplinary coordination.',
+    imageDesktop: '/images/structural-engineering.webp',
+    imageMobile: '/images/structural-engineering-mobile.webp',
     features: [
-      'Material & heavy equipment sourcing & technical bid evaluation',
-      'Vendor prequalification, factory acceptance testing, and expediting',
-      'Direct support for EPC, Design-Build, and Construction Management projects',
-      'Cross-border customs logistics, freight consolidation, and site staging'
+      'LOD 300 to LOD 400 fabrication-ready structural BIM models in Autodesk Revit',
+      'Multi-trade clash detection and geometric coordination with MEP/HVAC engineers',
+      'Quantity takeoffs, parametric rebar detailing, and digital twin handovers',
+      '3D laser scan integration and as-built point cloud verification'
     ],
     keySpecs: [
-      { label: 'Procurement Scale', value: 'Heavy Industrial & EPC' },
-      { label: 'Geographies', value: 'North America, Middle East, Africa' }
+      { label: 'Standards', value: 'BIM Forum LOD / ISO 19650' },
+      { label: 'Platforms', value: 'Autodesk Revit, Navisworks' }
     ]
   },
   {
     number: '05',
-    title: 'Project & Construction Management',
-    entityRole: 'Joint Competency',
-    shortDesc: 'Turnkey project management from feasibility to commissioning, ensuring rigorous cost control, safety compliance, and schedule fidelity.',
-    imageDesktop: '/images/industrial-plant.webp',
-    imageMobile: '/images/industrial-plant-mobile.webp',
+    title: 'Construction Administration & Field Review',
+    shortDesc: 'Comprehensive general review during construction, on-site structural inspections, contractor RFI resolution, and municipal signoffs for final occupancy.',
+    imageDesktop: '/images/residential-development.webp',
+    imageMobile: '/images/residential-development-mobile.webp',
     features: [
-      'Full lifecycle planning, scheduling, cost control, and risk management',
-      'Quality oversight, design coordination, commissioning, and project closeout',
-      'Multi-model delivery: EPC, Design-Build, Design-Bid-Build, and CM at-Risk',
-      'Comprehensive on-site safety protocols and quality management system (QMS)'
+      'Field review reports and municipal Letters of Undertaking / Commitment',
+      'Concrete pour inspections, rebar placement verification, and steel torque tests',
+      'Contractor RFI turnaround, shop drawing review, and change order evaluation',
+      'Final structural signoff, occupancy letters, and engineering deficiency closeout'
     ],
     keySpecs: [
-      { label: 'Delivery Modes', value: 'EPC, CM, Design-Build' },
-      { label: 'Governance', value: 'ISO 9001 / Safety First' }
+      { label: 'Protocols', value: 'OAA/PEO General Review Guidelines' },
+      { label: 'Turnaround', value: '24-48 hr Inspection Reports' }
+    ]
+  }
+];
+
+export interface SectorItem {
+  id: string;
+  slug: string;
+  title: string;
+  summary: string;
+  imageDesktop: string;
+  imageMobile: string;
+  bulletPoints: string[];
+  stats: { label: string; value: string }[];
+}
+
+export const SECTORS: SectorItem[] = [
+  {
+    id: 'commercial',
+    slug: 'commercial',
+    title: 'Commercial Buildings & Mixed-Use Towers',
+    summary: 'High-performance structural and civil engineering for commercial office towers, retail mixed-use centers, and institutional complexes.',
+    imageDesktop: '/images/commercial-tower.webp',
+    imageMobile: '/images/commercial-tower-mobile.webp',
+    bulletPoints: [
+      'High-rise structural steel and post-tensioned concrete framing',
+      'Deep foundations, shoring design, and complex subterranean parking',
+      'Wind engineering and dynamic lateral load mitigation systems',
+      'Expedited Site Plan Control and municipal building permit signoffs'
+    ],
+    stats: [
+      { label: 'Floor Space Delivered', value: '2.4M+ sq.ft' },
+      { label: 'Regulatory Approvals', value: '100% Rate' }
+    ]
+  },
+  {
+    id: 'residential',
+    slug: 'residential',
+    title: 'Residential Subdivisions & Multi-Family Enclaves',
+    summary: 'Concept-through-completion engineering, blending high-efficiency structural frameworks with sustainable civil site servicing.',
+    imageDesktop: '/images/residential-development.webp',
+    imageMobile: '/images/residential-development-mobile.webp',
+    bulletPoints: [
+      'Master-planned residential subdivision grading and stormwater hydrology',
+      'Mid-rise and high-rise multi-family residential towers',
+      'Mass timber, structural steel, and light gauge framing integration',
+      'Subdivision agreement coordination and municipal engineering assumption'
+    ],
+    stats: [
+      { label: 'Residential Units', value: '1,800+ Designed' },
+      { label: 'Hydrology Servicing', value: '350+ Hectares' }
+    ]
+  },
+  {
+    id: 'industrial',
+    slug: 'industrial',
+    title: 'Industrial Logistics Hubs & Warehouses',
+    summary: 'Heavy industrial warehouse structural shells, slab-on-grade designs, clear-span steel trusses, and arterial site access coordination.',
+    imageDesktop: '/images/industrial-plant.webp',
+    imageMobile: '/images/industrial-plant-mobile.webp',
+    bulletPoints: [
+      'High-clearance warehouse framing with wide bay structural steel grids',
+      'Heavy-duty concrete floor slab engineering and racking anchorage',
+      'Truck court civil pavement design and stormwater detention systems',
+      'Building envelope compliance with environmental and energy codes'
+    ],
+    stats: [
+      { label: 'Industrial Space', value: '1.2M+ sq.ft' },
+      { label: 'Structural Safety', value: 'Zero Failures' }
     ]
   }
 ];
@@ -332,10 +227,9 @@ export const SERVICES: ServiceItem[] = [
 export interface ProjectItem {
   id: string;
   title: string;
-  sector: 'Commercial' | 'Industrial' | 'Residential' | 'Civil Infrastructure';
-  entity: 'Swift Consult' | 'Swift Global' | 'Unified Group';
+  sector: 'Commercial' | 'Residential' | 'Civil Infrastructure' | 'Industrial';
   location: string;
-  region: 'Canada' | 'USA' | 'Middle East' | 'West Africa';
+  region: 'Canada' | 'USA';
   year: string;
   scope: string;
   image: string;
@@ -345,116 +239,69 @@ export interface ProjectItem {
 
 export const PROJECTS: ProjectItem[] = [
   {
-    id: 'king-financial-tower',
-    title: 'King West Commercial Center',
+    id: 'king-west-tower',
+    title: 'The King Financial Commercial Center',
     sector: 'Commercial',
-    entity: 'Swift Consult',
     location: 'Toronto, Ontario, Canada',
     region: 'Canada',
     year: '2024',
-    scope: 'Structural design, seismic peer review, municipal site plan approval, and structural steel framing.',
+    scope: 'Complete structural engineering design, lateral wind-resisting frame, BIM clash detection, and municipal Site Plan approval.',
     image: '/images/commercial-tower.webp',
     imageMobile: '/images/commercial-tower-mobile.webp',
-    stats: '42 Storeys • LEED Gold'
+    stats: '42 Storeys • LEED Gold • P.Eng Stamped'
   },
   {
-    id: 'gulf-petrochem-terminal',
-    title: 'Industrial Petrochemical Facility Expansion',
-    sector: 'Industrial',
-    entity: 'Swift Global',
-    location: 'Jebel Ali, United Arab Emirates',
-    region: 'Middle East',
-    year: '2023',
-    scope: 'Turnkey EPC procurement of specialized pressure equipment, process piping structural design, and expediting.',
-    image: '/images/industrial-plant.webp',
-    imageMobile: '/images/industrial-plant-mobile.webp',
-    stats: '120,000 BPD Capacity'
-  },
-  {
-    id: 'lagos-deepwater-staging',
-    title: 'Deepwater Marine & Heavy Logistics Terminal',
-    sector: 'Industrial',
-    entity: 'Swift Global',
-    location: 'Lekki Free Zone, Lagos, Nigeria',
-    region: 'West Africa',
-    year: '2023',
-    scope: 'Equipment sourcing, marine quay engineering, and international freight expediting for major infrastructure hub.',
-    image: '/images/global-logistics.webp',
-    imageMobile: '/images/global-logistics-mobile.webp',
-    stats: '3 Heavy Berths • 500k TEU'
-  },
-  {
-    id: 'york-mass-timber-enclave',
+    id: 'forest-hill-timber',
     title: 'The Forest Hill Geometric Residences',
     sector: 'Residential',
-    entity: 'Swift Consult',
     location: 'Toronto, Ontario, Canada',
     region: 'Canada',
     year: '2024',
-    scope: 'Integrated architectural engineering, mass timber structural analysis, and complete building permit approvals.',
+    scope: 'Integrated architectural engineering, mass timber structural analysis, foundation design, and building permit acquisition.',
     image: '/images/residential-development.webp',
     imageMobile: '/images/residential-development-mobile.webp',
-    stats: '64 Premium Units'
+    stats: '64 Premium Units • Mass Timber'
   },
   {
     id: 'midwest-municipal-basin',
     title: 'Municipal Stormwater & Arterial Site Network',
     sector: 'Civil Infrastructure',
-    entity: 'Swift Consult',
     location: 'Houston, Texas, USA',
     region: 'USA',
-    year: '2022',
-    scope: 'SWMM hydrological modeling, retention basin grading, and municipal subdivision approvals.',
-    image: '/images/civil-site.webp',
-    imageMobile: '/images/civil-site-mobile.webp',
-    stats: '140 Hectares Serviced'
+    year: '2023',
+    scope: 'AutoCAD Civil 3D site grading, SWMM hydrological simulation, retention basin hydraulic modeling, and drainage approvals.',
+    image: '/images/civil-infrastructure-aerial.webp',
+    imageMobile: '/images/civil-infrastructure-aerial-mobile.webp',
+    stats: '140 Hectares Serviced • Civil 3D'
   },
   {
-    id: 'calgary-intermodal-depot',
-    title: 'Intermodal Freight & Structural Assembly Depot',
+    id: 'calgary-intermodal-hub',
+    title: 'Calgary Intermodal Logistics Depot',
     sector: 'Industrial',
-    entity: 'Unified Group',
     location: 'Calgary, Alberta, Canada',
     region: 'Canada',
     year: '2023',
-    scope: 'Joint delivery: Structural engineering by Swift Consult, global steel procurement and fabrication by Swift Global.',
+    scope: 'Long-span structural steel framing design, overhead crane runway engineering, heavy civil pavement design, and building permits.',
     image: '/images/structural-engineering.webp',
     imageMobile: '/images/structural-engineering-mobile.webp',
-    stats: 'Joint EPC Delivery'
+    stats: '240,000 sq.ft • CSA S16 Certified'
   }
 ];
 
-export const GLOBAL_REGIONS = [
+export const ENGINEERING_ACCREDITATIONS = [
   {
-    region: 'Canada',
-    flag: '🇨🇦',
-    headquarters: 'Corporate HQ: Toronto, Ontario',
-    description: 'Structural engineering design, municipal site approvals (Ontario & Alberta), and architectural consultation.',
-    keyHubs: ['Toronto, ON', 'Calgary, AB', 'Vancouver, BC'],
-    lead: 'Swift Consult Inc.'
+    organization: 'Professional Engineers Ontario (PEO)',
+    type: 'Certificate of Authorization',
+    code: 'Licensed Engineering Practice'
   },
   {
-    region: 'United States',
-    flag: '🇺🇸',
-    headquarters: 'Regional Practice: Midwest & East Coast',
-    description: 'Civil land development, stormwater management modeling, and commercial structural assessments.',
-    keyHubs: ['Houston, TX', 'New York, NY', 'Miami, FL'],
-    lead: 'Swift Consult Inc. / Swift Global'
+    organization: 'Association of Professional Engineers (APEGA)',
+    type: 'Permit to Practice',
+    code: 'Structural & Civil Practice'
   },
   {
-    region: 'Middle East',
-    flag: '🇦🇪',
-    headquarters: 'International Operations Hub',
-    description: 'High-capacity EPC equipment procurement, petrochemical modernization, and multidisciplinary project management.',
-    keyHubs: ['Dubai, UAE', 'Abu Dhabi', 'Doha, Qatar'],
-    lead: 'Swift Global Inc.'
-  },
-  {
-    region: 'West Africa',
-    flag: '🇳🇬',
-    headquarters: 'Regional EPC & Industrial Sourcing',
-    description: 'Heavy equipment supply chain, port infrastructure logistics, and turnkey industrial facility engineering.',
-    keyHubs: ['Lagos, Nigeria', 'Accra, Ghana', 'Port Harcourt'],
-    lead: 'Swift Global Inc.'
+    organization: 'Canadian Codes & Standards',
+    type: 'Code Compliance Matrix',
+    code: 'OBC / NBC / CSA S16 / CSA A23.3'
   }
 ];

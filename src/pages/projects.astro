@@ -1,0 +1,128 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import Button from '@/components/ui/Button.astro';
+import Badge from '@/components/ui/Badge.astro';
+import ResponsivePicture from '@/components/ui/ResponsivePicture.astro';
+import { PROJECTS, COMPANY } from '@/data/companyData';
+
+const sister = COMPANY.sisterCompany;
+---
+
+<Layout
+  title="Structural & Civil Engineering Project Portfolio | Swift Consult Inc."
+  description="Explore the engineering project portfolio of Swift Consult Inc., including landmark commercial towers, mass-timber residential enclaves, municipal stormwater networks, and industrial logistics facilities."
+  activePath="/projects"
+>
+  <!-- Page Header -->
+  <section class="bg-navy-950 text-white py-16 lg:py-24 border-b border-navy-850 relative overflow-hidden">
+    <div class="absolute inset-0 bg-blueprint-grid-dark opacity-60 pointer-events-none" aria-hidden="true"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl space-y-4">
+        <div class="flex items-center gap-2">
+          <Badge variant="steel">Track Record</Badge>
+          <span class="font-mono text-xs text-steel-300">Canadian &amp; US Engineering Portfolio</span>
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-display font-extrabold uppercase tracking-tight text-white leading-tight">
+          Delivered Engineering Projects
+        </h1>
+        <p class="text-base sm:text-lg text-slate-300 font-sans leading-relaxed">
+          From complex high-rise structural designs to large-scale municipal land servicing and stormwater modeling, examine the technical execution delivered by Swift Consult Inc.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Grid -->
+  <section class="py-20 lg:py-28 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+        {PROJECTS.map((project) => (
+          <article class="bg-slate-50 rounded-2xl overflow-hidden border border-slate-200 shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between group">
+            <div class="relative aspect-[16/10] overflow-hidden">
+              <ResponsivePicture
+                desktopSrc={project.image}
+                mobileSrc={project.imageMobile}
+                alt={project.title}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div class="absolute top-4 left-4">
+                <span class="px-3 py-1 rounded-full text-xs font-mono uppercase bg-white/95 text-navy-900 border border-slate-200 backdrop-blur-md shadow-sm">
+                  {project.sector}
+                </span>
+              </div>
+            </div>
+
+            <div class="p-6 sm:p-8 space-y-4 flex-grow flex flex-col justify-between">
+              <div class="space-y-3">
+                <div class="flex items-center gap-2 font-mono text-xs text-slate-500">
+                  <span>📍 {project.location}</span>
+                  <span>•</span>
+                  <span>{project.year}</span>
+                </div>
+
+                <h2 class="text-2xl font-display font-bold text-navy-900 group-hover:text-steel-600 transition-colors">
+                  {project.title}
+                </h2>
+
+                <p class="text-sm text-slate-600 font-sans leading-relaxed">
+                  {project.scope}
+                </p>
+              </div>
+
+              <div class="pt-4 border-t border-slate-200 flex items-center justify-between text-xs font-mono">
+                <span class="text-steel-600 font-bold">{project.stats}</span>
+                <span class="text-slate-500">P.Eng Sealed ✓</span>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Sister Company Promo Section -->
+  <section class="py-16 bg-navy-950 text-white border-b border-navy-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-gradient-to-r from-navy-900 to-black p-8 sm:p-12 rounded-2xl border border-amber-500/30 flex flex-col lg:flex-row items-center justify-between gap-8 shadow-xl">
+        <div class="space-y-3 max-w-2xl text-center lg:text-left">
+          <Badge variant="gold">International EPC Track Record</Badge>
+          <h2 class="text-2xl sm:text-3xl font-display font-bold uppercase tracking-tight text-white">
+            Looking for International EPC &amp; Heavy Industrial Projects?
+          </h2>
+          <p class="text-sm text-slate-300 font-sans leading-relaxed">
+            Discover how our sister company <strong>{sister.name}</strong> executes petrochemical expansions in Jebel Ali, deepwater logistics in West Africa, and multi-million-dollar equipment procurement programs.
+          </p>
+        </div>
+        <div class="flex-shrink-0">
+          <a
+            href={sister.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-6 py-4 rounded-xl bg-amber-500 hover:bg-amber-400 text-navy-950 font-display text-xs font-bold uppercase tracking-wider transition-all shadow-md group"
+          >
+            <span>{sister.ctaLabel}</span>
+            <span class="group-hover:translate-x-0.5 transition-transform" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-white text-navy-900 text-center">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+      <h2 class="text-3xl sm:text-4xl font-display font-extrabold uppercase text-navy-900">
+        Discuss Engineering Delivery for Your Site
+      </h2>
+      <p class="text-base text-slate-600 max-w-xl mx-auto font-sans">
+        Submit your architectural plans or site survey for a detailed engineering proposal.
+      </p>
+      <div class="pt-4">
+        <Button href="/contact" variant="primary" size="lg">
+          Request Engineering Proposal →
+        </Button>
+      </div>
+    </div>
+  </section>
+</Layout>

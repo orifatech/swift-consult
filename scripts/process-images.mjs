@@ -26,6 +26,22 @@ const images = [
   {
     src: '/Users/Elero/.gemini/antigravity/brain/1adefe67-967d-45a9-ba71-d61ee10daba9/global_logistics_procurement_1789977741231.png',
     name: 'global-logistics'
+  },
+  {
+    src: '/Users/Elero/.gemini/antigravity/brain/576114fd-bad6-454f-99ec-fd671fbc90b0/consult_bim_model_1790536391750.png',
+    name: 'bim-engineering-model'
+  },
+  {
+    src: '/Users/Elero/.gemini/antigravity/brain/576114fd-bad6-454f-99ec-fd671fbc90b0/consult_civil_infra_1790536460521.png',
+    name: 'civil-infrastructure-aerial'
+  },
+  {
+    src: '/Users/Elero/.gemini/antigravity/brain/576114fd-bad6-454f-99ec-fd671fbc90b0/global_heavy_equip_1790536709969.png',
+    name: 'heavy-equipment-mfg'
+  },
+  {
+    src: '/Users/Elero/.gemini/antigravity/brain/576114fd-bad6-454f-99ec-fd671fbc90b0/global_epc_plant_1790536867684.png',
+    name: 'international-epc-site'
   }
 ];
 

@@ -1,0 +1,173 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import ArchitecturalFrame from '@/components/ui/ArchitecturalFrame.astro';
+import Button from '@/components/ui/Button.astro';
+import Badge from '@/components/ui/Badge.astro';
+import ResponsivePicture from '@/components/ui/ResponsivePicture.astro';
+import { COMPANY, ENGINEERING_ACCREDITATIONS } from '@/data/companyData';
+
+const sister = COMPANY.sisterCompany;
+---
+
+<Layout
+  title="About Swift Consult Inc. | Professional Engineering Practice"
+  description="Learn about Swift Consult Inc., our engineering methodology, Canadian P.Eng licensure, structural and civil capabilities, and municipal permitting expertise."
+  activePath="/about"
+>
+  <!-- Page Header -->
+  <section class="bg-navy-950 text-white py-16 lg:py-24 border-b border-navy-850 relative overflow-hidden">
+    <div class="absolute inset-0 bg-blueprint-grid-dark opacity-60 pointer-events-none" aria-hidden="true"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl space-y-4">
+        <div class="flex items-center gap-2">
+          <Badge variant="steel">Practice Overview</Badge>
+          <span class="font-mono text-xs text-steel-300">Toronto Headquarters • North America</span>
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-display font-extrabold uppercase tracking-tight text-white leading-tight">
+          About Swift Consult Inc.
+        </h1>
+        <p class="text-base sm:text-lg text-slate-300 font-sans leading-relaxed">
+          Founded on analytical rigor and statutory code authority, Swift Consult Inc. provides comprehensive structural engineering calculations, AutoCAD Civil 3D site servicing, SWMM hydraulic modeling, and municipal permit clearances.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Engineering Philosophy & Credentials -->
+  <section class="py-20 lg:py-28 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left: Copy -->
+        <div class="lg:col-span-7 space-y-6">
+          <SectionHeading
+            eyebrow="Analytical Discipline"
+            title="Structural Rigor & Regulatory Authority"
+            lead="Bridging architectural design aspirations with statutory building regulations and engineering reality."
+          />
+
+          <p class="text-sm sm:text-base text-slate-600 font-sans leading-relaxed">
+            Every building structure must withstand static dead loads, dynamic live occupancy, extreme wind shear, and seismic events. At Swift Consult Inc., our licensed Professional Engineers combine advanced finite element modeling (FEM) with exhaustive knowledge of the Ontario Building Code (OBC), National Building Code of Canada (NBC), and American standard codes (IBC, ACI, AISC).
+          </p>
+
+          <p class="text-sm sm:text-base text-slate-600 font-sans leading-relaxed">
+            Our civil division complements our structural team with comprehensive land servicing, municipal water and sanitary network design, and stormwater management plans (SWM) built using EPA SWMM hydraulic modeling.
+          </p>
+
+          <!-- Core Credential Pillars -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 font-mono text-xs">
+            <div class="p-5 rounded-xl bg-blueprint-bg border border-slate-200 shadow-sm space-y-2">
+              <span class="text-steel-600 font-bold block text-sm">01 / P.ENG LICENSURE</span>
+              <p class="text-slate-600 font-sans text-xs leading-relaxed">
+                Professional Engineers Ontario (PEO) and APEGA licensed practice delivering sealed structural packages and peer reviews.
+              </p>
+            </div>
+            <div class="p-5 rounded-xl bg-blueprint-bg border border-slate-200 shadow-sm space-y-2">
+              <span class="text-steel-600 font-bold block text-sm">02 / PERMIT SPEED</span>
+              <p class="text-slate-600 font-sans text-xs leading-relaxed">
+                Direct liaison with municipal authorities and conservation agencies ensuring 100% first-pass approvals.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Frame Image -->
+        <div class="lg:col-span-5">
+          <ArchitecturalFrame
+            specCode="CSA-S16 / PEO LICENSED"
+            coordLabel="TORONTO PRACTICE"
+          >
+            <div class="aspect-[4/3] w-full">
+              <ResponsivePicture
+                desktopSrc="/images/structural-engineering.webp"
+                mobileSrc="/images/structural-engineering-mobile.webp"
+                alt="Swift Consult Structural Engineering Analysis"
+                class="w-full h-full object-cover"
+              />
+            </div>
+          </ArchitecturalFrame>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Sister Company Synergy -->
+  <section class="py-20 lg:py-28 bg-blueprint-bg border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-12">
+        <SectionHeading
+          eyebrow="Global Consortium"
+          title="The Sister Entity Synergy: Swift Global Inc."
+          lead="How Swift Consult Inc. and Swift Global Inc. collaborate to offer clients an unbroken continuum from design through international procurement."
+        />
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Swift Consult Card -->
+        <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-card space-y-4">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+            <span class="font-mono text-xs uppercase font-bold text-steel-600">DOMESTIC / CANADIAN</span>
+            <Badge variant="steel">Engineering Design</Badge>
+          </div>
+          <h3 class="text-2xl font-display font-bold text-navy-900">
+            Swift Consult Inc.
+          </h3>
+          <p class="text-sm text-slate-600 font-sans leading-relaxed">
+            Leading the technical calculations, municipal approvals, Civil 3D site plans, and P.Eng stamped packages required to break ground with confidence across North America.
+          </p>
+          <ul class="space-y-2 pt-2 text-xs font-mono text-slate-700">
+            <li>✓ Structural calculations &amp; seismic design</li>
+            <li>✓ AutoCAD Civil 3D &amp; SWMM hydrology</li>
+            <li>✓ Building permit acquisition &amp; zoning variance</li>
+          </ul>
+        </div>
+
+        <!-- Swift Global Sister Card -->
+        <div class="bg-navy-950 text-white rounded-2xl p-8 border border-navy-800 shadow-card space-y-4">
+          <div class="flex items-center justify-between pb-3 border-b border-navy-800">
+            <span class="font-mono text-xs uppercase font-bold text-amber-400">INTERNATIONAL / SISTER ENTITY</span>
+            <span class="px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40 text-[10px] font-mono">
+              Procurement &amp; EPC
+            </span>
+          </div>
+          <h3 class="text-2xl font-display font-bold text-white">
+            {sister.name}
+          </h3>
+          <p class="text-sm text-slate-300 font-sans leading-relaxed">
+            Operating as an independent international entity specializing in heavy industrial machinery sourcing, Factory Acceptance Testing (FAT), marine port logistics, and turnkey EPC facility execution.
+          </p>
+          <div class="pt-4">
+            <a
+              href={sister.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase text-amber-300 hover:text-white"
+            >
+              <span>{sister.ctaLabel}</span>
+              <span>↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-white text-navy-900 text-center">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+      <h2 class="text-3xl sm:text-4xl font-display font-extrabold uppercase text-navy-900">
+        Work with Licensed Engineering Specialists
+      </h2>
+      <p class="text-base text-slate-600 max-w-xl mx-auto font-sans">
+        Submit your project parameters to review feasibility and obtain an itemized engineering proposal.
+      </p>
+      <div class="pt-4">
+        <Button href="/contact" variant="primary" size="lg">
+          Request Engineering Proposal →
+        </Button>
+      </div>
+    </div>
+  </section>
+</Layout>

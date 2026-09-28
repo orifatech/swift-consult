@@ -6,49 +6,46 @@ import Button from '@/components/ui/Button.astro';
 import Badge from '@/components/ui/Badge.astro';
 import ResponsivePicture from '@/components/ui/ResponsivePicture.astro';
 import { SERVICES } from '@/data/companyData';
-
-const consultServices = SERVICES.filter(s => s.entityRole === 'Swift Consult');
 ---
 
 <Layout
   title="Engineering Services & Technical Disciplines | Swift Consult Inc."
-  description="Explore the technical engineering disciplines offered by Swift Consult Inc.: Structural Engineering & Design, Civil & Site Infrastructure, and Permitting & Planning Approvals."
-  currentEntity="consult"
-  activePath="/consult/services"
+  description="Explore the technical engineering disciplines offered by Swift Consult Inc.: Structural Engineering & Design, Civil & Site Infrastructure, Permitting & Municipal Approvals, BIM Modeling, and Construction Administration."
+  activePath="/services"
 >
   <!-- Page Header -->
-  <section class="bg-navy-950 text-white py-16 lg:py-20 border-b border-navy-800 relative overflow-hidden">
+  <section class="bg-navy-950 text-white py-16 lg:py-24 border-b border-navy-850 relative overflow-hidden">
     <div class="absolute inset-0 bg-blueprint-grid-dark opacity-60 pointer-events-none" aria-hidden="true"></div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl space-y-4">
         <div class="flex items-center gap-2">
-          <Badge variant="consult">Technical Engine</Badge>
-          <span class="font-mono text-xs text-steel-400">Engineering &amp; Permitting Services</span>
+          <Badge variant="steel">Engineering Matrix</Badge>
+          <span class="font-mono text-xs text-steel-300">P.Eng Oversight • OBC / NBC / IBC</span>
         </div>
-        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold uppercase tracking-tight text-white leading-tight">
+        <h1 class="text-3xl sm:text-5xl font-display font-extrabold uppercase tracking-tight text-white leading-tight">
           Consulting Engineering Disciplines
         </h1>
         <p class="text-base sm:text-lg text-slate-300 font-sans leading-relaxed">
-          From advanced finite element structural modeling to subdivision stormwater hydraulics, Swift Consult Inc. provides the engineering foundation for complex North American developments.
+          From advanced finite element structural modeling to subdivision stormwater hydraulics and municipal approvals, Swift Consult Inc. provides the engineering foundation for complex North American developments.
         </p>
       </div>
     </div>
   </section>
 
   <!-- Deep-Dive Services List -->
-  <section class="py-20 lg:py-24 bg-white border-b border-slate-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
-      {consultServices.map((service, index) => {
+  <section class="py-20 lg:py-28 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
+      {SERVICES.map((service, index) => {
         const isReversed = index % 2 !== 0;
         return (
-          <article id={`service-${service.number}`} class="scroll-mt-28 border border-slate-300 bg-blueprint-bg p-8 sm:p-10 lg:p-12">
+          <article id={`service-${service.number}`} class="scroll-mt-28 rounded-2xl border border-slate-200 bg-blueprint-bg p-8 sm:p-10 lg:p-12 shadow-card">
             <div class={`grid grid-cols-1 lg:grid-cols-12 gap-10 items-center ${isReversed ? 'lg:flex-row-reverse' : ''}`}>
               
               <!-- Content -->
               <div class={`lg:col-span-7 space-y-6 ${isReversed ? 'lg:order-2' : 'lg:order-1'}`}>
                 <div class="flex items-center gap-3 font-mono">
                   <span class="text-3xl font-display font-bold text-steel-600">{service.number} //</span>
-                  <Badge variant="consult">Swift Consult Engineering</Badge>
+                  <Badge variant="steel">Swift Consult Engineering</Badge>
                 </div>
 
                 <h2 class="text-2xl sm:text-3xl font-display font-bold uppercase tracking-tight text-navy-900">
@@ -64,16 +61,16 @@ const consultServices = SERVICES.filter(s => s.entityRole === 'Swift Consult');
                   <ul class="space-y-2 text-xs sm:text-sm text-slate-700" role="list">
                     {service.features.map((feature) => (
                       <li class="flex items-start gap-2.5">
-                        <span class="text-steel-500 font-mono text-sm leading-none mt-0.5">■</span>
+                        <span class="text-steel-600 font-bold">✓</span>
                         <span>{feature}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div class="pt-4 border-t border-slate-300 flex flex-wrap gap-4 font-mono text-xs">
+                <div class="pt-4 border-t border-slate-200 flex flex-wrap gap-4 font-mono text-xs">
                   {service.keySpecs.map((spec) => (
-                    <div class="p-2.5 bg-white border border-slate-300">
+                    <div class="p-3 rounded-xl bg-white border border-slate-200 shadow-sm">
                       <span class="text-slate-500 block text-[10px] uppercase">{spec.label}</span>
                       <strong class="text-navy-900">{spec.value}</strong>
                     </div>
@@ -81,7 +78,7 @@ const consultServices = SERVICES.filter(s => s.entityRole === 'Swift Consult');
                 </div>
 
                 <div class="pt-4">
-                  <Button href="/consult/contact" variant="primary" size="md">
+                  <Button href="/contact" variant="primary" size="md">
                     Inquire About {service.title} →
                   </Button>
                 </div>
@@ -90,18 +87,15 @@ const consultServices = SERVICES.filter(s => s.entityRole === 'Swift Consult');
               <!-- Media Frame -->
               <div class={`lg:col-span-5 ${isReversed ? 'lg:order-1' : 'lg:order-2'}`}>
                 <ArchitecturalFrame
-                  cut={isReversed ? 'bl' : 'tr'}
-                  annotationStrip={{
-                    code: service.keySpecs[0]?.value || 'OBC / NBC',
-                    location: 'TORONTO HQ PRACTICE'
-                  }}
+                  specCode={service.keySpecs[0]?.value || 'OBC / NBC'}
+                  coordLabel="TORONTO PRACTICE"
                 >
                   <div class="aspect-[4/3] w-full">
                     <ResponsivePicture
                       desktopSrc={service.imageDesktop}
                       mobileSrc={service.imageMobile}
                       alt={service.title}
-                      aspectRatio="w-full h-full object-cover"
+                      class="w-full h-full object-cover"
                     />
                   </div>
                 </ArchitecturalFrame>
@@ -114,24 +108,19 @@ const consultServices = SERVICES.filter(s => s.entityRole === 'Swift Consult');
     </div>
   </section>
 
-  <!-- Cross-Entity Prompt: Sourcing & EPC -->
-  <section class="py-16 bg-navy-950 text-white border-b border-navy-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="bg-gradient-to-r from-navy-900 to-black p-8 sm:p-12 border border-amber-500/30 flex flex-col lg:flex-row items-center justify-between gap-8">
-        <div class="space-y-3 max-w-2xl text-center lg:text-left">
-          <Badge variant="global">Procurement &amp; Turnkey EPC Services</Badge>
-          <h2 class="text-2xl sm:text-3xl font-display font-bold uppercase tracking-tight text-white">
-            Looking for Heavy Equipment Procurement or EPC Delivery?
-          </h2>
-          <p class="text-sm text-slate-300 font-sans leading-relaxed">
-            Our sister entity <strong>Swift Global Inc.</strong> handles international supply chain sourcing, factory acceptance testing, and turnkey EPC project management across Canada, the USA, the Middle East, and West Africa.
-          </p>
-        </div>
-        <div class="flex-shrink-0">
-          <Button href="/global/services" variant="accent" size="lg">
-            Explore Swift Global Services →
-          </Button>
-        </div>
+  <!-- CTA Section -->
+  <section class="py-20 bg-slate-50 text-navy-900 text-center">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+      <h2 class="text-3xl sm:text-4xl font-display font-extrabold uppercase text-navy-900">
+        Require Stamped Engineering Calculations?
+      </h2>
+      <p class="text-base text-slate-600 max-w-xl mx-auto font-sans">
+        Connect with our engineering principals to discuss your structural or civil scope.
+      </p>
+      <div class="pt-4">
+        <Button href="/contact" variant="primary" size="lg">
+          Request Engineering Proposal →
+        </Button>
       </div>
     </div>
   </section>

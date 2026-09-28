@@ -1,0 +1,224 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import Button from '@/components/ui/Button.astro';
+import Badge from '@/components/ui/Badge.astro';
+import { COMPANY } from '@/data/companyData';
+
+const sister = COMPANY.sisterCompany;
+---
+
+<Layout
+  title="Contact Swift Consult Inc. | Schedule Engineering Consultation"
+  description="Contact Swift Consult Inc. at our Toronto headquarters for structural calculations, Civil 3D site design, municipal permit approvals, and engineering review."
+  activePath="/contact"
+>
+  <!-- Page Header -->
+  <section class="bg-navy-950 text-white py-16 lg:py-24 border-b border-navy-850 relative overflow-hidden">
+    <div class="absolute inset-0 bg-blueprint-grid-dark opacity-60 pointer-events-none" aria-hidden="true"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl space-y-4">
+        <div class="flex items-center gap-2">
+          <Badge variant="steel">Direct Engineering Engagement</Badge>
+          <span class="font-mono text-xs text-steel-300">Toronto Headquarters • Ontario</span>
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-display font-extrabold uppercase tracking-tight text-white leading-tight">
+          Request an Engineering Consultation
+        </h1>
+        <p class="text-base sm:text-lg text-slate-300 font-sans leading-relaxed">
+          Connect directly with our licensed structural and civil engineering team to review drawing sets, municipal approvals, or site servicing feasibility.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & RFP Grid -->
+  <section class="py-20 lg:py-28 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        
+        <!-- Left: Office & Contact Info -->
+        <div class="lg:col-span-5 space-y-8">
+          <div>
+            <SectionHeading
+              eyebrow="Practice Location"
+              title="Toronto Engineering Headquarters"
+              lead="All structural calculations, drawing sets, and municipal permit applications originate from our King Street West practice."
+            />
+          </div>
+
+          <div class="space-y-4 font-mono text-xs">
+            <div class="p-5 rounded-xl bg-blueprint-bg border border-slate-200 shadow-sm space-y-1">
+              <span class="text-steel-600 block text-[10px] uppercase font-bold tracking-wider">PRACTICE LOCATION</span>
+              <div class="font-sans text-sm font-bold text-navy-900">{COMPANY.legalName}</div>
+              <div class="font-sans text-xs text-slate-600">{COMPANY.address}</div>
+              <div class="font-sans text-xs text-slate-500">Toronto, ON, M6K 3N1, Canada</div>
+            </div>
+
+            <div class="p-5 rounded-xl bg-blueprint-bg border border-slate-200 shadow-sm space-y-1">
+              <span class="text-steel-600 block text-[10px] uppercase font-bold tracking-wider">DIRECT TELEPHONE</span>
+              <a href="tel:+15875663166" class="text-navy-900 hover:text-steel-600 text-sm font-bold transition-colors block">
+                {COMPANY.phone}
+              </a>
+              <div class="text-[11px] text-slate-500 font-sans mt-0.5">Mon–Fri: 8:00 AM – 6:00 PM EST</div>
+            </div>
+
+            <div class="p-5 rounded-xl bg-blueprint-bg border border-slate-200 shadow-sm space-y-1">
+              <span class="text-steel-600 block text-[10px] uppercase font-bold tracking-wider">ENGINEERING INQUIRIES</span>
+              <a href={`mailto:${COMPANY.email}`} class="text-steel-600 hover:text-navy-900 text-sm font-bold transition-colors underline break-all block">
+                {COMPANY.email}
+              </a>
+              <div class="text-[11px] text-slate-500 font-sans mt-0.5">Direct review of drawing sets &amp; RFPs</div>
+            </div>
+          </div>
+
+          <!-- Sister Entity Switch Box -->
+          <div class="p-6 rounded-2xl bg-navy-950 text-white border border-navy-850 space-y-3 shadow-lg">
+            <div class="text-[10px] font-mono uppercase text-amber-400 tracking-wider font-bold">
+              Looking for Procurement or Industrial EPC?
+            </div>
+            <h3 class="text-lg font-display font-bold uppercase text-white">
+              Contact {sister.name}
+            </h3>
+            <p class="text-xs text-slate-300 font-sans leading-relaxed">
+              For heavy equipment procurement bids, factory acceptance testing, and turnkey EPC delivery outside of North America:
+            </p>
+            <div class="pt-2">
+              <a
+                href={sister.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-navy-950 text-xs font-mono font-bold uppercase transition-all shadow-sm"
+              >
+                <span>{sister.ctaLabel}</span>
+                <span>↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Accessible Engineering Form -->
+        <div class="lg:col-span-7 bg-blueprint-bg p-8 sm:p-10 rounded-2xl border border-slate-200 shadow-card">
+          <div class="mb-6 pb-4 border-b border-slate-200">
+            <span class="text-xs font-mono uppercase text-steel-600 font-bold tracking-wider">Formal RFP Submission</span>
+            <h2 class="text-xl sm:text-2xl font-display font-bold uppercase tracking-tight text-navy-900 mt-1">
+              Engineering Consultation Request
+            </h2>
+          </div>
+
+          <form class="space-y-5" onsubmit="event.preventDefault(); alert('Thank you for contacting Swift Consult Inc. A licensed Professional Engineer will review your project parameters and respond within 24 business hours.');">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="space-y-1.5">
+                <label for="consult-name" class="block text-xs font-mono uppercase text-slate-700">
+                  Full Name *
+                </label>
+                <input
+                  type="text"
+                  id="consult-name"
+                  required
+                  placeholder="e.g. David Sterling, Architect"
+                  class="w-full px-4 py-3 rounded-xl bg-white border border-slate-300 text-navy-900 placeholder-slate-400 focus:border-steel-500 focus:outline-none font-sans text-sm shadow-sm"
+                />
+              </div>
+
+              <div class="space-y-1.5">
+                <label for="consult-org" class="block text-xs font-mono uppercase text-slate-700">
+                  Company / Organization *
+                </label>
+                <input
+                  type="text"
+                  id="consult-org"
+                  required
+                  placeholder="e.g. Sterling Architecture Ltd."
+                  class="w-full px-4 py-3 rounded-xl bg-white border border-slate-300 text-navy-900 placeholder-slate-400 focus:border-steel-500 focus:outline-none font-sans text-sm shadow-sm"
+                />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="space-y-1.5">
+                <label for="consult-email" class="block text-xs font-mono uppercase text-slate-700">
+                  Email Address *
+                </label>
+                <input
+                  type="email"
+                  id="consult-email"
+                  required
+                  placeholder="name@organization.com"
+                  class="w-full px-4 py-3 rounded-xl bg-white border border-slate-300 text-navy-900 placeholder-slate-400 focus:border-steel-500 focus:outline-none font-sans text-sm shadow-sm"
+                />
+              </div>
+
+              <div class="space-y-1.5">
+                <label for="consult-phone" class="block text-xs font-mono uppercase text-slate-700">
+                  Direct Telephone *
+                </label>
+                <input
+                  type="tel"
+                  id="consult-phone"
+                  required
+                  placeholder="+1 (555) 000-0000"
+                  class="w-full px-4 py-3 rounded-xl bg-white border border-slate-300 text-navy-900 placeholder-slate-400 focus:border-steel-500 focus:outline-none font-sans text-sm shadow-sm"
+                />
+              </div>
+            </div>
+
+            <div class="space-y-1.5">
+              <label for="project-site" class="block text-xs font-mono uppercase text-slate-700">
+                Project Site Location / Municipality
+              </label>
+              <input
+                type="text"
+                id="project-site"
+                placeholder="e.g. City of Toronto, Mississauga, Calgary, Houston"
+                class="w-full px-4 py-3 rounded-xl bg-white border border-slate-300 text-navy-900 placeholder-slate-400 focus:border-steel-500 focus:outline-none font-sans text-sm shadow-sm"
+              />
+            </div>
+
+            <div class="space-y-2">
+              <span class="block text-xs font-mono uppercase text-slate-700">
+                Primary Engineering Disciplines Required (Check all that apply):
+              </span>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-sans text-slate-700">
+                <label class="flex items-center gap-2 p-2.5 rounded-lg bg-white border border-slate-200 cursor-pointer hover:border-steel-400 shadow-sm">
+                  <input type="checkbox" class="accent-steel-600 rounded" />
+                  <span>Structural Design &amp; Calculations</span>
+                </label>
+                <label class="flex items-center gap-2 p-2.5 rounded-lg bg-white border border-slate-200 cursor-pointer hover:border-steel-400 shadow-sm">
+                  <input type="checkbox" class="accent-steel-600 rounded" />
+                  <span>Civil 3D Site Servicing &amp; SWM</span>
+                </label>
+                <label class="flex items-center gap-2 p-2.5 rounded-lg bg-white border border-slate-200 cursor-pointer hover:border-steel-400 shadow-sm">
+                  <input type="checkbox" class="accent-steel-600 rounded" />
+                  <span>Building Permit Expediting</span>
+                </label>
+                <label class="flex items-center gap-2 p-2.5 rounded-lg bg-white border border-slate-200 cursor-pointer hover:border-steel-400 shadow-sm">
+                  <input type="checkbox" class="accent-steel-600 rounded" />
+                  <span>BIM 3D Modeling &amp; Coordination</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="space-y-1.5">
+              <label for="consult-desc" class="block text-xs font-mono uppercase text-slate-700">
+                Project Description &amp; Scope Summary *
+              </label>
+              <textarea
+                id="consult-desc"
+                rows="5"
+                required
+                placeholder="Describe building typology, number of storeys, gross floor area, known site constraints, or target municipal permit submission date..."
+                class="w-full px-4 py-3 rounded-xl bg-white border border-slate-300 text-navy-900 placeholder-slate-400 focus:border-steel-500 focus:outline-none font-sans text-sm shadow-sm"
+              ></textarea>
+            </div>
+
+            <Button type="submit" variant="primary" size="lg" class="w-full">
+              Submit Engineering Consultation Request →
+            </Button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</Layout>

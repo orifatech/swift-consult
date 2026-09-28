@@ -1,168 +1,115 @@
 ---
-import { SECTORS, SERVICES, ENTITIES, type EntityKey } from '@/data/companyData';
+import { SECTORS, SERVICES, COMPANY, ENGINEERING_ACCREDITATIONS } from '@/data/companyData';
 import Button from '@/components/ui/Button.astro';
 
-interface Props {
-  currentEntity?: EntityKey;
-}
-
-const { currentEntity = 'consult' } = Astro.props;
-const activeCompany = ENTITIES[currentEntity] || ENTITIES.consult;
-const cross = activeCompany.crossEntity;
-const isGlobal = currentEntity === 'global';
-
-// Filter relevant services and sectors for this entity
-const relevantServices = SERVICES.filter(s => 
-  isGlobal 
-    ? s.entityRole === 'Swift Global' || s.entityRole === 'Joint Competency'
-    : s.entityRole === 'Swift Consult' || s.entityRole === 'Joint Competency'
-);
-
-const relevantSectors = SECTORS.filter(s =>
-  isGlobal
-    ? s.leadEntity === 'Swift Global' || s.leadEntity === 'Joint Delivery'
-    : s.leadEntity === 'Swift Consult' || s.leadEntity === 'Joint Delivery'
-);
+const sister = COMPANY.sisterCompany;
 ---
 
-<footer class={`border-t text-white transition-colors ${
-  isGlobal 
-    ? 'bg-black border-navy-800' 
-    : 'bg-navy-950 border-navy-800'
-}`} role="contentinfo">
+<footer class="bg-navy-950 text-white border-t border-navy-900" role="contentinfo">
   
-  <!-- Prominent Cross-Entity Switcher Banner -->
-  <aside aria-label="Sister entity quick switch" class={`py-8 px-4 sm:px-6 lg:px-8 border-b ${
-    isGlobal
-      ? 'bg-gradient-to-r from-navy-950 via-navy-900 to-black border-amber-500/20'
-      : 'bg-gradient-to-r from-navy-900 via-navy-950 to-steel-950 border-steel-500/20'
-  }`}>
+  <!-- Sister Entity Referral Promo Banner -->
+  <aside aria-label="Sister company reference" class="py-10 px-4 sm:px-6 lg:px-8 border-b border-navy-900 bg-gradient-to-r from-navy-950 via-navy-900 to-navy-950">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
       <div class="space-y-1.5 text-center md:text-left">
-        <div class="flex items-center justify-center md:justify-start gap-2 font-mono text-[11px] uppercase tracking-wider">
-          <span class={`w-2 h-2 inline-block ${isGlobal ? 'bg-steel-400' : 'bg-amber-construction'}`}></span>
-          <span class="text-slate-400">Sister Entity Practice:</span>
-          <strong class={isGlobal ? 'text-steel-300' : 'text-amber-construction'}>{cross.targetLegalName}</strong>
+        <div class="flex items-center justify-center md:justify-start gap-2 font-mono text-xs uppercase tracking-wider">
+          <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+          <span class="text-slate-400">Sister Entity:</span>
+          <strong class="text-amber-300">{sister.name}</strong>
+          <span class="text-slate-500 font-normal">({sister.subtitle})</span>
         </div>
         <p class="text-sm text-slate-300 font-sans max-w-2xl leading-relaxed">
-          {cross.description}
+          {sister.description}
         </p>
       </div>
 
-      <div class="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
+      <div class="flex items-center gap-3">
         <a
-          href={cross.targetHref}
-          class={`w-full sm:w-auto text-center px-6 py-3.5 font-display text-xs font-bold uppercase tracking-wider transition-all duration-150 border select-none ${
-            isGlobal
-              ? 'bg-steel-500 hover:bg-steel-400 text-white border-steel-400 shadow-md'
-              : 'bg-amber-construction hover:bg-amber-400 text-navy-950 border-amber-400 shadow-md'
-          }`}
+          href={sister.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-navy-950 font-display text-xs font-bold uppercase tracking-wider transition-all shadow-md group"
         >
-          {cross.ctaLabel}
-        </a>
-        <a
-          href="/"
-          class="w-full sm:w-auto text-center px-4 py-3.5 font-mono text-xs text-slate-300 hover:text-white bg-navy-900/80 hover:bg-navy-800 border border-slate-700 transition-colors uppercase tracking-wider"
-          title="Return to the Fullscreen Gateway Portal"
-        >
-          ⊞ Gateway Portal
+          <span>{sister.ctaLabel}</span>
+          <span class="group-hover:translate-x-0.5 transition-transform" aria-hidden="true">↗</span>
         </a>
       </div>
     </div>
   </aside>
 
   <!-- Main Footer Grid -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
       
       <!-- Col 1: Corporate Profile & Logos -->
       <div class="lg:col-span-2 space-y-6">
         <div class="flex items-center gap-3">
           <img
-            src={activeCompany.logoSvg}
-            alt={activeCompany.legalName}
+            src="/images/swift-consult-logo.svg"
+            alt="Swift Consult Inc."
             width="280"
             height="62"
-            class={`h-11 sm:h-12 w-auto ${isGlobal ? 'brightness-125' : 'brightness-200'}`}
+            class="h-10 sm:h-12 w-auto brightness-200"
             loading="lazy"
           />
         </div>
 
-        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans max-w-md">
-          {activeCompany.description}
+        <p class="text-sm text-slate-300 leading-relaxed font-sans max-w-md">
+          {COMPANY.description}
         </p>
 
         <!-- Technical Accreditations & Codes -->
         <div class="space-y-2 pt-2">
-          <div class={`text-[10px] font-mono uppercase tracking-wider ${isGlobal ? 'text-amber-construction' : 'text-steel-400'}`}>
-            {isGlobal ? 'Procurement & EPC Governance:' : 'Engineering Compliance & Design Standards:'}
+          <div class="text-[10px] font-mono uppercase tracking-wider text-steel-400">
+            Engineering Practice &amp; Regulatory Licensure:
           </div>
-          <div class="flex flex-wrap gap-1.5 font-mono text-[10px] text-slate-200">
-            {isGlobal ? (
-              <>
-                <span class="px-2 py-0.5 bg-navy-900 border border-navy-800">API / ASME</span>
-                <span class="px-2 py-0.5 bg-navy-900 border border-navy-800">ISO 9001 QMS</span>
-                <span class="px-2 py-0.5 bg-navy-900 border border-navy-800">FAT / Inspection</span>
-                <span class="px-2 py-0.5 bg-navy-900 border border-navy-800">Incoterms 2020</span>
-              </>
-            ) : (
-              <>
-                <span class="px-2 py-0.5 bg-navy-900 border border-navy-800">CSA S16 / S6</span>
-                <span class="px-2 py-0.5 bg-navy-900 border border-navy-800">ACI 318</span>
-                <span class="px-2 py-0.5 bg-navy-900 border border-navy-800">OBC / NBC</span>
-                <span class="px-2 py-0.5 bg-navy-900 border border-navy-800">P.Eng Licensed</span>
-              </>
-            )}
+          <div class="flex flex-wrap gap-2 font-mono text-[10px] text-slate-200">
+            {ENGINEERING_ACCREDITATIONS.map((acc) => (
+              <span class="px-2.5 py-1 rounded-md bg-navy-900 border border-navy-800">
+                {acc.organization}
+              </span>
+            ))}
           </div>
         </div>
       </div>
 
-      <!-- Col 2: Sectors -->
+      <!-- Col 2: Focus Sectors -->
       <div>
-        <h3 class={`text-xs font-mono uppercase tracking-architect mb-4 pb-1 border-b ${
-          isGlobal ? 'text-amber-construction border-navy-800' : 'text-steel-400 border-navy-800'
-        }`}>
+        <h3 class="text-xs font-mono uppercase tracking-architect text-steel-400 mb-4 pb-1 border-b border-navy-800">
           Focus Sectors
         </h3>
         <ul class="space-y-2.5 text-xs text-slate-300 font-sans" role="list">
-          {relevantSectors.map((sector) => (
+          {SECTORS.map((sector) => (
             <li>
               <a
-                href={isGlobal ? `/global/sectors#${sector.id}` : `/consult/sectors#${sector.id}`}
+                href={`/sectors#${sector.id}`}
                 class="hover:text-white transition-colors flex items-center justify-between group"
               >
                 <span>{sector.title}</span>
-                <span class={`font-mono text-[10px] transition-colors ${
-                  isGlobal ? 'group-hover:text-amber-construction' : 'group-hover:text-steel-400'
-                }`}>→</span>
+                <span class="font-mono text-[10px] text-slate-500 group-hover:text-steel-400 transition-colors">→</span>
               </a>
             </li>
           ))}
           <li class="pt-2">
             <a
-              href={isGlobal ? '/global/sectors' : '/consult/sectors'}
-              class={`font-mono text-[11px] uppercase tracking-wider hover:underline ${
-                isGlobal ? 'text-amber-construction' : 'text-steel-400'
-              }`}
+              href="/sectors"
+              class="font-mono text-[11px] uppercase tracking-wider text-steel-400 hover:text-white hover:underline"
             >
-              View All Sectors →
+              All Sectors &amp; Typologies →
             </a>
           </li>
         </ul>
       </div>
 
-      <!-- Col 3: Services Engine -->
+      <!-- Col 3: Core Capabilities -->
       <div>
-        <h3 class={`text-xs font-mono uppercase tracking-architect mb-4 pb-1 border-b ${
-          isGlobal ? 'text-amber-construction border-navy-800' : 'text-steel-400 border-navy-800'
-        }`}>
-          Core Capabilities
+        <h3 class="text-xs font-mono uppercase tracking-architect text-steel-400 mb-4 pb-1 border-b border-navy-800">
+          Engineering Scope
         </h3>
         <ul class="space-y-2 text-xs text-slate-300 font-sans" role="list">
-          {relevantServices.map((service) => (
+          {SERVICES.map((service) => (
             <li>
               <a
-                href={isGlobal ? `/global/services#service-${service.number}` : `/consult/services#service-${service.number}`}
+                href={`/services#service-${service.number}`}
                 class="hover:text-white transition-colors block py-0.5"
               >
                 <span class="text-slate-500 font-mono text-[10px] mr-1">{service.number}.</span>
@@ -172,12 +119,10 @@ const relevantSectors = SECTORS.filter(s =>
           ))}
           <li class="pt-2">
             <a
-              href={isGlobal ? '/global/services' : '/consult/services'}
-              class={`font-mono text-[11px] uppercase tracking-wider hover:underline ${
-                isGlobal ? 'text-amber-construction' : 'text-steel-400'
-              }`}
+              href="/services"
+              class="font-mono text-[11px] uppercase tracking-wider text-steel-400 hover:text-white hover:underline"
             >
-              All Technical Services →
+              All Capabilities →
             </a>
           </li>
         </ul>
@@ -185,44 +130,35 @@ const relevantSectors = SECTORS.filter(s =>
 
       <!-- Col 4: Corporate Headquarters & Contacts -->
       <div class="space-y-4">
-        <h3 class={`text-xs font-mono uppercase tracking-architect mb-4 pb-1 border-b ${
-          isGlobal ? 'text-amber-construction border-navy-800' : 'text-steel-400 border-navy-800'
-        }`}>
-          {activeCompany.name} Office
+        <h3 class="text-xs font-mono uppercase tracking-architect text-steel-400 mb-4 pb-1 border-b border-navy-800">
+          Headquarters
         </h3>
         
-        <div class="text-xs text-slate-300 space-y-2 font-mono">
-          <div>
-            <span class="text-slate-500 block text-[10px] uppercase">Corporate Address</span>
-            <span class="text-white font-sans text-xs font-medium">1000 King Street West</span>
-            <span class="block text-slate-400 font-sans text-xs">Toronto, ON, M6K 3N1, Canada</span>
+        <div class="text-xs text-slate-300 space-y-2.5 font-mono">
+          <div class="p-3 rounded-xl bg-navy-900 border border-navy-800 space-y-0.5">
+            <span class="text-slate-400 block text-[10px] uppercase">Corporate Address</span>
+            <span class="text-white font-sans text-xs font-medium block">{COMPANY.address}</span>
+            <span class="text-slate-400 font-sans text-xs">Toronto, Ontario, Canada</span>
           </div>
 
-          <div class="pt-1">
-            <span class="text-slate-500 block text-[10px] uppercase">Direct Inquiries</span>
-            <a href={`mailto:${activeCompany.email}`} class={`font-mono text-xs transition-colors underline break-all ${
-              isGlobal ? 'text-amber-construction hover:text-white' : 'text-steel-300 hover:text-white'
-            }`}>
-              {activeCompany.email}
+          <div class="p-3 rounded-xl bg-navy-900 border border-navy-800 space-y-0.5">
+            <span class="text-slate-400 block text-[10px] uppercase">Official Email</span>
+            <a href={`mailto:${COMPANY.email}`} class="font-mono text-xs text-steel-300 hover:text-white transition-colors underline break-all block">
+              {COMPANY.email}
             </a>
           </div>
 
-          <div class="pt-1">
-            <span class="text-slate-500 block text-[10px] uppercase">Direct Line</span>
-            <a href="tel:+15875663166" class="text-white hover:text-steel-300 font-mono text-xs transition-colors">
-              +1 (587) 566-3166
+          <div class="p-3 rounded-xl bg-navy-900 border border-navy-800 space-y-0.5">
+            <span class="text-slate-400 block text-[10px] uppercase">Dispatch Line</span>
+            <a href="tel:+15875663166" class="text-white hover:text-steel-300 font-mono text-xs transition-colors block">
+              {COMPANY.phone}
             </a>
           </div>
         </div>
 
         <div class="pt-2">
-          <Button
-            href={isGlobal ? '/global/contact' : '/consult/contact'}
-            variant={isGlobal ? 'accent' : 'primary'}
-            size="sm"
-            class="w-full"
-          >
-            {isGlobal ? 'Procurement Bid Request' : 'Schedule Engineering Consultation'}
+          <Button href="/contact" variant="primary" size="sm" class="w-full">
+            Schedule Engineering Consultation
           </Button>
         </div>
       </div>
@@ -231,17 +167,15 @@ const relevantSectors = SECTORS.filter(s =>
   </div>
 
   <!-- Bottom Legal & Copyright Bar -->
-  <div class={`border-t py-6 px-4 sm:px-6 lg:px-8 text-xs font-mono ${
-    isGlobal ? 'bg-black border-navy-900 text-slate-400' : 'bg-navy-950 border-navy-900 text-slate-400'
-  }`}>
+  <div class="border-t border-navy-900 py-6 px-4 sm:px-6 lg:px-8 text-xs font-mono bg-navy-950 text-slate-400">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
       <div>
-        © {new Date().getFullYear()} {activeCompany.legalName}. All rights reserved.
+        © {new Date().getFullYear()} {COMPANY.legalName}. All rights reserved.
       </div>
       <div class="flex items-center gap-4">
-        <span>Part of the Swift Integrated Consortium</span>
+        <span>Licensed P.Eng Engineering Practice</span>
         <span>•</span>
-        <a href={isGlobal ? '/global/contact' : '/consult/contact'} class="hover:text-slate-300 transition-colors">
+        <a href="/contact" class="hover:text-slate-300 transition-colors">
           Toronto HQ
         </a>
       </div>

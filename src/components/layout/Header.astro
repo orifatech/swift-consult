@@ -1,241 +1,188 @@
 ---
 import Button from '@/components/ui/Button.astro';
-import { ENTITIES, type EntityKey } from '@/data/companyData';
+import { COMPANY } from '@/data/companyData';
 
 interface Props {
-  currentEntity?: EntityKey;
   activePath?: string;
 }
 
-const { currentEntity = 'consult', activePath = '/consult' } = Astro.props;
-const activeCompany = ENTITIES[currentEntity] || ENTITIES.consult;
-const cross = activeCompany.crossEntity;
-const isGlobal = currentEntity === 'global';
+const { activePath = '/' } = Astro.props;
+const sister = COMPANY.sisterCompany;
 ---
 
-<header class={`sticky top-0 z-50 border-b transition-colors duration-150 ${
-  isGlobal
-    ? 'bg-navy-950/95 backdrop-blur-md border-navy-800 text-white'
-    : 'bg-white/95 backdrop-blur-md border-slate-200 text-navy-900'
-}`}>
+<header class="sticky top-0 z-50 transition-colors duration-200">
   
-  <!-- Prominent Cross-Entity Switcher Banner -->
-  <div class={`py-1.5 px-4 sm:px-6 lg:px-8 text-xs font-mono border-b ${
-    isGlobal
-      ? 'bg-black text-slate-300 border-navy-900'
-      : 'bg-navy-950 text-slate-200 border-navy-900'
-  }`}>
+  <!-- Sister Entity Referral Banner -->
+  <div class="bg-navy-950 border-b border-navy-900 text-xs font-mono py-2 px-4 sm:px-6 lg:px-8">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
-      
-      <!-- Current Site Indicator & Gateway Return Link -->
-      <div class="flex items-center gap-3">
-        <a
-          href="/"
-          class="flex items-center gap-1.5 px-2 py-0.5 bg-navy-900 hover:bg-steel-600 text-slate-200 hover:text-white border border-slate-700 transition-colors uppercase text-[10px] tracking-wider"
-          title="Return to the Fullscreen Gateway Portal"
-        >
-          <span aria-hidden="true">⊞</span>
-          <span>Portal Gateway</span>
-        </a>
-        <div class="flex items-center gap-2 text-[11px]">
-          <span class={`w-2 h-2 inline-block ${isGlobal ? 'bg-amber-construction animate-pulse' : 'bg-steel-400'}`}></span>
-          <span class="text-slate-400 uppercase tracking-widest text-[10px]">Active Website:</span>
-          <strong class="text-white font-semibold">{activeCompany.name}</strong>
-        </div>
+      <div class="flex items-center gap-2.5 text-[11px]">
+        <span class="w-2 h-2 rounded-full bg-steel-400"></span>
+        <span class="text-slate-400 uppercase tracking-widest text-[10px]">Active Website:</span>
+        <strong class="text-white font-semibold">Swift Consult Inc.</strong>
+        <span class="text-slate-600 hidden sm:inline">|</span>
+        <span class="text-slate-400 hidden sm:inline">Structural &amp; Civil Engineering</span>
       </div>
 
-      <!-- Prominent Cross-Entity Switcher Button -->
+      <!-- Sister Company Switcher Link -->
       <a
-        href={cross.targetHref}
-        class={`px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-wider transition-all duration-150 flex items-center gap-2 border ${
-          isGlobal
-            ? 'bg-steel-500 hover:bg-steel-400 text-white border-steel-400 shadow-sm'
-            : 'bg-amber-construction hover:bg-amber-400 text-navy-950 border-amber-300 font-extrabold shadow-sm'
-        }`}
-        aria-label={`Switch to ${cross.targetName} website`}
+        href={sister.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-navy-900 hover:bg-navy-850 text-amber-300 hover:text-white border border-amber-500/30 hover:border-amber-400 transition-all text-[11px] font-semibold tracking-wide group shadow-sm"
+        aria-label={`Visit sister company ${sister.name}`}
       >
-        <span>{cross.ctaLabel}</span>
-        <span class="text-[9px] opacity-80 hidden md:inline">({cross.targetSubtitle})</span>
+        <span>Sister Practice: <strong class="text-white">{sister.name}</strong> ({sister.subtitle})</span>
+        <span class="text-amber-400 group-hover:translate-x-0.5 transition-transform" aria-hidden="true">↗</span>
       </a>
-
     </div>
   </div>
 
   <!-- Main Navigation Bar -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-20">
-      
-      <!-- Brand Logo -->
-      <a
-        href={currentEntity === 'global' ? '/global' : '/consult'}
-        class="flex items-center py-2 group focus-visible:outline-steel-500"
-        aria-label={`${activeCompany.name} Home`}
-      >
-        <div class="h-11 sm:h-13 w-auto flex items-center">
-          <img
-            src={activeCompany.logoSvg}
-            alt={activeCompany.legalName}
-            width="260"
-            height="58"
-            class={`h-10 sm:h-12 w-auto object-contain ${isGlobal ? 'brightness-125' : ''}`}
-            loading="eager"
-            fetchpriority="high"
-          />
-        </div>
-      </a>
+  <nav class="bg-white/90 backdrop-blur-xl border-b border-slate-200/80 shadow-sm" aria-label="Main Navigation">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Brand Logo -->
+        <a
+          href="/"
+          class="flex items-center py-2 group focus-visible:outline-steel-500 rounded-lg"
+          aria-label="Swift Consult Inc. Home"
+        >
+          <div class="h-10 sm:h-12 w-auto flex items-center">
+            <img
+              src="/images/swift-consult-logo.svg"
+              alt="Swift Consult Inc."
+              width="260"
+              height="58"
+              class="h-9 sm:h-11 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+              loading="eager"
+              fetchpriority="high"
+            />
+          </div>
+        </a>
 
-      <!-- Desktop Nav Items -->
-      <nav class="hidden lg:flex items-center space-x-1" aria-label="Main Navigation">
-        {activeCompany.navLinks.map((link) => {
-          const isHomeLink = link.href === '/consult' || link.href === '/global';
-          const isActive = isHomeLink ? activePath === link.href : activePath.startsWith(link.href);
-          
-          return (
+        <!-- Desktop Navigation Items -->
+        <div class="hidden lg:flex items-center space-x-1">
+          {COMPANY.navLinks.map((link) => {
+            const isHome = link.href === '/';
+            const isActive = isHome ? activePath === '/' : activePath.startsWith(link.href);
+            
+            return (
+              <a
+                href={link.href}
+                aria-current={isActive ? 'page' : undefined}
+                class={`px-4 py-2 rounded-lg text-xs font-display font-semibold uppercase tracking-wider transition-all duration-200 ${
+                  isActive
+                    ? 'text-navy-900 bg-slate-100/90 font-bold shadow-sm'
+                    : 'text-slate-600 hover:text-navy-900 hover:bg-slate-50'
+                }`}
+              >
+                {link.label}
+              </a>
+            );
+          })}
+        </div>
+
+        <!-- Right Action Hub: Toronto Dispatch & Proposal Button -->
+        <div class="hidden sm:flex items-center gap-4">
+          <a
+            href="tel:+15875663166"
+            class="flex flex-col text-right font-mono group focus-visible:outline-steel-500 rounded-lg px-2 py-1"
+            aria-label="Call Toronto dispatch at +1 (587) 566-3166"
+          >
+            <span class="text-[10px] uppercase tracking-wider text-slate-500">
+              Toronto Dispatch
+            </span>
+            <span class="text-xs font-semibold text-navy-900 group-hover:text-steel-600 transition-colors">
+              +1 (587) 566-3166
+            </span>
+          </a>
+
+          <Button href="/contact" variant="primary" size="sm">
+            Request Proposal
+          </Button>
+        </div>
+
+        <!-- Mobile Hamburger Button -->
+        <div class="flex lg:hidden items-center gap-2">
+          <a
+            href="/contact"
+            class="sm:hidden px-3 py-1.5 rounded-lg text-xs font-display font-bold uppercase tracking-wider bg-navy-900 text-white shadow-sm"
+          >
+            Proposal
+          </a>
+          <button
+            type="button"
+            id="mobile-menu-button"
+            class="p-2.5 rounded-xl text-navy-900 bg-slate-100 border border-slate-200 hover:bg-slate-200 focus-visible:outline-steel-500"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+            aria-controls="mobile-nav-menu"
+          >
+            <svg id="hamburger-icon" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg id="close-icon" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div
+      id="mobile-nav-menu"
+      class="hidden lg:hidden border-t border-slate-200 bg-white/98 backdrop-blur-2xl"
+      role="region"
+      aria-label="Mobile Navigation"
+    >
+      <div class="px-4 pt-4 pb-6 space-y-4">
+        
+        <!-- Sister Entity Callout in Mobile Drawer -->
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+          <div class="text-[10px] font-mono uppercase text-slate-500 tracking-wider">
+            Looking for Heavy Industrial &amp; EPC Procurement?
+          </div>
+          <a
+            href={sister.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center justify-between py-2 px-3 rounded-lg bg-navy-950 text-amber-300 hover:text-white text-xs font-mono font-bold uppercase border border-navy-800"
+          >
+            <span>{sister.ctaLabel}</span>
+            <span>↗</span>
+          </a>
+        </div>
+
+        <!-- Links -->
+        <div class="space-y-1">
+          {COMPANY.navLinks.map((link) => (
             <a
               href={link.href}
-              aria-current={isActive ? 'page' : undefined}
-              class={`px-3.5 py-2 text-xs font-display font-semibold uppercase tracking-wider transition-colors duration-150 ${
-                isActive
-                  ? isGlobal
-                    ? 'text-amber-construction border-b-2 border-amber-construction font-bold bg-navy-900/40'
-                    : 'text-navy-900 border-b-2 border-navy-900 font-bold bg-slate-50'
-                  : isGlobal
-                    ? 'text-slate-300 hover:text-white hover:bg-navy-900/60 border-b-2 border-transparent'
-                    : 'text-slate-600 hover:text-navy-900 hover:bg-slate-50 border-b-2 border-transparent'
-              }`}
+              class="block px-4 py-2.5 rounded-lg text-sm font-display font-medium uppercase tracking-wider text-slate-800 hover:bg-slate-100 hover:text-navy-900 transition-colors"
             >
               {link.label}
             </a>
-          );
-        })}
-      </nav>
-
-      <!-- Right CTAs & Contact Info -->
-      <div class="hidden sm:flex items-center gap-4">
-        <!-- Direct Phone Link -->
-        <a
-          href="tel:+15875663166"
-          class="flex flex-col text-right font-mono group focus-visible:outline-steel-500"
-          aria-label="Call Toronto office at +1 (587) 566-3166"
-        >
-          <span class={`text-[10px] uppercase tracking-wider ${isGlobal ? 'text-slate-400' : 'text-slate-500'}`}>
-            Toronto Dispatch
-          </span>
-          <span class={`text-xs font-semibold transition-colors ${
-            isGlobal ? 'text-white group-hover:text-amber-construction' : 'text-navy-900 group-hover:text-steel-600'
-          }`}>
-            +1 (587) 566-3166
-          </span>
-        </a>
-
-        <!-- Consultation/RFP Button -->
-        <Button
-          href={isGlobal ? '/global/contact' : '/consult/contact'}
-          variant={isGlobal ? 'accent' : 'primary'}
-          size="sm"
-        >
-          {isGlobal ? 'Submit Procurement RFP' : 'Request Consultation'}
-        </Button>
-      </div>
-
-      <!-- Mobile Hamburger Button -->
-      <div class="flex lg:hidden items-center gap-2">
-        <a
-          href={isGlobal ? '/global/contact' : '/consult/contact'}
-          class={`sm:hidden px-3 py-1.5 text-xs font-display font-semibold uppercase tracking-wider ${
-            isGlobal ? 'bg-amber-construction text-navy-950' : 'bg-navy-900 text-white'
-          }`}
-        >
-          Contact
-        </a>
-        <button
-          type="button"
-          id="mobile-menu-button"
-          class={`p-2.5 focus-visible:outline-steel-500 rounded-none border ${
-            isGlobal
-              ? 'text-white bg-navy-900 border-navy-700 hover:bg-navy-800'
-              : 'text-navy-900 bg-white border-slate-200 hover:bg-slate-100'
-          }`}
-          aria-label="Open navigation menu"
-          aria-expanded="false"
-          aria-controls="mobile-nav-menu"
-        >
-          <svg id="hamburger-icon" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-          <svg id="close-icon" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- Mobile Drawer Menu -->
-  <div
-    id="mobile-nav-menu"
-    class={`hidden lg:hidden border-t ${
-      isGlobal ? 'bg-navy-950 border-navy-800 text-white' : 'bg-white border-slate-200 text-slate-800'
-    }`}
-    role="region"
-    aria-label="Mobile Navigation"
-  >
-    <div class="px-4 pt-4 pb-6 space-y-3">
-      
-      <!-- Prominent Switcher Box in Mobile Drawer -->
-      <div class={`p-3.5 border ${
-        isGlobal ? 'bg-black border-navy-800' : 'bg-slate-50 border-slate-300'
-      }`}>
-        <div class="text-[10px] font-mono uppercase text-slate-400 tracking-widest mb-1.5">
-          Need Sister Entity Services?
+          ))}
         </div>
-        <a
-          href={cross.targetHref}
-          class={`block w-full text-center py-2 px-3 font-mono text-xs font-bold uppercase tracking-wider ${
-            isGlobal
-              ? 'bg-steel-500 text-white hover:bg-steel-400'
-              : 'bg-amber-construction text-navy-950 hover:bg-amber-400'
-          }`}
-        >
-          {cross.ctaLabel}
-        </a>
-      </div>
 
-      <!-- Navigation Links -->
-      <div class="space-y-1">
-        {activeCompany.navLinks.map((link) => (
-          <a
-            href={link.href}
-            class={`block px-3 py-2 text-sm font-display font-medium uppercase tracking-wider border-l-2 ${
-              isGlobal
-                ? 'text-slate-200 hover:bg-navy-900 border-transparent hover:border-amber-construction'
-                : 'text-slate-700 hover:bg-slate-100 hover:text-navy-900 border-transparent hover:border-navy-900'
-            }`}
-          >
-            {link.label}
-          </a>
-        ))}
-        <a
-          href="/"
-          class={`block px-3 py-2 text-xs font-mono uppercase tracking-wider border-l-2 border-dashed ${
-            isGlobal ? 'text-slate-400 hover:text-white border-slate-700' : 'text-slate-500 hover:text-navy-900 border-slate-300'
-          }`}
-        >
-          ⊞ Return to Fullscreen Gateway
-        </a>
-      </div>
+        <!-- Contact Info in Mobile Drawer -->
+        <div class="pt-4 border-t border-slate-200 font-mono text-xs text-slate-600 space-y-1.5">
+          <div><strong class="text-navy-900">Toronto HQ:</strong> 1000 King Street West</div>
+          <div><strong class="text-navy-900">Telephone:</strong> <a href="tel:+15875663166" class="text-steel-600 underline">+1 (587) 566-3166</a></div>
+          <div><strong class="text-navy-900">Email:</strong> <a href={`mailto:${COMPANY.email}`} class="text-steel-600 underline">{COMPANY.email}</a></div>
+        </div>
 
-      <!-- Contact Info In Mobile Drawer -->
-      <div class={`pt-4 border-t font-mono text-xs space-y-2 ${
-        isGlobal ? 'border-navy-800 text-slate-300' : 'border-slate-200 text-slate-600'
-      }`}>
-        <div><strong class={isGlobal ? 'text-white' : 'text-navy-900'}>Toronto Office:</strong> 1000 King Street West</div>
-        <div><strong class={isGlobal ? 'text-white' : 'text-navy-900'}>Phone:</strong> <a href="tel:+15875663166" class="underline">+1 (587) 566-3166</a></div>
-        <div><strong class={isGlobal ? 'text-white' : 'text-navy-900'}>Email:</strong> <a href={`mailto:${activeCompany.email}`} class="underline">{activeCompany.email}</a></div>
+        <div class="pt-2">
+          <Button href="/contact" variant="primary" size="md" class="w-full">
+            Request Proposal
+          </Button>
+        </div>
       </div>
     </div>
-  </div>
+  </nav>
 </header>
 
 <script>
