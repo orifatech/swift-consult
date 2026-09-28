@@ -54,7 +54,7 @@ const categories = [
               role="tab"
               aria-selected={index === 0 ? 'true' : 'false'}
               data-filter={cat.value}
-              class={`category-tab px-4 py-2 rounded-md font-mono text-xs font-semibold uppercase tracking-wider transition-all duration-200 flex items-center gap-2 border ${
+              class={`category-tab px-3 py-1.5 rounded-md font-mono text-[11px] font-semibold uppercase tracking-wider transition-all duration-200 flex items-center gap-2 border ${
                 index === 0
                   ? 'bg-navy-900 text-white border-navy-900 shadow-sm'
                   : 'bg-white text-slate-600 border-slate-200 hover:text-navy-900 hover:bg-slate-50'
@@ -73,7 +73,7 @@ const categories = [
         </div>
 
         <p class="font-mono text-xs text-slate-500">
-          Showing <span id="visible-projects-count">{PROJECTS.length}</span> verified projects
+          Showing <span id="visible-projects-count">{PROJECTS.length}</span> projects
         </p>
       </div>
 
@@ -112,28 +112,23 @@ const categories = [
             </div>
 
             <!-- Compact Card Body -->
-            <div class="p-5 sm:p-6 space-y-3 flex-grow flex flex-col justify-between">
+            <div class="px-5 py-4 space-y-3 flex-grow flex flex-col justify-between">
               <div class="space-y-2">
                 <div class="flex items-center gap-1.5 font-mono text-xs text-slate-500">
                   <span>📍</span>
                   <span class="truncate">{project.location}</span>
                 </div>
 
-                <h2 class="text-lg sm:text-xl font-display font-bold text-navy-900 group-hover:text-steel-600 transition-colors line-clamp-2 leading-snug">
+                <h2 class="text-lg font-display font-bold text-navy-900 group-hover:text-steel-600 transition-colors line-clamp-2 leading-snug">
                   {project.title}
                 </h2>
-
-                <p class="text-xs font-mono text-steel-700 bg-slate-50 px-2.5 py-1.5 rounded-md border border-slate-200/80 line-clamp-1">
-                  {project.stats}
-                </p>
               </div>
 
               <!-- Card Footer Action Affordance -->
-              <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-mono">
+              <div class="border-slate-100 flex items-center justify-between text-xs font-mono">
                 <span class="text-steel-600 font-bold flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
-                  View Full Specs &rarr;
+                  Full Details &rarr;
                 </span>
-                <span class="text-slate-400">P.Eng Sealed ✓</span>
               </div>
             </div>
           </article>
@@ -184,7 +179,7 @@ const categories = [
       </p>
       <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
         <Button href="/contact" variant="primary" size="lg">
-          Request Project Consultation →
+          For Project Consultation →
         </Button>
         <Button href="/services" variant="secondary" size="lg">
           Explore Practice Areas
